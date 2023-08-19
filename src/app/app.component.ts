@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment, constants } from 'src/environments/environments';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'libevilaqua-angular';
+  title = 'Libevilaqua';
+
+  constructor() {
+    this.title = environment.title
+  }
 }

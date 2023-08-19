@@ -1,0 +1,18 @@
+<form [formGroup]="formLogin">
+  <label for="email">E-mail:</label>
+  <input type="text" id="email" formControlName="email" placeholder="E-mail" />
+
+  <br />
+
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    formControlName="password"
+    placeholder="****"
+  />
+
+  <br />
+
+  <button (click)="signIn()">Entrar</button>
+</form>
