@@ -7,8 +7,3 @@ export interface LoginResponseSuccessfull {
   access_token: string;
 }
 
-export interface LoginResponseFailed {
-  statusCode: number;
-  message: string;
-}
-
