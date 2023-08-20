@@ -3,6 +3,12 @@ export interface LoginInterface {
   password: string;
 }
 
-export interface LoginResponse {
+export interface LoginResponseSuccessfull {
   access_token: string;
 }
+
+export interface LoginResponseFailed {
+  statusCode: number;
+  message: string;
+}
+

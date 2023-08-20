@@ -1,18 +1,46 @@
-<form [formGroup]="formLogin">
-  <label for="email">E-mail:</label>
-  <input type="text" id="email" formControlName="email" placeholder="E-mail" />
+<h1>Libevilaqua</h1>
 
-  <br />
+<h3>A biblioteca dos irmãos Bevilaqua</h3>
 
-  <label for="password">Password:</label>
-  <input
-    type="password"
-    id="password"
-    formControlName="password"
-    placeholder="****"
-  />
+<form [formGroup]="formLogin" class="pure-form pure-form-stacked">
+  <fieldset>
+    <legend>Entre na sua conta:</legend>
 
-  <br />
+    <label for="email">E-mail:</label>
+    <input
+      type="email"
+      required
+      id="email"
+      formControlName="email"
+      placeholder="E-mail"
+    />
+    <div
+      class="mensagem_erro"
+      *ngIf="formLogin.get('email')?.errors?.['email'] && formLogin.get('email')?.touched"
+    >
+      Informe um e-mail válido
+    </div>
 
-  <button (click)="signIn()">Entrar</button>
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      required
+      id="password"
+      formControlName="password"
+      placeholder="****"
+    />
+    <div
+      class="mensagem_erro"
+      *ngIf="formLogin.get('password')?.errors?.['required'] && formLogin.get('password')?.touched"
+    >
+      Informe a senha
+    </div>
+
+    <button [disabled]="!formLogin.valid" [ngClass]="signInValid() + ' pure-button'" (click)="signIn()">
+      Entrar
+    </button>
+    <div *ngIf="loginError === 1" class="mensagem_erro">
+      Login ou senha incorretos
+    </div>
+  </fieldset>
 </form>
