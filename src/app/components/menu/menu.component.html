@@ -10,7 +10,10 @@
       <ul class="pure-menu-list">
           <li [ngClass]="isSelected('inicio') + ' pure-menu-item'" id="menu-inicio"><a href="/inicio" class="pure-menu-link">Início</a></li>
           <li [ngClass]="isSelected('login') + ' pure-menu-item'" id="menu-login"><a href="/login" class="pure-menu-link">Login</a></li>
-          <li [ngClass]="isSelected('logout') + ' pure-menu-item'" id="menu-login"><a (click)="logout()" href="/login" class="pure-menu-link">Sair</a></li>
+          <li [ngClass]="isSelected('usuarios') + ' pure-menu-item'" id="menu-usuario"><a href="/usuarios" class="pure-menu-link">Usuários</a></li>
+
+
+          <li [ngClass]="isSelected('logout') + ' pure-menu-item'" id="menu-login"><a (click)="logout()" href="/login" class="menu-item-divided pure-menu-link">Sair</a></li>
       </ul>
   </div>
 </div>

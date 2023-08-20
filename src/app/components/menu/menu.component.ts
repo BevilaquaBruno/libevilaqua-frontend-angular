@@ -20,7 +20,7 @@ export class MenuComponent {
       if(path ==='login')
         className += ' hidden';
     }else{
-      if(path ==='inicio' || path === 'logout')
+      if(path !== 'login')
         className += ' hidden';
     }
 
