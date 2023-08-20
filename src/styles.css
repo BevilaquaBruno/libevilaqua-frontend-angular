@@ -1,14 +1,12 @@
 @import "assets/pure.css";
 @import "assets/buttons.css";
 @import "assets/menu.css";
+@import "assets/helpers.css";
+@import "assets/pure-overrides.css";
 
 body {
   color: #ffffff;
   background-color: #313131;
-}
-
-.center-text {
-  text-align: center;
 }
 
 a {
@@ -17,4 +15,16 @@ a {
 
 a :visited{
   color: #ffffff;
+}
+
+.main-table {
+  width: 100%;
+}
+
+.thead-id {
+  width: 3%;
+}
+
+.thead-actions {
+  width: 10%;
 }

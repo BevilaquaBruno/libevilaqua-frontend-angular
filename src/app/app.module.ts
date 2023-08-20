@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
 import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
-import { UsuarioComponent } from './components/usuarios/usuario/usuario.component';
 
 
 @NgModule({
@@ -21,7 +20,6 @@ import { UsuarioComponent } from './components/usuarios/usuario/usuario.componen
     InicioComponent,
     MenuComponent,
     ListUsuariosComponent,
-    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
