@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import { environment, constants } from 'src/environments/environments';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'libevilaqua-angular';
+  title = 'Libevilaqua';
+
+  constructor() {
+    this.title = environment.title
+  }
 }
