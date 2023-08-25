@@ -14,14 +14,7 @@ export class ListUsuariosComponent implements OnInit {
   itensPerPage :number = 10;
   maxPage :number = 0;
 
-  constructor(private service: UsuarioService, private router: Router) {
-    if (
-      localStorage.getItem('token') === null ||
-      localStorage.getItem('token') === ''
-    ) {
-      this.router.navigate(['/login']);
-    }
-  }
+  constructor(private service: UsuarioService, private router: Router) {}
 
   updateUserList() {
     this.service.list(this.currentPage, this.itensPerPage).subscribe((users) => {

@@ -7,3 +7,6 @@ export interface LoginResponseSuccessfull {
   access_token: string;
 }
 
+export interface ValidateToken {
+  isValid: boolean;
+}

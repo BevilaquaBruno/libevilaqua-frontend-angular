@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,18 @@ import { Router } from '@angular/router';
 
 export class MenuComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {
+    let token = localStorage.getItem('token');
+    if(token != null && token != ''){
+      loginService.validate(token).subscribe((response) => {}, (error) => {
+        if(error.status === 401){
+          localStorage.removeItem('token');
+         router.navigate(['/login']);
+         // i need to test this
+        }
+      });
+    }
+  }
 
   isSelected(path: string){
     let className: string = "";

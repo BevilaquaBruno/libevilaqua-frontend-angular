@@ -4,12 +4,14 @@ import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
 
+let currentToken = localStorage.getItem('token');
+
 const routes: Routes = [
   {
     path: '',
     redirectTo:
-      localStorage.getItem('token') === null ||
-      localStorage.getItem('token')?.trim() === ''
+      currentToken === null ||
+      currentToken?.trim() === ''
         ? 'login'
         : 'inicio',
     pathMatch: 'full',
