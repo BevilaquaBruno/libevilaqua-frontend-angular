@@ -30,12 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/material-design-lite/material.min.css"
-            ],
-            "scripts": [
-              "node_modules/material-design-lite/material.min.js"
-            ]
+              "src/styles.css"],
+            "scripts": []
           },
           "configurations": {
             "production": {

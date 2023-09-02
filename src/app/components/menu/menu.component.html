@@ -1,7 +1,8 @@
-<span class="mdl-layout-title">Libevilaqua</span>
-<nav class="mdl-navigation">
-  <a id="menu-inicio" [ngClass]="isSelected('inicio') + ' pure-menu-item'" class="mdl-navigation__link" href="/inicio">Início</a>
-  <a id="menu-login" [ngClass]="isSelected('login') + ' pure-menu-item'" class="mdl-navigation__link" href="/login">Login</a>
-  <a id="menu-usuario" [ngClass]="isSelected('usuarios') + ' pure-menu-item'" class="mdl-navigation__link" href="/usuarios">Usuários</a>
-  <a (click)="logout()" [ngClass]="isSelected('logout') + ' pure-menu-item'" class="mdl-navigation__link" href="">Logout</a>
+<nav>
+  <a id="menu-inicio" [ngClass]="isSelected('inicio')" href="/inicio">Início</a>
+  <a id="menu-login" [ngClass]="isSelected('login')" href="/login">Login</a>
+  <a id="menu-usuario" [ngClass]="isSelected('usuarios')" href="/usuarios"
+    >Usuários</a
+  >
+  <a (click)="logout()" [ngClass]="isSelected('logout')" href="">Logout</a>
 </nav>
