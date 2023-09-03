@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { Router } from '@angular/router';
 import { UsuarioInterface } from '../usuario.interface';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-list-usuarios',
@@ -10,19 +11,34 @@ import { UsuarioInterface } from '../usuario.interface';
 })
 export class ListUsuariosComponent implements OnInit {
   listUsers: UsuarioInterface[] = [];
-  currentPage :number = 1;
-  itensPerPage :number = 10;
-  maxPage :number = 0;
+  currentPage: number = 1;
+  itensPerPage: number = 10;
+  maxPage: number = 0;
 
-  constructor(private service: UsuarioService, private router: Router) {}
+  constructor(
+    private service: UsuarioService,
+    private appService: AppService,
+    private router: Router
+  ) {
+    this.appService.isValid().subscribe(
+      () => {},
+      (error) => {
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+      }
+    );
+  }
 
   updateUserList() {
-    this.service.list(this.currentPage, this.itensPerPage).subscribe((users) => {
-      if (users.length === 0) {
-        this.maxPage = this.currentPage - 1;
-        this.previousPage();
-      } else this.listUsers = users;
-    });
+    this.service
+      .list(this.currentPage, this.itensPerPage)
+      .subscribe((users) => {
+        if (users.length === 0) {
+          this.maxPage = this.currentPage - 1;
+          this.previousPage();
+        } else this.listUsers = users;
+      });
   }
 
   ngOnInit(): void {
@@ -43,7 +59,7 @@ export class ListUsuariosComponent implements OnInit {
     }
   }
 
-  itensPerPageChanged(){
+  itensPerPageChanged() {
     this.maxPage = 0;
     this.updateUserList();
   }
