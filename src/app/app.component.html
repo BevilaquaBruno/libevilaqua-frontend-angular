@@ -1,7 +1,15 @@
-<div>
-  <span>Libevilaqua</span>
-  <app-menu></app-menu>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+<div [ngClass]="setTheme()">
+  <div class="bg-white dark:bg-slate-800 text-black dark:text-white">
+    <span>Libevilaqua</span>
+    <app-menu></app-menu>
+    <main>
+      <div class="p-4 sm:ml-64">
+        <div
+          class="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700"
+        >
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
 </div>

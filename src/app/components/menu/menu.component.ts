@@ -27,13 +27,13 @@ export class MenuComponent {
   isSelected(path: string){
     let className: string = "";
     if(window.location.pathname.indexOf(path) != -1)
-      className += 'pure-menu-selected';
+      className += 'bg-gray-100 dark:bg-gray-700';
     if((localStorage.getItem('token') !== null && localStorage.getItem('token')?.trim() !== '')){
       if(path ==='login')
-        className += ' hidden';
+        className += ' hidden ';
     }else{
       if(path !== 'login')
-        className += ' hidden';
+        className += ' hidden ';
     }
 
     return className;
