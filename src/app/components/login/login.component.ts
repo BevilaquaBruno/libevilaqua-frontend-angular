@@ -51,7 +51,19 @@ export class LoginComponent {
 
   signInValid (){
     if(this.formLogin.valid)
-      return 'button-success';
+      return ' bg-violet-500 hover:scale-110 ease-in-out duration-100';
+    return ' bg-gray-500';
+  }
+
+  returnInputClass(field: string){
+    if(field === 'login'){
+      if(this.formLogin.get('email')?.errors?.['email'] && this.formLogin.get('email')?.touched)
+        return 'border-2 border-red-500';
+    }else if (field === 'password'){
+      if(this.formLogin.get('password')?.errors?.['required'] && this.formLogin.get('password')?.touched){
+        return 'border-2 border-red-500';
+      }
+    }
     return '';
   }
 }
