@@ -11,6 +11,8 @@ import { LoginService } from '../login/login.service';
 
 export class MenuComponent {
 
+  currentTheme: string = '';
+
   constructor(private router: Router, private loginService: LoginService) {
     let token = localStorage.getItem('token');
     if(token != null && token != ''){
@@ -22,6 +24,8 @@ export class MenuComponent {
         }
       });
     }
+    const tempCurrentTheme = localStorage.getItem('theme');
+    this.currentTheme = (tempCurrentTheme == null)? 'light' : tempCurrentTheme;
   }
 
   isSelected(path: string){
@@ -42,5 +46,14 @@ export class MenuComponent {
   logout(){
     localStorage.removeItem('token');
     window.location.reload();
+  }
+
+  swithTheme(){
+    if (this.currentTheme == 'dark')
+      localStorage.setItem('theme', 'light');
+    else if (this.currentTheme == 'light')
+      localStorage.setItem('theme', 'dark');
+
+      window.location.reload();
   }
 }

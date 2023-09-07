@@ -15,14 +15,6 @@ export class AppComponent {
   }
 
   setTheme() {
-    if (this.theme === 'dark') {
-      localStorage.setItem('theme', 'dark');
-      return 'dark';
-    } else if (this.theme === 'light') {
-      localStorage.setItem('theme', 'light');
-      return 'light';
-    }
-    localStorage.setItem('theme', 'dark');
-    return 'dark';
+    return this.theme;
   }
 }
