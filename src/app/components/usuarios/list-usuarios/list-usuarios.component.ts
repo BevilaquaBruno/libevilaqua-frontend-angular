@@ -28,6 +28,10 @@ export class ListUsuariosComponent implements OnInit {
         }
       }
     );
+      const storageItensPerPage = localStorage.getItem('itensPerPage');
+    if(storageItensPerPage != null){
+      this.itensPerPage = parseInt(storageItensPerPage);
+    }
   }
 
   updateUserList() {
@@ -60,6 +64,7 @@ export class ListUsuariosComponent implements OnInit {
   }
 
   itensPerPageChanged() {
+    localStorage.setItem('itensPerPage', this.itensPerPage.toString());
     this.maxPage = 0;
     this.updateUserList();
   }
