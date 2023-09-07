@@ -49,7 +49,7 @@ export class LoginComponent {
 
   signInValid (){
     if(this.formLogin.valid)
-      return ' bg-violet-700';
+      return ' bg-violet-700 hover:bg-violet-600';
     return ' bg-gray-500';
   }
 
