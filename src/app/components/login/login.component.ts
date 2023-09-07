@@ -1,9 +1,7 @@
-import { Token } from '@angular/compiler';
 import { LoginService } from './login.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { constants } from 'src/environments/environments';
 
 @Component({
   selector: 'app-login',
@@ -51,19 +49,19 @@ export class LoginComponent {
 
   signInValid (){
     if(this.formLogin.valid)
-      return ' bg-violet-500 hover:scale-110 ease-in-out duration-100';
+      return ' bg-violet-700 hover:scale-110 ease-in-out duration-100';
     return ' bg-gray-500';
   }
 
   returnInputClass(field: string){
-    if(field === 'login'){
+    if(field == 'login'){
       if(this.formLogin.get('email')?.errors?.['email'] && this.formLogin.get('email')?.touched)
-        return 'border-2 border-red-500';
-    }else if (field === 'password'){
+        return ' border-2 border-red-500 focus:border-red-500';
+    }else if (field == 'password'){
       if(this.formLogin.get('password')?.errors?.['required'] && this.formLogin.get('password')?.touched){
-        return 'border-2 border-red-500';
+        return ' border-2 border-red-500 focus:border-red-500';
       }
     }
-    return '';
+    return ' border-0 border-b-2 focus:border-gray-500';
   }
 }
