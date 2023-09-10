@@ -3,3 +3,8 @@ export interface UsuarioInterface {
   name: string;
   email:string;
 }
+
+export interface UsuarioListInterface {
+  data: UsuarioInterface[];
+  count: number;
+}

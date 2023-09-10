@@ -2,10 +2,10 @@
   <div class="col-span-12">
     <span class="text-4xl">Usuários</span>
   </div>
-  <div class="col-span-8">
+  <div class="sm:col-span-8 col-span-12">
     <span class="text-2xl">Lista de usuários que tem acesso ao sistema.</span>
   </div>
-  <div class="col-span-2 text-right">
+  <div class="col-span-6 sm:col-span-2 text-right">
     <label for="per-page">Por página: </label>
     <select
       class="form-select border-0 dark:bg-slate-800 bg-white border-b-2 focus:ring-0 focus:border-gray-500"
@@ -18,7 +18,7 @@
       <option value="10">10</option>
     </select>
   </div>
-  <div class="col-span-2">
+  <div class="col-span-6 sm:col-span-2">
     <div class="inline-flex rounded-md shadow-sm">
       <button
         class="bg-violet-700 rounded-l-lg hover:bg-violet-500 px-2 pt-1 cursor-pointer"
@@ -27,8 +27,8 @@
         <span class="text-white material-symbols-outlined"> chevron_left </span>
       </button>
       <span class="bg-violet-700 text-sm px-2 pt-1 cursor-pointer text-white">
-        {{ currentPage * itensPerPage > 2 ? 2 : currentPage * itensPerPage }} /
-        2
+        {{ currentPage * itensPerPage > maxPages ? maxPages : currentPage * itensPerPage }} /
+        {{maxPages}}
       </span>
       <button
         class="bg-violet-700 rounded-r-lg hover:bg-violet-500 px-2 pt-1 cursor-pointer"
@@ -49,7 +49,7 @@
         <th scope="col" class="px-6 py-3">#</th>
         <th scope="col" class="px-6 py-3">Nome</th>
         <th scope="col" class="px-6 py-3">E-mail</th>
-        <th scope="col" class="px-6 py-3">Ações</th>
+        <th scope="col" class="px-6 py-3 sm:w-56">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -66,7 +66,34 @@
         <td class="px-6 py-4">{{ user.name }}</td>
         <td class="px-6 py-4">{{ user.email }}</td>
         <td class="px-6 py-4">
-          <span class="material-symbols-outlined"> more_vert </span>
+          <div class="grid grid-cols-12 gap-1 text-center">
+            <div class="col-span-12 sm:col-span-4">
+              <a href="/usuarios/{{ user.id }}/detalhes">
+                <span
+                  class="text-black dark:text-white bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-500 p-2 rounded-full cursor-pointer material-symbols-outlined"
+                >
+                  visibility
+                </span>
+              </a>
+            </div>
+            <div class="col-span-12 sm:col-span-4">
+              <a href="/usuarios/{{ user.id }}/editar">
+                <span
+                  class="text-black dark:text-white bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-500 p-2 rounded-full cursor-pointer material-symbols-outlined"
+                >
+                  edit
+                </span>
+              </a>
+            </div>
+            <div class="col-span-12 sm:col-span-4">
+              <button
+                (click)="deleteUser(user.id)"
+                class="text-black dark:text-white bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-500 p-2 rounded-full cursor-pointer material-symbols-outlined"
+              >
+                delete
+              </button>
+            </div>
+          </div>
         </td>
       </tr>
     </tbody>

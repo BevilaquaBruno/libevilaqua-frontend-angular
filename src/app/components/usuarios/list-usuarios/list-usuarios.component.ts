@@ -13,7 +13,8 @@ export class ListUsuariosComponent implements OnInit {
   listUsers: UsuarioInterface[] = [];
   currentPage: number = 1;
   itensPerPage: number = 10;
-  maxPage: number = 0;
+  maxPages: number = 0;
+  maxRegisters: number = 0;
 
   constructor(
     private service: UsuarioService,
@@ -34,14 +35,19 @@ export class ListUsuariosComponent implements OnInit {
     }
   }
 
+  deleteUser(id: number){
+    console.log('Delete user ' + id);
+  }
+
   updateUserList() {
     this.service
       .list(this.currentPage, this.itensPerPage)
       .subscribe((users) => {
-        if (users.length === 0) {
-          this.maxPage = this.currentPage - 1;
-          this.previousPage();
-        } else this.listUsers = users;
+        this.maxRegisters = users.count;
+        this.listUsers = users.data;
+        let calcMaxPage = parseInt((this.maxRegisters / this.itensPerPage).toFixed(0));
+        if((this.maxRegisters % this.itensPerPage) != 0) calcMaxPage++;
+        this.maxPages = calcMaxPage;
       });
   }
 
@@ -50,7 +56,7 @@ export class ListUsuariosComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.maxPage !== this.currentPage) {
+    if (this.maxPages > this.currentPage) {
       this.currentPage++;
       this.updateUserList();
     }
@@ -65,7 +71,7 @@ export class ListUsuariosComponent implements OnInit {
 
   itensPerPageChanged() {
     localStorage.setItem('itensPerPage', this.itensPerPage.toString());
-    this.maxPage = 0;
+    this.currentPage = 1;
     this.updateUserList();
   }
 }

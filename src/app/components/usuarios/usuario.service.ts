@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { constants } from 'src/environments/environments';
-import { UsuarioInterface } from './usuario.interface';
+import { UsuarioInterface, UsuarioListInterface } from './usuario.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +15,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  list(page: number, itensPerPage: number): Observable<UsuarioInterface[]> {
+  list(page: number, itensPerPage: number): Observable<UsuarioListInterface> {
     let params = new HttpParams().set('page', page).set('limit', itensPerPage);
 
-    return this.http.get<UsuarioInterface[]>(this.API, {
+    return this.http.get<UsuarioListInterface>(this.API, {
       params,
       headers: this.headers,
     });

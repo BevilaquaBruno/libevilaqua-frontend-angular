@@ -56,4 +56,8 @@ export class MenuComponent {
 
       window.location.reload();
   }
+
+  closeMenu(){
+    document.getElementById('buttonSideBarMenu')?.click();
+  }
 }
