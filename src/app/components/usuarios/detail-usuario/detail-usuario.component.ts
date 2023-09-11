@@ -16,6 +16,8 @@ export class DetailUsuarioComponent {
     email: ''
   };
 
+  userFound: boolean = true;
+
   constructor(
     private service: UsuarioService,
     private appService: AppService,
@@ -34,7 +36,10 @@ export class DetailUsuarioComponent {
     if (tempId != null)
       this.service.getUser(parseInt(tempId)).subscribe(
         (data) => {
-          this.user = data;
+          if(data === null)
+            this.userFound = false;
+          else
+            this.user = data;
         },
         (error) => {
           console.log(error);
