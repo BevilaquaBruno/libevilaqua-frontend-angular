@@ -3,6 +3,7 @@ import { UsuarioService } from '../usuario.service';
 import { Router } from '@angular/router';
 import { UsuarioInterface } from '../usuario.interface';
 import { AppService } from 'src/app/app.service';
+import { Modal } from 'flowbite';
 
 @Component({
   selector: 'app-list-usuarios',
@@ -15,6 +16,8 @@ export class ListUsuariosComponent implements OnInit {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
+  deleteData = {id: 0, index: -1};
+  modalDelete!: Modal;
 
   constructor(
     private service: UsuarioService,
@@ -35,13 +38,29 @@ export class ListUsuariosComponent implements OnInit {
     }
   }
 
-  deleteUser(id: number, index: number) {
-    this.service.deleteUser(id).subscribe((data) => {
-      if(data.affected != 0){
-        this.listUsers.splice(index, 1);
-        this.maxRegisters--;
-      }
-    });
+  openConfirmDeleteUser(id: number, index: number){
+    this.deleteData.id = id;
+    this.deleteData.index = index;
+    this.modalDelete = new Modal(document.getElementById('popup-modal-delete-user'));
+    this.modalDelete.show();
+  }
+
+  undoDeleteUser(){
+    this.deleteData.id = 0;
+    this.deleteData.index = -1;
+    this.modalDelete.hide();
+  }
+
+  confirmDeleteUser() {
+    if(this.deleteData.id != 0 && this.deleteData.index != -1){
+      this.service.deleteUser(this.deleteData.id).subscribe((data) => {
+        if(data.affected != 0){
+          this.listUsers.splice(this.deleteData.index, 1);
+          this.maxRegisters--;
+        }
+      });
+    }
+    this.modalDelete.hide();
   }
 
   updateUserList() {
