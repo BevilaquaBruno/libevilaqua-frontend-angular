@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
 import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
+import { DetailUsuarioComponent } from './components/usuarios/detail-usuario/detail-usuario.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-
     InicioComponent,
     MenuComponent,
     ListUsuariosComponent,
+    DetailUsuarioComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

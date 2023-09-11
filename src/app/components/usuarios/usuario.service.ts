@@ -23,4 +23,8 @@ export class UsuarioService {
       headers: this.headers,
     });
   }
+
+  getUser(id: number): Observable<UsuarioInterface> {
+    return this.http.get<UsuarioInterface>(`${this.API}/${id}`,{ headers: this.headers });
+  }
 }
