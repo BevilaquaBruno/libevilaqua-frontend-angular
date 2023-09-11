@@ -27,8 +27,7 @@
         <span class="text-white material-symbols-outlined"> chevron_left </span>
       </button>
       <span class="bg-violet-700 text-sm px-2 pt-1 cursor-pointer text-white">
-        {{ currentPage * itensPerPage > maxPages ? maxPages : currentPage * itensPerPage }} /
-        {{maxPages}}
+        {{ currentPage }} / {{ maxPages }}
       </span>
       <button
         class="bg-violet-700 rounded-r-lg hover:bg-violet-500 px-2 pt-1 cursor-pointer"
@@ -54,7 +53,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let user of listUsers"
+        *ngFor="let user of listUsers; let i = index"
         class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
       >
         <th
@@ -87,7 +86,7 @@
             </div>
             <div class="col-span-12 sm:col-span-4">
               <button
-                (click)="deleteUser(user.id)"
+                (click)="deleteUser(user.id, i)"
                 class="text-black dark:text-white bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-500 p-2 rounded-full cursor-pointer material-symbols-outlined"
               >
                 delete

@@ -29,14 +29,19 @@ export class ListUsuariosComponent implements OnInit {
         }
       }
     );
-      const storageItensPerPage = localStorage.getItem('itensPerPage');
-    if(storageItensPerPage != null){
+    const storageItensPerPage = localStorage.getItem('itensPerPage');
+    if (storageItensPerPage != null) {
       this.itensPerPage = parseInt(storageItensPerPage);
     }
   }
 
-  deleteUser(id: number){
-    console.log('Delete user ' + id);
+  deleteUser(id: number, index: number) {
+    this.service.deleteUser(id).subscribe((data) => {
+      if(data.affected != 0){
+        this.listUsers.splice(index, 1);
+        this.maxRegisters--;
+      }
+    });
   }
 
   updateUserList() {
@@ -45,8 +50,7 @@ export class ListUsuariosComponent implements OnInit {
       .subscribe((users) => {
         this.maxRegisters = users.count;
         this.listUsers = users.data;
-        let calcMaxPage = parseInt((this.maxRegisters / this.itensPerPage).toFixed(0));
-        if((this.maxRegisters % this.itensPerPage) != 0) calcMaxPage++;
+        let calcMaxPage = Math.ceil(this.maxRegisters / this.itensPerPage);
         this.maxPages = calcMaxPage;
       });
   }

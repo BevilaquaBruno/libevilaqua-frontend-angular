@@ -8,3 +8,8 @@ export interface UsuarioListInterface {
   data: UsuarioInterface[];
   count: number;
 }
+
+export interface UsuarioDeleteInterface {
+  affected: number,
+  raw: any[]
+}

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { constants } from 'src/environments/environments';
-import { UsuarioInterface, UsuarioListInterface } from './usuario.interface';
+import { UsuarioDeleteInterface, UsuarioInterface, UsuarioListInterface } from './usuario.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +26,9 @@ export class UsuarioService {
 
   getUser(id: number): Observable<UsuarioInterface> {
     return this.http.get<UsuarioInterface>(`${this.API}/${id}`,{ headers: this.headers });
+  }
+
+  deleteUser(id: number): Observable<UsuarioDeleteInterface>{
+    return this.http.delete<UsuarioDeleteInterface>(`${this.API}/${id}`,{ headers: this.headers });
   }
 }
