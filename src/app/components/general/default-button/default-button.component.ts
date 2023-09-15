@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DefaultButtonComponent {
 
-  @Input() disabled: boolean = true;
+  @Input() disabled: boolean = false;
   @Input() classes: string = '';
   @Output('action') action: EventEmitter<any> = new EventEmitter();
 
