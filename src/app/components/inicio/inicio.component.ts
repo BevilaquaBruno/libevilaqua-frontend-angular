@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css'],
+  styleUrls: [],
 })
 export class InicioComponent {
   constructor(private appService: AppService, private router: Router) {

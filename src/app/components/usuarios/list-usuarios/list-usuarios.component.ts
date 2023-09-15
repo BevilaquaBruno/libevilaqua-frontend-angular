@@ -8,7 +8,7 @@ import { Modal } from 'flowbite';
 @Component({
   selector: 'app-list-usuarios',
   templateUrl: './list-usuarios.component.html',
-  styleUrls: ['./list-usuarios.component.css'],
+  styleUrls: [],
 })
 export class ListUsuariosComponent implements OnInit {
   listUsers: UsuarioInterface[] = [];

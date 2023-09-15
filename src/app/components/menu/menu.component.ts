@@ -5,7 +5,7 @@ import { LoginService } from '../login/login.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: []
 })
 
 

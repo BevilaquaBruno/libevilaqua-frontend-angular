@@ -7,7 +7,7 @@ import { UsuarioInterface } from '../usuario.interface';
 @Component({
   selector: 'app-detail-usuario',
   templateUrl: './detail-usuario.component.html',
-  styleUrls: ['./detail-usuario.component.css'],
+  styleUrls: [],
 })
 export class DetailUsuarioComponent {
   user: UsuarioInterface = {
