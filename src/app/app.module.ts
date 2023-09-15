@@ -11,6 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
 import { DetailUsuarioComponent } from './components/usuarios/detail-usuario/detail-usuario.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { DefaultButtonComponent } from './components/general/default-button/default-button.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ListUsuariosComponent,
     DetailUsuarioComponent,
     PageNotFoundComponent,
+    DefaultButtonComponent,
   ],
   imports: [
     BrowserModule,
