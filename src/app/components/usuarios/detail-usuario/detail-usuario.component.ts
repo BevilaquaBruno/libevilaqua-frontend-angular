@@ -46,4 +46,8 @@ export class DetailUsuarioComponent {
         }
       );
   }
+
+  goToUserEdit(){
+    this.router.navigate([`/usuarios/${this.user.id}/editar`]);
+  }
 }

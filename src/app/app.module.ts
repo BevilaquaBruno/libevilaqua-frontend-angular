@@ -12,6 +12,7 @@ import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-
 import { DetailUsuarioComponent } from './components/usuarios/detail-usuario/detail-usuario.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DefaultButtonComponent } from './components/general/default-button/default-button.component';
+import { IconButtonComponent } from './components/general/icon-button/icon-button.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { DefaultButtonComponent } from './components/general/default-button/defa
     DetailUsuarioComponent,
     PageNotFoundComponent,
     DefaultButtonComponent,
+    IconButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ export class DefaultButtonComponent {
 
   @Input() disabled: boolean = false;
   @Input() classes: string = '';
+  @Input() text: string = '';
+
   @Output('action') action: EventEmitter<any> = new EventEmitter();
 
 }
