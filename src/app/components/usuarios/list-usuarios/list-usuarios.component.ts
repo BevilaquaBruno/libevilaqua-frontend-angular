@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { Router } from '@angular/router';
 import { UsuarioInterface } from '../usuario.interface';
 import { AppService } from 'src/app/app.service';
 import { Modal } from 'flowbite';
+import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-list-usuarios',
@@ -16,8 +17,9 @@ export class ListUsuariosComponent implements OnInit {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = {id: 0, index: -1};
-  modalDelete!: Modal;
+  deleteData = { id: 0 };
+
+  @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
 
   constructor(
     private service: UsuarioService,
@@ -25,11 +27,9 @@ export class ListUsuariosComponent implements OnInit {
     private router: Router
   ) {
     this.appService.isValid().subscribe(
-      () => {},
+      () => { },
       (error) => {
-        if (error.status === 401) {
-          this.router.navigate(['/login']);
-        }
+        if (error.status === 401) this.router.navigate(['/login']);
       }
     );
     const storageItensPerPage = localStorage.getItem('itensPerPage');
@@ -38,29 +38,28 @@ export class ListUsuariosComponent implements OnInit {
     }
   }
 
-  openConfirmDeleteUser(id: number, index: number){
+  openConfirmDeleteUser(id: number) {
     this.deleteData.id = id;
-    this.deleteData.index = index;
-    this.modalDelete = new Modal(document.getElementById('popup-modal-delete-user'));
-    this.modalDelete.show();
+    this.confirmationDialog.openModal();
   }
 
-  undoDeleteUser(){
+  finishDeleteUser() {
     this.deleteData.id = 0;
-    this.deleteData.index = -1;
-    this.modalDelete.hide();
+    this.confirmationDialog.closeModal();
+    this.updateUserList();
   }
 
   confirmDeleteUser() {
-    if(this.deleteData.id != 0 && this.deleteData.index != -1){
-      this.service.deleteUser(this.deleteData.id).subscribe((data) => {
-        if(data.affected != 0){
-          this.listUsers.splice(this.deleteData.index, 1);
-          this.maxRegisters--;
-        }
-      });
+    if (this.deleteData.id != 0) {
+      this.service.deleteUser(this.deleteData.id).subscribe(
+        (success) => {
+          if (success.affected != 0) {
+            this.finishDeleteUser();
+          }
+        }, (error) => {
+          console.log('Erro ao deletar usuário');
+        });
     }
-    this.modalDelete.hide();
   }
 
   updateUserList() {
