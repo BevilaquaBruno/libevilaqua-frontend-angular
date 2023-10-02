@@ -38,6 +38,10 @@ export class ListUsuariosComponent implements OnInit {
     }
   }
 
+  openNewUser() {
+    this.router.navigate(['/usuarios/cadastrar']);
+  }
+
   openConfirmDeleteUser(id: number) {
     this.deleteData.id = id;
     this.confirmationDialog.openModal();

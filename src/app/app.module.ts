@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { DefaultButtonComponent } from './components/general/default-button/default-button.component';
 import { IconButtonComponent } from './components/general/icon-button/icon-button.component';
 import { ConfirmDialogComponent } from './components/general/confirm-dialog/confirm-dialog.component';
+import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-usuario.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ConfirmDialogComponent } from './components/general/confirm-dialog/conf
     DefaultButtonComponent,
     IconButtonComponent,
     ConfirmDialogComponent,
+    FormUsuarioComponent,
   ],
   imports: [
     BrowserModule,

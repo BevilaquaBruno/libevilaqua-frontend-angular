@@ -5,6 +5,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DetailUsuarioComponent } from './components/usuarios/detail-usuario/detail-usuario.component';
+import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-usuario.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: ':id/detalhes',
         component: DetailUsuarioComponent
+      },
+      {
+        path: 'cadastrar',
+        component: FormUsuarioComponent
       }
     ]
   },
