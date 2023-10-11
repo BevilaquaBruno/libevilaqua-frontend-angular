@@ -42,6 +42,10 @@ const routes: Routes = [
       {
         path: 'cadastrar',
         component: FormUsuarioComponent
+      },
+      {
+        path: ':id/editar',
+        component: FormUsuarioComponent
       }
     ]
   },

@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormUsuarioComponent {
 
-  action: string = 'new';
+  new: boolean = true;
+  id: number = 0;
 
   constructor(
     private service: UsuarioService,
@@ -24,11 +25,14 @@ export class FormUsuarioComponent {
         if (error.status === 401) this.router.navigate(['/login']);
       }
     );
-    if('cadastrar' == this.route.snapshot.routeConfig?.path)
-      this.action = 'new';
-    else
-      this.action = 'edit';
-  }
 
+    if('cadastrar' == this.route.snapshot.routeConfig?.path){
+      this.new = true;
+      this.id = 0;
+    }else if(':id/editar'){
+      this.new = false;
+      this.id = this.route.snapshot.params['id'];
+    }
+  }
 
 }
