@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { constants } from 'src/environments/environments';
-import { UsuarioDeleteInterface, UsuarioInterface, UsuarioListInterface } from './usuario.interface';
+import { UsuarioCreateInterface, UsuarioDeleteInterface, UsuarioInterface, UsuarioListInterface } from './usuario.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class UsuarioService {
     `Authorization: Bearer ${localStorage.getItem('token')}`
   );
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   list(page: number, itensPerPage: number): Observable<UsuarioListInterface> {
     let params = new HttpParams().set('page', page).set('limit', itensPerPage);
@@ -25,10 +25,14 @@ export class UsuarioService {
   }
 
   getUser(id: number): Observable<UsuarioInterface> {
-    return this.http.get<UsuarioInterface>(`${this.API}/${id}`,{ headers: this.headers });
+    return this.http.get<UsuarioInterface>(`${this.API}/${id}`, { headers: this.headers });
   }
 
-  deleteUser(id: number): Observable<UsuarioDeleteInterface>{
-    return this.http.delete<UsuarioDeleteInterface>(`${this.API}/${id}`,{ headers: this.headers });
+  deleteUser(id: number): Observable<UsuarioDeleteInterface> {
+    return this.http.delete<UsuarioDeleteInterface>(`${this.API}/${id}`, { headers: this.headers });
+  }
+
+  createUser(user: UsuarioCreateInterface): Observable<UsuarioInterface>{
+    return this.http.post<UsuarioInterface>(this.API, user, { headers: this.headers });
   }
 }
