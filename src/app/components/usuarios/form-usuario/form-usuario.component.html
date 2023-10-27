@@ -79,6 +79,16 @@
   </div>
   <div class="my-4">
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Erro geral -->
+      <div class="col-span-12 sm:col-span-12">
+        <div class="text-red-500 font-bold animate-pulse" *ngIf="userError.error == true">
+          {{ userError.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
       <div class="col-span-12 sm:col-span-8"></div>
       <div class="col-span-12 sm:col-span-2">
         <app-default-button [text]="new == true ? 'CADASTRAR': 'EDITAR'" (action)="saveUser()"

@@ -15,7 +15,10 @@ export class FormUsuarioComponent {
   id: number = 0;
 
   formUser!: FormGroup;
-  userError: number = 0;
+  userError = {
+    error: false,
+    message: ''
+  };
 
   constructor(
     private service: UsuarioService,
@@ -70,6 +73,11 @@ export class FormUsuarioComponent {
       this.service.createUser(this.formUser.value).subscribe((response) => {
         if (response.id != undefined) {
           this.router.navigate(['/usuarios']);
+        }
+      }, (response) => {
+        this.userError = {
+          error: true,
+          message: response.error.message,
         }
       });
     } else {
