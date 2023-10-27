@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { constants } from 'src/environments/environments';
-import { UsuarioCreateInterface, UsuarioDeleteInterface, UsuarioInterface, UsuarioListInterface } from './usuario.interface';
+import { UsuarioCreateInterface, UsuarioDeleteInterface, UsuarioInterface, UsuarioListInterface, UsuarioUpdateInterface, UsuarioUpdateResponseInterface } from './usuario.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,15 @@ export class UsuarioService {
     return this.http.delete<UsuarioDeleteInterface>(`${this.API}/${id}`, { headers: this.headers });
   }
 
-  createUser(user: UsuarioCreateInterface): Observable<UsuarioInterface>{
+  createUser(user: UsuarioCreateInterface): Observable<UsuarioInterface> {
     return this.http.post<UsuarioInterface>(this.API, user, { headers: this.headers });
+  }
+
+  updateUser(id:number, user: UsuarioUpdateInterface): Observable<UsuarioUpdateResponseInterface> {
+    console.log(this.headers);
+    console.log(id);
+    console.log(user);
+
+    return this.http.patch<UsuarioUpdateResponseInterface>(`${this.API}/${id}`,user, { headers: this.headers });
   }
 }

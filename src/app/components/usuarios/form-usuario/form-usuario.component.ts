@@ -38,37 +38,50 @@ export class FormUsuarioComponent {
       this.new = false;
       this.id = this.route.snapshot.params['id'];
       this.service.getUser(this.id).subscribe((user) => {
-        this.formUser.setValue({ name: user.name, email: user.email, password: '', verify_password: '' });
+        this.formUser.setValue({ name: user.name, email: user.email });
       })
     }
   }
 
   ngOnInit(): void {
-    this.formUser = this.formBuilder.group({
+    let formGroupData = {
       name: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required])],
-      verify_password: ['', Validators.compose([Validators.required])],
-    });
+    };
+    if (this.new == true) {
+      formGroupData = {
+        ...formGroupData, ...{
+          password: ['', Validators.compose([Validators.required])],
+          verify_password: ['', Validators.compose([Validators.required])],
+        }
+      }
+    }
+    this.formUser = this.formBuilder.group(formGroupData);
   }
 
-  saveButtonClass (){
-    if(this.formUser.valid)
+  saveButtonClass() {
+    if (this.formUser.valid)
       return ' bg-violet-700 hover:bg-violet-600';
     return ' bg-gray-500';
   }
 
-  saveUser(){
+  saveUser() {
     if (this.new) {
       this.service.createUser(this.formUser.value).subscribe((response) => {
-        console.log(response);
+        if (response.id != undefined) {
+          this.router.navigate(['/usuarios']);
+        }
       });
-    }else{
-      //editar usuário
+    } else {
+      this.service.updateUser(this.id, this.formUser.value).subscribe((response) => {
+        if(response.affected != undefined && response.affected > 0){
+          this.router.navigate(['/usuarios']);
+        }
+      });
     }
 
   }
 
-  goBack(){ this.router.navigate(['/usuarios']); }
+  goBack() { this.router.navigate(['/usuarios']); }
 
 }

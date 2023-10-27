@@ -14,6 +14,17 @@ export interface UsuarioDeleteInterface {
   raw: any[]
 }
 
+export interface UsuarioUpdateInterface {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export interface UsuarioUpdateResponseInterface {
+  raw: any[]
+  affected: number;
+}
+
 export interface UsuarioCreateInterface {
   name: string;
   email: string;
