@@ -13,6 +13,7 @@
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           placeholder="___" formControlName="name" required type="text" id="name" />
       </div>
+
       <!-- Email -->
       <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
         <label class="text-lg" for="email">E-mail: </label>
@@ -21,6 +22,20 @@
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           placeholder="___" formControlName="email" required type="text" id="email" />
+      </div>
+
+      <!-- Erros do nome e e-mail -->
+      <div class="col-span-12 sm:col-span-6">
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formUser.get('name')?.errors && formUser.get('name')?.touched">
+          O nome é obrigatório
+        </div>
+      </div>
+      <div class="col-span-12 sm:col-span-6">
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formUser.get('email')?.errors?.['email'] && formUser.get('email')?.touched">
+          Informe um e-mail válido
+        </div>
       </div>
     </div>
 
@@ -44,6 +59,20 @@
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
             placeholder="•••" formControlName="verify_password" required type="password" id="verify_password" />
+        </div>
+
+        <!-- erros da senha e confirmar senha-->
+        <div class="col-span-12 sm:col-span-7">
+          <div class="text-red-500 font-bold animate-pulse"
+            *ngIf="formUser.get('password')?.errors && formUser.get('password')?.touched">
+            Senha é obrigatória
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-4">
+          <div class="text-red-500 font-bold animate-pulse"
+            *ngIf="formUser.get('verify_password')?.errors && formUser.get('verify_password')?.touched">
+            Confirmar senha é obrigatório
+          </div>
         </div>
       </div>
     </div>

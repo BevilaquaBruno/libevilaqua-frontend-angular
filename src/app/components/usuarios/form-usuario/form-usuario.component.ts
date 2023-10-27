@@ -15,7 +15,7 @@ export class FormUsuarioComponent {
   id: number = 0;
 
   formUser!: FormGroup;
-  loginError: number = 0;
+  userError: number = 0;
 
   constructor(
     private service: UsuarioService,
