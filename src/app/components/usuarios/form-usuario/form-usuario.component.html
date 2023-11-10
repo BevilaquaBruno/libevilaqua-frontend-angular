@@ -91,7 +91,7 @@
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
       <div class="col-span-12 sm:col-span-8"></div>
       <div class="col-span-12 sm:col-span-2">
-        <app-default-button [text]="new == true ? 'CADASTRAR': 'EDITAR'" (action)="saveUser()"
+        <app-default-button text="SALVAR" (action)="saveUser()"
           [classes]="saveButtonClass()" [disabled]="!formUser.valid"></app-default-button>
       </div>
       <div class="col-span-12 sm:col-span-2">
