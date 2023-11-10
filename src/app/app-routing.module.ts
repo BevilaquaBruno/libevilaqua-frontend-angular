@@ -6,6 +6,7 @@ import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DetailUsuarioComponent } from './components/usuarios/detail-usuario/detail-usuario.component';
 import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-usuario.component';
+import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -14,7 +15,7 @@ const routes: Routes = [
     path: '',
     redirectTo:
       currentToken === null ||
-      currentToken?.trim() === ''
+        currentToken?.trim() === ''
         ? 'login'
         : 'inicio',
     pathMatch: 'full',
@@ -51,6 +52,18 @@ const routes: Routes = [
   },
 
   /* End User */
+
+  /* Start Type */
+  {
+    path: 'tipos',
+    children: [
+      {
+        path: '',
+        component: ListTiposComponent,
+      }
+    ]
+  },
+  /* End Type */
   {
     path: '**',
     component: PageNotFoundComponent
@@ -61,4 +74,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

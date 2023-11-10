@@ -15,6 +15,7 @@ import { DefaultButtonComponent } from './components/general/default-button/defa
 import { IconButtonComponent } from './components/general/icon-button/icon-button.component';
 import { ConfirmDialogComponent } from './components/general/confirm-dialog/confirm-dialog.component';
 import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-usuario.component';
+import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-us
     IconButtonComponent,
     ConfirmDialogComponent,
     FormUsuarioComponent,
+    ListTiposComponent,
   ],
   imports: [
     BrowserModule,
