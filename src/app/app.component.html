@@ -1,7 +1,12 @@
-<div id="layout">
-  <app-menu></app-menu>
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
+<div [ngClass]="setTheme()">
+  <div class="bg-white dark:bg-slate-800 text-black dark:text-white min-h-screen">
+    <app-menu></app-menu>
+    <main>
+      <div class="p-4 sm:ml-64">
+        <div class="p-4">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
 </div>
-<app-footer></app-footer>

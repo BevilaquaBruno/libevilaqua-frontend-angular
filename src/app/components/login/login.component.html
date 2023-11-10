@@ -1,46 +1,69 @@
-<h1>Libevilaqua</h1>
+<div class="h-full">
+  <form [formGroup]="formLogin">
+    <div class="text-center">
+      <span class="text-6xl">Libevilaqua</span>
+      <h3 class="text-2xl">Entre em sua conta</h3>
 
-<h3>A biblioteca dos irmãos Bevilaqua</h3>
+      <!-- E-mail Component -->
+      <div class="my-4">
+        <div class="grid grid-flow-row-dense grid-cols-12 gap-3">
+          <div class="col-span-12 sm:col-span-3"></div>
+          <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+            <label class="text-lg" for="email">E-mail: </label>
+          </div>
+          <div class="col-span-12 sm:col-span-3">
+            <input placeholder="jhon@ripper.com" [ngClass]="
+                returnInputClass('login') +
+                ' form-input w-full dark:bg-slate-800 bg-white focus:ring-0'
+              " formControlName="email" required type="email" id="email" />
+          </div>
+          <div class="col-span-12 sm:col-span-4 text-left">
+            <div class="text-red-500 font-bold animate-pulse"
+              *ngIf="formLogin.get('email')?.errors?.['email'] && formLogin.get('email')?.touched">
+              Informe um e-mail válido
+            </div>
+          </div>
+        </div>
+      </div>
 
-<form [formGroup]="formLogin" class="pure-form pure-form-stacked">
-  <fieldset>
-    <legend>Entre na sua conta:</legend>
+      <!-- Password Component -->
+      <div class="my-4">
+        <div class="grid grid-flow-dense grid-cols-12 gap-3">
+          <div class="col-span-12 sm:col-span-3"></div>
+          <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+            <label class="text-lg" for="password">Password: </label>
+          </div>
+          <div class="col-span-12 sm:col-span-3">
+            <input [ngClass]="
+                returnInputClass('password') +
+                ' form-input w-full dark:bg-slate-800 bg-white focus:ring-0'
+              " placeholder="•••" formControlName="password" required type="password" id="password" />
+          </div>
+          <div class="col-span-12 sm:col-span-4 text-left">
+            <div class="text-red-500 font-bold animate-pulse"
+              *ngIf="formLogin.get('password')?.errors?.['required'] && formLogin.get('password')?.touched">
+              Informe a senha
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <label for="email">E-mail:</label>
-    <input
-      type="email"
-      required
-      id="email"
-      formControlName="email"
-      placeholder="E-mail"
-    />
-    <div
-      class="mensagem_erro"
-      *ngIf="formLogin.get('email')?.errors?.['email'] && formLogin.get('email')?.touched"
-    >
-      Informe um e-mail válido
+      <!-- Button Component -->
+      <div class="my-4">
+        <div div class="grid grid-flow-row-dense grid-cols-11 grid-rows-2 gap-3">
+          <div class="col-span-2 sm:col-span-5"></div>
+          <div class="col-span-7 sm:col-span-1">
+            <app-default-button text="ENTRAR" (action)="signIn()" [classes]="signInValid()"
+              [disabled]="!formLogin.valid"></app-default-button>
+          </div>
+          <div class="col-span-2 sm:col-span-4"></div>
+          <div class="col-span-11">
+            <div *ngIf="loginError === 1" class="text-red-500 animate-pulse font-bold text-lg">
+              Login ou senha incorretos
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      required
-      id="password"
-      formControlName="password"
-      placeholder="****"
-    />
-    <div
-      class="mensagem_erro"
-      *ngIf="formLogin.get('password')?.errors?.['required'] && formLogin.get('password')?.touched"
-    >
-      Informe a senha
-    </div>
-
-    <button [disabled]="!formLogin.valid" [ngClass]="signInValid() + ' pure-button'" (click)="signIn()">
-      Entrar
-    </button>
-    <div *ngIf="loginError === 1" class="mensagem_erro">
-      Login ou senha incorretos
-    </div>
-  </fieldset>
-</form>
+  </form>
+</div>

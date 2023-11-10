@@ -1,14 +1,12 @@
-import { Token } from '@angular/compiler';
 import { LoginService } from './login.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { constants } from 'src/environments/environments';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: [],
 })
 export class LoginComponent {
   formLogin! :FormGroup;
@@ -51,7 +49,19 @@ export class LoginComponent {
 
   signInValid (){
     if(this.formLogin.valid)
-      return 'button-success';
-    return '';
+      return ' bg-violet-700 hover:bg-violet-600';
+    return ' bg-gray-500';
+  }
+
+  returnInputClass(field: string){
+    if(field == 'login'){
+      if(this.formLogin.get('email')?.errors?.['email'] && this.formLogin.get('email')?.touched)
+        return ' border-2 border-red-500 focus:border-red-500';
+    }else if (field == 'password'){
+      if(this.formLogin.get('password')?.errors?.['required'] && this.formLogin.get('password')?.touched){
+        return ' border-2 border-red-500 focus:border-red-500';
+      }
+    }
+    return ' border-0 border-b-2 focus:border-gray-500';
   }
 }

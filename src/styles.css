@@ -1,20 +1,3 @@
-@import "assets/pure.css";
-@import "assets/buttons.css";
-@import "assets/menu.css";
-
-body {
-  color: #ffffff;
-  background-color: #313131;
-}
-
-.center-text {
-  text-align: center;
-}
-
-a {
-  text-decoration: none;
-}
-
-a :visited{
-  color: #ffffff;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,23 @@
+<div *ngIf="userFound; else templateUserNotFound">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 sm:col-span-11 text-2xl mb-3">
+      Detalhes do usuário
+    </div>
+    <div class="col-span-12 sm:col-span-1">
+      <app-default-button text="EDITAR" (action)="goToUserEdit()" classes="bg-violet-700 hover:bg-violet-600"></app-default-button>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ user.id != 0 ? user.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Nome:</b> {{ user.name }}
+    </div>
+    <div class="col-span-12 text-xl"><b>E-mail:</b> {{ user.email }}</div>
+  </div>
+</div>
+
+<ng-template #templateUserNotFound>
+  <app-page-not-found></app-page-not-found>
+</ng-template>
