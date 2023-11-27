@@ -37,10 +37,6 @@ export class UsuarioService {
   }
 
   updateUser(id:number, user: UsuarioUpdateInterface): Observable<UsuarioUpdateResponseInterface> {
-    console.log(this.headers);
-    console.log(id);
-    console.log(user);
-
     return this.http.patch<UsuarioUpdateResponseInterface>(`${this.API}/${id}`,user, { headers: this.headers });
   }
 }
