@@ -1,0 +1,23 @@
+<div *ngIf="typeFound; else templateTypeNotFound">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 sm:col-span-11 text-2xl mb-3">
+      Detalhes do usuário
+    </div>
+    <div class="col-span-12 sm:col-span-1">
+      <app-default-button text="EDITAR" (action)="goToTypeEdit()"
+        classes="bg-violet-700 hover:bg-violet-600"></app-default-button>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ type.id != 0 ? type.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Descrição:</b> {{ type.description }}
+    </div>
+  </div>
+</div>
+
+<ng-template #templateTypeNotFound>
+  <app-page-not-found></app-page-not-found>
+</ng-template>
