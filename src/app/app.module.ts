@@ -18,6 +18,9 @@ import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-us
 import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
 import { FormTipoComponent } from './components/tipos/form-tipo/form-tipo.component';
 import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.component';
+import { ListTagsComponent } from './components/tags/list-tags/list-tags.component';
+import { DetailTagComponent } from './components/tags/detail-tag/detail-tag.component';
+import { FormTagComponent } from './components/tags/form-tag/form-tag.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.
     ListTiposComponent,
     FormTipoComponent,
     DetailTipoComponent,
+    ListTagsComponent,
+    DetailTagComponent,
+    FormTagComponent,
   ],
   imports: [
     BrowserModule,

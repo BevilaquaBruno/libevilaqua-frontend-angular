@@ -1,3 +1,4 @@
+import { DetailTagComponent } from './components/tags/detail-tag/detail-tag.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
@@ -9,6 +10,8 @@ import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-us
 import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
 import { FormTipoComponent } from './components/tipos/form-tipo/form-tipo.component';
 import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.component';
+import { ListTagsComponent } from './components/tags/list-tags/list-tags.component';
+import { FormTagComponent } from './components/tags/form-tag/form-tag.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -78,6 +81,30 @@ const routes: Routes = [
     ]
   },
   /* End Type */
+
+  /* Start Tag */
+  {
+    path: 'tags',
+    children: [
+      {
+        path: '',
+        component: ListTagsComponent,
+      },
+      {
+        path: 'cadastrar',
+        component: FormTagComponent
+      },
+      {
+        path: ':id/editar',
+        component: FormTagComponent
+      },
+      {
+        path: ':id/detalhes',
+        component: DetailTagComponent
+      }
+    ]
+  },
+  /* End Tag */
   {
     path: '**',
     component: PageNotFoundComponent
