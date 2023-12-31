@@ -57,7 +57,7 @@ export class FormTipoComponent {
     return ' bg-gray-500';
   }
 
-  saveUser() {
+  save() {
     if (this.new) {
       this.typeService.create(this.formType.value).subscribe((response) => {
         if (response.id != undefined) {

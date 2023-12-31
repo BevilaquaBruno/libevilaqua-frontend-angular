@@ -57,7 +57,7 @@ export class FormTagComponent {
     return ' bg-gray-500';
   }
 
-  saveUser() {
+  save() {
     if (this.new) {
       this.tagService.create(this.formTag.value).subscribe((response) => {
         if (response.id != undefined) {
