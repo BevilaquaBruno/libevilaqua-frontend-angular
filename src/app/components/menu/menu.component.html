@@ -45,19 +45,6 @@
           </button>
         </div>
       </li>
-      <li>
-        <a
-          id="menu-inicio"
-          [ngClass]="
-            isSelected('inicio') +
-            ' flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
-          "
-          href="/inicio"
-        >
-          <span class="material-symbols-outlined"> home </span>
-          <span class="ml-3">Início</span>
-        </a>
-      </li>
       <!--<li>
         <a
           id="menu-login"
@@ -71,6 +58,22 @@
           <span class="flex-1 ml-3 whitespace-nowrap">Login</span>
         </a>
       </li> -->
+      <!-- INICIO -->
+      <li>
+        <a
+          id="menu-inicio"
+          [ngClass]="
+            isSelected('inicio') +
+            ' flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
+          "
+          href="/inicio"
+        >
+          <span class="material-symbols-outlined"> home </span>
+          <span class="ml-3">Início</span>
+        </a>
+      </li>
+      <!-- END INICIO -->
+      <!-- TYPE -->
       <li>
         <a
           id="menu-tipo"
@@ -84,6 +87,23 @@
           <span class="flex-1 ml-3 whitespace-nowrap">Tipos</span>
         </a>
       </li>
+      <!-- END TYPE-->
+      <!-- TAG -->
+      <li>
+        <a
+          id="menu-usuario"
+          [ngClass]="
+            isSelected('tags') +
+            ' flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
+          "
+          href="/tags"
+        >
+          <span class="material-symbols-outlined"> label </span>
+          <span class="flex-1 ml-3 whitespace-nowrap">Tags</span>
+        </a>
+      </li>
+      <!-- END TAG-->
+      <!-- PERSON -->
       <li>
         <a
           id="menu-usuario"
@@ -97,6 +117,7 @@
           <span class="flex-1 ml-3 whitespace-nowrap">Usuários</span>
         </a>
       </li>
+      <!-- END PERSON-->
       <li>
         <a
           (click)="logout()"
