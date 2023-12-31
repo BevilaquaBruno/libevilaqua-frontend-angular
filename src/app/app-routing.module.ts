@@ -12,6 +12,9 @@ import { FormTipoComponent } from './components/tipos/form-tipo/form-tipo.compon
 import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.component';
 import { ListTagsComponent } from './components/tags/list-tags/list-tags.component';
 import { FormTagComponent } from './components/tags/form-tag/form-tag.component';
+import { ListGenresComponent } from './components/genre/list-genres/list-genres.component';
+import { DetailGenreComponent } from './components/genre/detail-genre/detail-genre.component';
+import { FormGenreComponent } from './components/genre/form-genre/form-genre.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -105,6 +108,29 @@ const routes: Routes = [
     ]
   },
   /* End Tag */
+  /* Start Genre */
+  {
+    path: 'generos',
+    children: [
+      {
+        path: '',
+        component: ListGenresComponent,
+      },
+      {
+        path: 'cadastrar',
+        component: FormGenreComponent
+      },
+      {
+        path: ':id/editar',
+        component: FormGenreComponent
+      },
+      {
+        path: ':id/detalhes',
+        component: DetailGenreComponent
+      }
+    ]
+  },
+  /* End Genre */
   {
     path: '**',
     component: PageNotFoundComponent

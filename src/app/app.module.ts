@@ -21,6 +21,9 @@ import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.
 import { ListTagsComponent } from './components/tags/list-tags/list-tags.component';
 import { DetailTagComponent } from './components/tags/detail-tag/detail-tag.component';
 import { FormTagComponent } from './components/tags/form-tag/form-tag.component';
+import { ListGenresComponent } from './components/genre/list-genres/list-genres.component';
+import { DetailGenreComponent } from './components/genre/detail-genre/detail-genre.component';
+import { FormGenreComponent } from './components/genre/form-genre/form-genre.component';
 
 
 @NgModule({
@@ -42,6 +45,9 @@ import { FormTagComponent } from './components/tags/form-tag/form-tag.component'
     ListTagsComponent,
     DetailTagComponent,
     FormTagComponent,
+    ListGenresComponent,
+    DetailGenreComponent,
+    FormGenreComponent,
   ],
   imports: [
     BrowserModule,
