@@ -59,7 +59,7 @@ export class ListTiposComponent {
             this.finishDeleteType();
           }
         }, (error) => {
-          console.log('Erro ao deletar usuário');
+          console.log('Erro ao deletar tipo');
         });
     }
   }
