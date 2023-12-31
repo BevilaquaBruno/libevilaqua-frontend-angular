@@ -1,6 +1,6 @@
-<form [formGroup]="formType">
+<form [formGroup]="formGenre">
   <span class="text-5xl">
-    {{ new == true ? 'Novo' : 'Alterar' }} tipo
+    {{ new == true ? 'Novo' : 'Alterar' }} gênero
   </span>
   <div class="my-4">
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
@@ -17,7 +17,7 @@
       <!-- Erro da descrição -->
       <div class="col-span-12 sm:col-span-6">
         <div class="text-red-500 font-bold animate-pulse"
-          *ngIf="formType.get('description')?.errors && formType.get('description')?.touched">
+          *ngIf="formGenre.get('description')?.errors && formGenre.get('description')?.touched">
           A descrição é obrigatória
         </div>
       </div>
@@ -28,8 +28,8 @@
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
       <!-- Erro geral -->
       <div class="col-span-12 sm:col-span-12">
-        <div class="text-red-500 font-bold animate-pulse" *ngIf="typeError.error == true">
-          {{ typeError.message }}
+        <div class="text-red-500 font-bold animate-pulse" *ngIf="genreError.error == true">
+          {{ genreError.message }}
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
       <div class="col-span-12 sm:col-span-8"></div>
       <div class="col-span-12 sm:col-span-2">
         <app-default-button text="SALVAR" (action)="save()"
-          [classes]="saveButtonClass()" [disabled]="!formType.valid"></app-default-button>
+          [classes]="saveButtonClass()" [disabled]="!formGenre.valid"></app-default-button>
       </div>
       <div class="col-span-12 sm:col-span-2">
         <app-default-button text="CANCELAR" (action)="goBack()" classes="bg-red-700 hover:bg-red-600"

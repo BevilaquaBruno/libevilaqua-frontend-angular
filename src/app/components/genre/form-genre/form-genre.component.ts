@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TagsService } from '../tags.service';
+import { GenreService } from '../genre.service';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form-tag',
-  templateUrl: './form-tag.component.html'
+  selector: 'app-form-genre',
+  templateUrl: './form-genre.component.html'
 })
-export class FormTagComponent {
+export class FormGenreComponent {
   new: boolean = true;
   id: number = 0;
 
-  formTag!: FormGroup;
-  tagError = {
+  formGenre!: FormGroup;
+  genreError = {
     error: false,
     message: ''
   };
 
   constructor(
-    private tagService: TagsService,
+    private genreService: GenreService,
     private appService: AppService,
     private router: Router,
     private route: ActivatedRoute,
@@ -38,8 +38,8 @@ export class FormTagComponent {
     } else if (':id/editar') {
       this.new = false;
       this.id = this.route.snapshot.params['id'];
-      this.tagService.get(this.id).subscribe((tag) => {
-        this.formTag.setValue({ description: tag.description });
+      this.genreService.get(this.id).subscribe((genre) => {
+        this.formGenre.setValue({ description: genre.description });
       })
     }
   }
@@ -48,37 +48,39 @@ export class FormTagComponent {
     let formGroupData = {
       description: ['', Validators.compose([Validators.required])],
     };
-    this.formTag = this.formBuilder.group(formGroupData);
+    this.formGenre = this.formBuilder.group(formGroupData);
   }
 
   saveButtonClass() {
-    if (this.formTag.valid)
+    if (this.formGenre.valid)
       return ' bg-violet-700 hover:bg-violet-600';
     return ' bg-gray-500';
   }
 
   save() {
     if (this.new) {
-      this.tagService.create(this.formTag.value).subscribe((response) => {
+      this.genreService.create(this.formGenre.value).subscribe((response) => {
         if (response.id != undefined) {
-          this.router.navigate(['/tags']);
+          this.router.navigate(['/generos']);
         }
       }, (response) => {
-        this.tagError = {
+        this.genreError = {
           error: true,
           message: response.error.message,
         }
       });
     } else {
-      this.tagService.update(this.id, this.formTag.value).subscribe((response) => {
+      this.genreService.update(this.id, this.formGenre.value).subscribe((response) => {
+        console.log(response);
+
         if(response.affected != undefined && response.affected > 0){
-          this.router.navigate(['/tags']);
+          this.router.navigate(['/generos']);
         }
       });
     }
 
   }
 
-  goBack() { this.router.navigate(['/tags']); }
+  goBack() { this.router.navigate(['/generos']); }
 
 }
