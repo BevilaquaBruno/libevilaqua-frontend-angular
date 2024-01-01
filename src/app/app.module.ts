@@ -24,6 +24,9 @@ import { FormTagComponent } from './components/tags/form-tag/form-tag.component'
 import { ListGenresComponent } from './components/genre/list-genres/list-genres.component';
 import { DetailGenreComponent } from './components/genre/detail-genre/detail-genre.component';
 import { FormGenreComponent } from './components/genre/form-genre/form-genre.component';
+import { ListEditorasComponent } from './components/editoras/list-editoras/list-editoras.component';
+import { DetailEditoraComponent } from './components/editoras/detail-editora/detail-editora.component';
+import { FormEditoraComponent } from './components/editoras/form-editora/form-editora.component';
 
 
 @NgModule({
@@ -48,6 +51,9 @@ import { FormGenreComponent } from './components/genre/form-genre/form-genre.com
     ListGenresComponent,
     DetailGenreComponent,
     FormGenreComponent,
+    ListEditorasComponent,
+    DetailEditoraComponent,
+    FormEditoraComponent,
   ],
   imports: [
     BrowserModule,
