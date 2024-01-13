@@ -1,18 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UsuarioService } from '../usuario.service';
+import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { UsuarioInterface } from '../usuario.interface';
+import { UserInterface } from '../user.interface';
 import { AppService } from 'src/app/app.service';
-import { Modal } from 'flowbite';
 import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-list-usuarios',
-  templateUrl: './list-usuarios.component.html',
+  selector: 'app-list-users',
+  templateUrl: './list-users.component.html',
   styleUrls: [],
 })
-export class ListUsuariosComponent implements OnInit {
-  listUsers: UsuarioInterface[] = [];
+export class ListUsersComponent implements OnInit {
+  listUsers: UserInterface[] = [];
   currentPage: number = 1;
   itensPerPage: number = 10;
   maxPages: number = 0;
@@ -22,7 +21,7 @@ export class ListUsuariosComponent implements OnInit {
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
 
   constructor(
-    private service: UsuarioService,
+    private service: UserService,
     private appService: AppService,
     private router: Router
   ) {

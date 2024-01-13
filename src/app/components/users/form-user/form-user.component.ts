@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { UsuarioService } from '../usuario.service';
+import { UserService } from '../user.service';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-usuario',
-  templateUrl: './form-usuario.component.html',
+  selector: 'app-form-user',
+  templateUrl: './form-user.component.html',
   styleUrls: []
 })
-export class FormUsuarioComponent {
+export class FormUserComponent {
 
   new: boolean = true;
   id: number = 0;
@@ -21,7 +21,7 @@ export class FormUsuarioComponent {
   };
 
   constructor(
-    private service: UsuarioService,
+    private service: UserService,
     private appService: AppService,
     private router: Router,
     private route: ActivatedRoute,

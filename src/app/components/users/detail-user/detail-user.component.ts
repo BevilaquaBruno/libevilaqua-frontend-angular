@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { UsuarioService } from '../usuario.service';
+import { UserService } from '../user.service';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioInterface } from '../usuario.interface';
+import { UserInterface } from '../user.interface';
 
 @Component({
-  selector: 'app-detail-usuario',
-  templateUrl: './detail-usuario.component.html',
+  selector: 'app-detail-user',
+  templateUrl: './detail-user.component.html',
   styleUrls: [],
 })
-export class DetailUsuarioComponent {
-  user: UsuarioInterface = {
+export class DetailUserComponent {
+  user: UserInterface = {
     id: 0,
     name: '',
     email: ''
@@ -19,7 +19,7 @@ export class DetailUsuarioComponent {
   userFound: boolean = true;
 
   constructor(
-    private service: UsuarioService,
+    private service: UserService,
     private appService: AppService,
     private router: Router,
     private route: ActivatedRoute

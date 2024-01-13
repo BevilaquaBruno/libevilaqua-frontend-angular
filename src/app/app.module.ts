@@ -8,13 +8,13 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
-import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
-import { DetailUsuarioComponent } from './components/usuarios/detail-usuario/detail-usuario.component';
+import { ListUsersComponent } from './components/users/list-users/list-users.component';
+import { DetailUserComponent } from './components/users/detail-user/detail-user.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DefaultButtonComponent } from './components/general/default-button/default-button.component';
 import { IconButtonComponent } from './components/general/icon-button/icon-button.component';
 import { ConfirmDialogComponent } from './components/general/confirm-dialog/confirm-dialog.component';
-import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-usuario.component';
+import { FormUserComponent } from './components/users/form-user/form-user.component';
 import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
 import { FormTipoComponent } from './components/tipos/form-tipo/form-tipo.component';
 import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.component';
@@ -38,13 +38,13 @@ import { FormAuthorComponent } from './components/authors/form-author/form-autho
     LoginComponent,
     InicioComponent,
     MenuComponent,
-    ListUsuariosComponent,
-    DetailUsuarioComponent,
+    ListUsersComponent,
+    DetailUserComponent,
     PageNotFoundComponent,
     DefaultButtonComponent,
     IconButtonComponent,
     ConfirmDialogComponent,
-    FormUsuarioComponent,
+    FormUserComponent,
     ListTiposComponent,
     FormTipoComponent,
     DetailTipoComponent,
