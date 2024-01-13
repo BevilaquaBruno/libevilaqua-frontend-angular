@@ -5,10 +5,10 @@ import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-detail-editora',
-  templateUrl: './detail-editora.component.html'
+  selector: 'app-detail-publisher',
+  templateUrl: './detail-publisher.component.html'
 })
-export class DetailEditoraComponent {
+export class DetailPublisherComponent {
   publisher: PublisherInterface = {
     id: 0,
     name: '',

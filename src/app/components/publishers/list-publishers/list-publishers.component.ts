@@ -6,10 +6,10 @@ import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list-editoras',
-  templateUrl: './list-editoras.component.html'
+  selector: 'app-list-publishers',
+  templateUrl: './list-publishers.component.html'
 })
-export class ListEditorasComponent {
+export class ListPublishersComponent {
   listPublishers: PublisherInterface[] = [];
   currentPage: number = 1;
   itensPerPage: number = 10;

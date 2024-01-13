@@ -24,9 +24,9 @@ import { FormTagComponent } from './components/tags/form-tag/form-tag.component'
 import { ListGenresComponent } from './components/genre/list-genres/list-genres.component';
 import { DetailGenreComponent } from './components/genre/detail-genre/detail-genre.component';
 import { FormGenreComponent } from './components/genre/form-genre/form-genre.component';
-import { ListEditorasComponent } from './components/editoras/list-editoras/list-editoras.component';
-import { DetailEditoraComponent } from './components/editoras/detail-editora/detail-editora.component';
-import { FormEditoraComponent } from './components/editoras/form-editora/form-editora.component';
+import { ListPublishersComponent } from './components/publishers/list-publishers/list-publishers.component';
+import { DetailPublisherComponent } from './components/publishers/detail-publisher/detail-publisher.component';
+import { FormPublisherComponent } from './components/publishers/form-publisher/form-publisher.component';
 import { ListAuthorsComponent } from './components/authors/list-authors/list-authors.component';
 import { DetailAuthorComponent } from './components/authors/detail-author/detail-author.component';
 import { FormAuthorComponent } from './components/authors/form-author/form-author.component';
@@ -54,9 +54,9 @@ import { FormAuthorComponent } from './components/authors/form-author/form-autho
     ListGenresComponent,
     DetailGenreComponent,
     FormGenreComponent,
-    ListEditorasComponent,
-    DetailEditoraComponent,
-    FormEditoraComponent,
+    ListPublishersComponent,
+    DetailPublisherComponent,
+    FormPublisherComponent,
     ListAuthorsComponent,
     DetailAuthorComponent,
     FormAuthorComponent,

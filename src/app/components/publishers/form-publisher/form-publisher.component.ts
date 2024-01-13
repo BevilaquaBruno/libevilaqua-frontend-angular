@@ -1,14 +1,14 @@
-import { PublisherService } from './../publisher.service';
+import { PublisherService } from '../publisher.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form-editora',
-  templateUrl: './form-editora.component.html'
+  selector: 'app-form-publisher',
+  templateUrl: './form-publisher.component.html'
 })
-export class FormEditoraComponent {
+export class FormPublisherComponent {
   new: boolean = true;
   id: number = 0;
 
