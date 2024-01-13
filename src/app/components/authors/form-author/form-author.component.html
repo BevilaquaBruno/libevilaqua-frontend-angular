@@ -1,0 +1,87 @@
+<form [formGroup]="formAuthor">
+  <span class="text-5xl">
+    {{ new == true ? 'Novo' : 'Alterar' }} autor
+  </span>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Nome -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="name">Nome: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-5">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="name" required type="text" id="name" />
+      </div>
+
+      <!-- Erro do nome -->
+      <div class="col-span-12 sm:col-span-6">
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formAuthor.get('name')?.errors && formAuthor.get('name')?.touched">
+          O nome é obrigatório
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Nascimento -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="birth_date">Data de Nascimento: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-4">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="birth_date" type="date" id="birth_date" />
+      </div>
+
+      <!-- Morte -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="death_date">Data de morte: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-4">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="death_date" type="date" id="death_date" />
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Bio -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="bio">Biografia: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-10">
+        <textarea class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+        formControlName="bio" id="" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Erro geral -->
+      <div class="col-span-12 sm:col-span-12">
+        <div class="text-red-500 font-bold animate-pulse" *ngIf="authorError.error == true">
+          {{ authorError.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <div class="col-span-12 sm:col-span-8"></div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="SALVAR" (action)="save()"
+          [classes]="saveButtonClass()" [disabled]="!formAuthor.valid"></app-default-button>
+      </div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="CANCELAR" (action)="goBack()" classes="bg-red-700 hover:bg-red-600"
+          [disabled]="false"></app-default-button>
+      </div>
+    </div>
+  </div>
+</form>

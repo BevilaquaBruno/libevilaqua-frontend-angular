@@ -29,6 +29,7 @@ import { DetailEditoraComponent } from './components/editoras/detail-editora/det
 import { FormEditoraComponent } from './components/editoras/form-editora/form-editora.component';
 import { ListAuthorsComponent } from './components/authors/list-authors/list-authors.component';
 import { DetailAuthorComponent } from './components/authors/detail-author/detail-author.component';
+import { FormAuthorComponent } from './components/authors/form-author/form-author.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { DetailAuthorComponent } from './components/authors/detail-author/detail
     FormEditoraComponent,
     ListAuthorsComponent,
     DetailAuthorComponent,
+    FormAuthorComponent,
   ],
   imports: [
     BrowserModule,
