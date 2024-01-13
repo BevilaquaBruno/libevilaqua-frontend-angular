@@ -2,7 +2,7 @@ import { DetailTagComponent } from './components/tags/detail-tag/detail-tag.comp
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { InicioComponent } from './components/inicio/inicio.component';
+import { HomeComponent } from './components/home/home.component';
 import { ListUsersComponent } from './components/users/list-users/list-users.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DetailUserComponent } from './components/users/detail-user/detail-user.component';
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    component: InicioComponent,
+    component: HomeComponent,
   },
   /* Start User */
   {
