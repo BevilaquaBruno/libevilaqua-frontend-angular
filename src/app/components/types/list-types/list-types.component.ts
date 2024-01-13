@@ -1,16 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { TipoInterface } from '../tipo.interface';
+import { TypeInterface } from '../type.interface';
 import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dialog.component';
-import { TipoService } from '../tipo.service';
+import { TypeService } from '../type.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list-tipos',
-  templateUrl: './list-tipos.component.html',
+  selector: 'app-list-types',
+  templateUrl: './list-types.component.html',
 })
-export class ListTiposComponent {
-  listTypes: TipoInterface[] = [];
+export class ListTypesComponent {
+  listTypes: TypeInterface[] = [];
   currentPage: number = 1;
   itensPerPage: number = 10;
   maxPages: number = 0;
@@ -20,7 +20,7 @@ export class ListTiposComponent {
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
 
   constructor(
-    private service: TipoService,
+    private service: TypeService,
     private appService: AppService,
     private router: Router
   ) {

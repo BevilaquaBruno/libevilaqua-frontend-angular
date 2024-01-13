@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormTipoComponent } from './form-tipo.component';
+import { ListTypesComponent } from './list-types.component';
 
-describe('FormTipoComponent', () => {
-  let component: FormTipoComponent;
-  let fixture: ComponentFixture<FormTipoComponent>;
+describe('ListTypesComponent', () => {
+  let component: ListTypesComponent;
+  let fixture: ComponentFixture<ListTypesComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormTipoComponent]
+      declarations: [ListTypesComponent]
     });
-    fixture = TestBed.createComponent(FormTipoComponent);
+    fixture = TestBed.createComponent(ListTypesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

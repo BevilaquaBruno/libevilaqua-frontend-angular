@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { TipoInterface } from '../tipo.interface';
-import { TipoService } from '../tipo.service';
+import { TypeInterface } from '../type.interface';
+import { TypeService } from '../type.service';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-detail-tipo',
-  templateUrl: './detail-tipo.component.html'
+  selector: 'app-detail-type',
+  templateUrl: './detail-type.component.html'
 })
-export class DetailTipoComponent {
+export class DetailTypeComponent {
 
-  type: TipoInterface = {
+  type: TypeInterface = {
     id: 0,
     description: ''
   };
@@ -18,7 +18,7 @@ export class DetailTipoComponent {
   typeFound: boolean = true;
 
   constructor(
-    private typeService: TipoService,
+    private typeService: TypeService,
     private appService: AppService,
     private router: Router,
     private route: ActivatedRoute

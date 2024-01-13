@@ -7,9 +7,9 @@ import { ListUsersComponent } from './components/users/list-users/list-users.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DetailUserComponent } from './components/users/detail-user/detail-user.component';
 import { FormUserComponent } from './components/users/form-user/form-user.component';
-import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
-import { FormTipoComponent } from './components/tipos/form-tipo/form-tipo.component';
-import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.component';
+import { ListTypesComponent } from './components/types/list-types/list-types.component';
+import { FormTypeComponent } from './components/types/form-type/form-type.component';
+import { DetailTypeComponent } from './components/types/detail-type/detail-type.component';
 import { ListTagsComponent } from './components/tags/list-tags/list-tags.component';
 import { FormTagComponent } from './components/tags/form-tag/form-tag.component';
 import { ListGenresComponent } from './components/genre/list-genres/list-genres.component';
@@ -73,19 +73,19 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ListTiposComponent,
+        component: ListTypesComponent,
       },
       {
         path: 'cadastrar',
-        component: FormTipoComponent
+        component: FormTypeComponent
       },
       {
         path: ':id/editar',
-        component: FormTipoComponent
+        component: FormTypeComponent
       },
       {
         path: ':id/detalhes',
-        component: DetailTipoComponent
+        component: DetailTypeComponent
       }
     ]
   },

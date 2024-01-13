@@ -15,9 +15,9 @@ import { DefaultButtonComponent } from './components/general/default-button/defa
 import { IconButtonComponent } from './components/general/icon-button/icon-button.component';
 import { ConfirmDialogComponent } from './components/general/confirm-dialog/confirm-dialog.component';
 import { FormUserComponent } from './components/users/form-user/form-user.component';
-import { ListTiposComponent } from './components/tipos/list-tipos/list-tipos.component';
-import { FormTipoComponent } from './components/tipos/form-tipo/form-tipo.component';
-import { DetailTipoComponent } from './components/tipos/detail-tipo/detail-tipo.component';
+import { ListTypesComponent } from './components/types/list-types/list-types.component';
+import { FormTypeComponent } from './components/types/form-type/form-type.component';
+import { DetailTypeComponent } from './components/types/detail-type/detail-type.component';
 import { ListTagsComponent } from './components/tags/list-tags/list-tags.component';
 import { DetailTagComponent } from './components/tags/detail-tag/detail-tag.component';
 import { FormTagComponent } from './components/tags/form-tag/form-tag.component';
@@ -45,9 +45,9 @@ import { FormAuthorComponent } from './components/authors/form-author/form-autho
     IconButtonComponent,
     ConfirmDialogComponent,
     FormUserComponent,
-    ListTiposComponent,
-    FormTipoComponent,
-    DetailTipoComponent,
+    ListTypesComponent,
+    FormTypeComponent,
+    DetailTypeComponent,
     ListTagsComponent,
     DetailTagComponent,
     FormTagComponent,

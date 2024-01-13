@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TipoService } from '../tipo.service';
+import { TypeService } from '../type.service';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form-tipo',
-  templateUrl: './form-tipo.component.html',
+  selector: 'app-form-type',
+  templateUrl: './form-type.component.html',
 })
-export class FormTipoComponent {
+export class FormTypeComponent {
   new: boolean = true;
   id: number = 0;
 
@@ -19,7 +19,7 @@ export class FormTipoComponent {
   };
 
   constructor(
-    private typeService: TipoService,
+    private typeService: TypeService,
     private appService: AppService,
     private router: Router,
     private route: ActivatedRoute,
