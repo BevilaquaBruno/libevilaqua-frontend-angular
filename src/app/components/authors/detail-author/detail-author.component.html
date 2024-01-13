@@ -1,0 +1,38 @@
+<div *ngIf="publisherFound; else templatePublisherNotFound">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 sm:col-span-11 text-2xl mb-3">
+      Detalhes da editora
+    </div>
+    <div class="col-span-12 sm:col-span-1">
+      <app-default-button text="EDITAR" (action)="goToAuthorEdit()"
+        classes="bg-violet-700 hover:bg-violet-600"></app-default-button>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ author.id != 0 ? author.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Nome:</b> {{ author.name }}
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl"></div>
+    <div class="col-span-12 sm:col-span-3 text-xl">
+      <b>Nascimento:</b> {{ (author.birth_date != null)?getFormattedDate(author.birth_date):'-' }}
+    </div>
+    <div class="col-span-12 sm:col-span-3 text-xl">
+      <b>Morte:</b> {{ (author.death_date != null)?getFormattedDate(author.death_date):'-' }}
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl"></div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Bio:</b> {{ author.bio }}
+    </div>
+  </div>
+</div>
+
+<ng-template #templatePublisherNotFound>
+  <app-page-not-found></app-page-not-found>
+</ng-template>

@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dia
 import { AuthorService } from '../author.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
+import { getFormattedDate } from 'src/assets/helpers';
 
 @Component({
   selector: 'app-list-authors',
@@ -18,6 +19,8 @@ export class ListAuthorsComponent {
   deleteData = { id: 0 };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+
+  getFormattedDate = getFormattedDate;
 
   constructor(
     private service: AuthorService,
@@ -99,8 +102,4 @@ export class ListAuthorsComponent {
     this.updateAuthorList();
   }
 
-  getFormattedDate(date: string) {
-    let temp = new Date(date);
-    return new Date( temp.getTime() + Math.abs(temp.getTimezoneOffset()*60000) ).toLocaleDateString();
-  }
 }

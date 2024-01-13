@@ -19,6 +19,7 @@ import { ListEditorasComponent } from './components/editoras/list-editoras/list-
 import { DetailEditoraComponent } from './components/editoras/detail-editora/detail-editora.component';
 import { FormEditoraComponent } from './components/editoras/form-editora/form-editora.component';
 import { ListAuthorsComponent } from './components/authors/list-authors/list-authors.component';
+import { DetailAuthorComponent } from './components/authors/detail-author/detail-author.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -165,6 +166,10 @@ const routes: Routes = [
       {
         path: '',
         component: ListAuthorsComponent,
+      },
+      {
+        path: ':id/detalhes',
+        component: DetailAuthorComponent
       }
     ]
   },
