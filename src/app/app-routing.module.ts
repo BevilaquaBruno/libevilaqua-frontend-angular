@@ -21,6 +21,7 @@ import { FormPublisherComponent } from './components/publishers/form-publisher/f
 import { ListAuthorsComponent } from './components/authors/list-authors/list-authors.component';
 import { DetailAuthorComponent } from './components/authors/detail-author/detail-author.component';
 import { FormAuthorComponent } from './components/authors/form-author/form-author.component';
+import { ListBooksComponent } from './components/book/list-books/list-books.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -64,7 +65,6 @@ const routes: Routes = [
       }
     ]
   },
-
   /* End User */
 
   /* Start Type */
@@ -183,6 +183,17 @@ const routes: Routes = [
     ]
   },
   /* End author */
+    /* Start book */
+    {
+      path: 'livros',
+      children: [
+        {
+          path: '',
+          component: ListBooksComponent,
+        },
+      ]
+    },
+    /* End book */
   {
     path: '**',
     component: PageNotFoundComponent

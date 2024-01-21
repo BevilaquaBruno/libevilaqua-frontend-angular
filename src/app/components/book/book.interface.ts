@@ -72,7 +72,7 @@ export interface BookFiltersRaw {
   genres?: number[];
   number_pages?: number[];
   release_year?: number | null;
-  isbn?: number | null;
+  isbn?: string | null;
   edition?: number | null;
   title?: string | null;
 }
