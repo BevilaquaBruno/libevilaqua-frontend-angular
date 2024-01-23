@@ -14,6 +14,7 @@ import { AuthorService } from '../../authors/author.service';
 import { TypeService } from '../../types/type.service';
 import { PublisherService } from '../../publishers/publisher.service';
 import { GenreService } from '../../genre/genre.service';
+import { PopupComponent } from '../../general/popup/popup.component';
 
 @Component({
   selector: 'app-list-books',
@@ -30,7 +31,7 @@ export class ListBooksComponent {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = { id: 0 };
+  deleteData = { id: 0, message: '' };
   selectedFilters: BookFiltersRaw = {
     tags: [],
     authors: [],
@@ -45,6 +46,7 @@ export class ListBooksComponent {
   };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
   constructor(
     private bookService: BookService,
@@ -99,8 +101,10 @@ export class ListBooksComponent {
           if (success.affected != 0) {
             this.finishDeleteBook();
           }
-        }, (error) => {
-          console.log('Erro ao deletar livro');
+        }, (e) => {
+          this.deleteData.message = e.error.message;
+          this.popup.initPopup();
+          this.popup.showPopup();
         });
     }
   }
@@ -137,7 +141,7 @@ export class ListBooksComponent {
   }
 
   getAuthorListJoined(data: AuthorInterface[]) {
-    return (data != undefined)?data.map(a => {return a.name}).join(', '):'';
+    return (data != undefined) ? data.map(a => { return a.name }).join(', ') : '';
   }
 
   private convertSelectedFilters(data: BookFiltersRaw): BookFiltersToString {

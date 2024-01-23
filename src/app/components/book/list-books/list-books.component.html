@@ -87,3 +87,4 @@
 <app-confirm-dialog modalId="delete-type" (noAction)="finishDeleteBook()" (yesAction)="confirmDeleteBook()"
   firstLineText="Tem certeza que deseja deletar este gênero?"
   secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+<app-popup color="red" [message]="deleteData.message"></app-popup>
