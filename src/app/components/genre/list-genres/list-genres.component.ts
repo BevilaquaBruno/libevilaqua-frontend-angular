@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dia
 import { GenreService } from '../genre.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
+import { PopupComponent } from '../../general/popup/popup.component';
 
 @Component({
   selector: 'app-list-genres',
@@ -15,9 +16,10 @@ export class ListGenresComponent {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = { id: 0 };
+  deleteData = { id: 0, message: '' };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
   constructor(
     private service: GenreService,
@@ -62,8 +64,10 @@ export class ListGenresComponent {
           if (success.affected != 0) {
             this.finishDeleteGenre();
           }
-        }, (error) => {
-          console.log('Erro ao deletar gênero');
+        }, (e) => {
+          this.deleteData.message = e.error.message;
+          this.popup.initPopup();
+          this.popup.showPopup();
         });
     }
   }

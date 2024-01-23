@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserInterface } from '../user.interface';
 import { AppService } from 'src/app/app.service';
 import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dialog.component';
+import { PopupComponent } from '../../general/popup/popup.component';
 
 @Component({
   selector: 'app-list-users',
@@ -16,9 +17,10 @@ export class ListUsersComponent implements OnInit {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = { id: 0 };
+  deleteData = { id: 0, message: '' };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
   constructor(
     private service: UserService,
@@ -59,8 +61,10 @@ export class ListUsersComponent implements OnInit {
           if (success.affected != 0) {
             this.finishDeleteUser();
           }
-        }, (error) => {
-          console.log('Erro ao deletar usuário');
+        }, (e) => {
+          this.deleteData.message = e.error.message;
+          this.popup.initPopup();
+          this.popup.showPopup()
         });
     }
   }

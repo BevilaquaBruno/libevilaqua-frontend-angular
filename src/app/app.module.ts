@@ -31,6 +31,7 @@ import { ListAuthorsComponent } from './components/authors/list-authors/list-aut
 import { DetailAuthorComponent } from './components/authors/detail-author/detail-author.component';
 import { FormAuthorComponent } from './components/authors/form-author/form-author.component';
 import { ListBooksComponent } from './components/book/list-books/list-books.component';
+import { PopupComponent } from './components/general/popup/popup.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { ListBooksComponent } from './components/book/list-books/list-books.comp
     DetailAuthorComponent,
     FormAuthorComponent,
     ListBooksComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

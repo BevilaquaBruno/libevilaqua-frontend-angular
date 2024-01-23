@@ -75,3 +75,4 @@
 </div>
 <app-confirm-dialog modalId="delete-type" (noAction)="finishDeleteAuthor()" (yesAction)="confirmDeleteAuthor()"
   firstLineText="Tem certeza que deseja deletar este autor?" secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+<app-popup color="red" [message]="deleteData.message"></app-popup>

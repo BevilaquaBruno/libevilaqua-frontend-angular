@@ -6,7 +6,8 @@
     <span class="text-2xl">Lista de editoras dos livros.</span>
   </div>
   <div class="sm:col-span-1 col-span-12">
-    <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center" (click)="openNewPublisher()" text="Novo"></app-default-button>
+    <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center"
+      (click)="openNewPublisher()" text="Novo"></app-default-button>
   </div>
   <div class="col-span-6 sm:col-span-2 text-right">
     <label for="per-page">Por página: </label>
@@ -45,7 +46,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let publisher of listPublishers; let i = index" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+      <tr *ngFor="let publisher of listPublishers; let i = index"
+        class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {{ publisher.id }}
         </th>
@@ -74,4 +76,6 @@
   </table>
 </div>
 <app-confirm-dialog modalId="delete-type" (noAction)="finishDeletePublisher()" (yesAction)="confirmDeletePublisher()"
-  firstLineText="Tem certeza que deseja deletar esta editora?" secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+  firstLineText="Tem certeza que deseja deletar esta editora?"
+  secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+<app-popup color="red" [message]="deleteData.message"></app-popup>
