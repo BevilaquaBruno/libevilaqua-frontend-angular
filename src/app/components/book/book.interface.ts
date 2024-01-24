@@ -9,7 +9,7 @@ export interface BookInterface {
   title: string;
   edition: number | null;
   isbn: string | null;
-  number_pages: string | null;
+  number_pages: number | null;
   release_year: number | null;
   obs: string | null;
   genre: GenreInterface | null;
@@ -49,7 +49,7 @@ export interface BookUpdateInterface {
   title: string | null;
   edition: number | null;
   isbn: string | null;
-  number_pages: string | null;
+  number_pages: number | null;
   release_year: number | null;
   obs: string | null;
   genreId: number | null
