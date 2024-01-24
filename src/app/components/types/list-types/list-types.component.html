@@ -54,16 +54,16 @@
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
               <a href="/tipos/{{ type.id }}/detalhes">
-                <app-icon-button icon="visibility"></app-icon-button>
+                <app-icon-button title="Ver cadastro do tipo" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
               <a href="/tipos/{{ type.id }}/editar">
-                <app-icon-button icon="edit"></app-icon-button>
+                <app-icon-button title="Editar cadastro do tipo" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+              <app-icon-button title="Excluir cadastro do tipo" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
                 (click)="openConfirmDeleteType(type.id)" icon="delete"></app-icon-button>
             </div>
           </div>

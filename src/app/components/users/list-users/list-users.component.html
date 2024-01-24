@@ -56,16 +56,16 @@
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
               <a href="/usuarios/{{ user.id }}/detalhes">
-                <app-icon-button icon="visibility"></app-icon-button>
+                <app-icon-button title="Ver cadastro do usuário" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
               <a href="/usuarios/{{ user.id }}/editar">
-                <app-icon-button icon="edit"></app-icon-button>
+                <app-icon-button title="Editar cadastro do usuário" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button data-modal-target="popup-modal-delete-user" data-modal-toggle="popup-modal-delete-user"
+              <app-icon-button title="Excluir cadastro do usuário" data-modal-target="popup-modal-delete-user" data-modal-toggle="popup-modal-delete-user"
                 (click)="openConfirmDeleteUser(user.id)" icon="delete"></app-icon-button>
             </div>
           </div>

@@ -57,16 +57,16 @@
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
               <a href="/editoras/{{ publisher.id }}/detalhes">
-                <app-icon-button icon="visibility"></app-icon-button>
+                <app-icon-button title="Ver cadastro da editora" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
               <a href="/editoras/{{ publisher.id }}/editar">
-                <app-icon-button icon="edit"></app-icon-button>
+                <app-icon-button title="Editar cadastro da editora" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+              <app-icon-button title="Excluir cadastro da editora" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
                 (click)="openConfirmDeletePublisher(publisher.id)" icon="delete"></app-icon-button>
             </div>
           </div>
