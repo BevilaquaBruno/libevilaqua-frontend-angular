@@ -1,0 +1,50 @@
+<form [formGroup]="formBook">
+  <span class="text-5xl">
+    {{ new == true ? 'Novo' : 'Alterar' }} livro
+  </span>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- título -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="title">Título: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-5">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="title" required type="text" id="title" />
+      </div>
+
+      <!-- Erros do título -->
+      <div class="col-span-12 sm:col-span-6">
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formBook.get('title')?.errors && formBook.get('title')?.touched">
+          O título é obrigatório
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Erro geral -->
+      <div class="col-span-12 sm:col-span-12">
+        <div class="text-red-500 font-bold animate-pulse" *ngIf="bookError.error == true">
+          {{ bookError.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <div class="col-span-12 sm:col-span-8"></div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="SALVAR" (action)="save()" [classes]="saveButtonClass()"
+          [disabled]="!formBook.valid"></app-default-button>
+      </div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="CANCELAR" (action)="goBack()" classes="bg-red-700 hover:bg-red-600"
+          [disabled]="false"></app-default-button>
+      </div>
+    </div>
+  </div>
+</form>

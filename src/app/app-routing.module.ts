@@ -23,6 +23,7 @@ import { DetailAuthorComponent } from './components/authors/detail-author/detail
 import { FormAuthorComponent } from './components/authors/form-author/form-author.component';
 import { ListBooksComponent } from './components/book/list-books/list-books.component';
 import { DetailBookComponent } from './components/book/detail-book/detail-book.component';
+import { FormBookComponent } from './components/book/form-book/form-book.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -191,6 +192,14 @@ const routes: Routes = [
         {
           path: '',
           component: ListBooksComponent,
+        },
+        {
+          path: 'cadastrar',
+          component: FormBookComponent
+        },
+        {
+          path: ':id/editar',
+          component: FormBookComponent
         },
         {
           path: ':id/detalhes',
