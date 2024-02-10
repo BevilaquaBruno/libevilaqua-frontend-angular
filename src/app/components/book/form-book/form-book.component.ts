@@ -85,9 +85,6 @@ export class FormBookComponent {
           authors: authors,
           tags: tags
         });
-
-        console.log(this.formBook.value);
-
       })
     }
   }
@@ -106,9 +103,9 @@ export class FormBookComponent {
       number_pages: [null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.maxLength(10)])],
       release_year: [null, Validators.compose([Validators.maxLength(4)])],
       obs: ['', Validators.compose([])],
-      genre: [null],
-      publisher: [null],
-      type: [null],
+      genreId: [null],
+      publisherId: [null],
+      typeId: [null],
       authors: [[]],
       tags: [[]],
 

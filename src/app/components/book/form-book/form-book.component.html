@@ -8,17 +8,149 @@
       <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
         <label class="text-lg" for="title">Título: </label>
       </div>
-      <div class="col-span-12 sm:col-span-5">
+      <div class="col-span-12 sm:col-span-8">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           placeholder="___" formControlName="title" required type="text" id="title" />
       </div>
 
       <!-- Erros do título -->
-      <div class="col-span-12 sm:col-span-6">
+      <div class="col-span-12 sm:col-span-3">
         <div class="text-red-500 font-bold animate-pulse"
           *ngIf="formBook.get('title')?.errors && formBook.get('title')?.touched">
           O título é obrigatório
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4">
+      <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+        <!-- Edição -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="edition">Edição: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-1">
+          <input
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            placeholder="1" formControlName="edition" required type="number" id="edition" />
+        </div>
+
+        <!-- ISBN -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="isbn">ISBN: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-2">
+          <input
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            placeholder="1" formControlName="isbn" required type="text" maxlength="13" id="isbn" />
+        </div>
+
+        <!-- número de pgs -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="number_pages">Nº Páginas: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-1">
+          <input
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            placeholder="1" formControlName="number_pages" required type="number" id="number_pages" />
+        </div>
+
+        <!-- Ano Lançamento -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="release_year">Ano Lanç.: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-1">
+          <input
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            placeholder="1" formControlName="release_year" required type="number" id="release_year" />
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4">
+      <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+        <!-- Tipo -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="typeId">Tipo: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-2">
+          <select
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            formControlName="typeId" id="genre">
+            <option *ngFor="let type of listTypes; let iType = index" [value]="type.id">
+              {{ type.description }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Gênero -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="genreId">Gênero: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-2">
+          <select
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            formControlName="genreId" id="genre">
+            <option *ngFor="let genre of listGenres; let iGenre = index" [value]="genre.id">
+              {{ genre.description }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Editora -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="publisherId">Editora: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-2">
+          <select
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            formControlName="publisherId" id="genre">
+            <option *ngFor="let publisher of listPublishers; let iPublisher = index" [value]="publisher.id">
+              {{ publisher.name }} - {{ publisher.country }}
+            </option>
+          </select>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="my-4">
+      <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+        <!-- Autores -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg">Autores: </label>
+        </div>
+
+        <div class="col-span-12 sm:col-span-2">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4">
+      <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+        <!-- Tags -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg">Tags: </label>
+        </div>
+
+        <div class="col-span-12 sm:col-span-2">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4">
+      <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+        <!-- Obs -->
+        <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+          <label class="text-lg" for="obs">Observação: </label>
+        </div>
+        <div class="col-span-12 sm:col-span-8">
+          <textarea
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            formControlName="obs" id="obs" cols="30" rows="5"></textarea>
         </div>
       </div>
     </div>
