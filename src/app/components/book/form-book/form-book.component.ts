@@ -13,6 +13,7 @@ import { AuthorInterface } from '../../authors/author.interface';
 import { TypeInterface } from '../../types/type.interface';
 import { PublisherInterface } from '../../publishers/publisher.interface';
 import { GenreInterface } from '../../genre/genre.interface';
+import { getFormattedDate } from 'src/assets/helpers';
 
 @Component({
   selector: 'app-form-book',
@@ -34,6 +35,8 @@ export class FormBookComponent {
     error: false,
     message: ''
   };
+
+  getFormattedDate = getFormattedDate;
 
   constructor(
     private bookService: BookService,
@@ -62,16 +65,6 @@ export class FormBookComponent {
       this.id = this.route.snapshot.params['id'];
       this.bookService.get(this.id).subscribe((book) => {
 
-        let authors: { id: number; }[] = [];
-        book.authors.forEach(author => {
-          authors.push({ id: author.id });
-        });
-
-        let tags: { id: number; }[] = [];
-        book.tags.forEach(tag => {
-          tags.push({ id: tag.id });
-        });
-
         this.formBook.setValue({
           title: book.title,
           edition: book.edition,
@@ -82,8 +75,8 @@ export class FormBookComponent {
           genreId: book.genre?.id,
           publisherId: book.publisher?.id,
           typeId: book.type?.id,
-          authors: authors,
-          tags: tags
+          authors: book.authors,
+          tags: book.tags
         });
       })
     }
@@ -120,6 +113,18 @@ export class FormBookComponent {
   }
 
   save() {
+    let authors: { id: number; }[] = [];
+    this.formBook.value.authors.forEach((author: AuthorInterface) => {
+      authors.push({ id: author.id });
+    });
+    this.formBook.value.authors = authors;
+
+    let tags: { id: number; }[] = [];
+    this.formBook.value.tags.forEach((tag: TagInterface) => {
+      tags.push({ id: tag.id });
+    });
+    this.formBook.value.tags = tags;
+
     if (this.new) {
       this.bookService.create(this.formBook.value).subscribe((response) => {
         if (response.id != undefined) {
@@ -144,5 +149,23 @@ export class FormBookComponent {
   }
 
   goBack() { this.router.navigate(['/livros']); }
+
+  addAuthorToList(authorId: number){
+    let isAlreadyListed: boolean = ( this.formBook.value.authors.filter((author: AuthorInterface) => author.id == authorId)[0] == undefined)?false:true;
+    if(isAlreadyListed === false){
+      let newAuthor: AuthorInterface = this.listAuthors.filter((author: AuthorInterface) => author.id == authorId)[0];
+      if(newAuthor != undefined){
+        this.formBook.value.authors.push(newAuthor);
+      }else{
+        console.log('Parabéns por chegar nesse erro.');
+      }
+    }else{
+      console.log('O autor já está na lista.')
+    }
+  }
+
+  removeAuthorFromList(authorId: number) {
+    this.formBook.value.authors = this.formBook.value.authors.filter((author: AuthorInterface) => author.id != authorId);
+  }
 
 }

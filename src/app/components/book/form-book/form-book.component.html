@@ -122,8 +122,36 @@
           <label class="text-lg">Autores: </label>
         </div>
 
-        <div class="col-span-12 sm:col-span-2">
-          
+        <div class="col-span-12 sm:col-span-12">
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-md text-left text-gray-700 dark:text-gray-400">
+              <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th scope="col" class="px-6 py-3">#</th>
+                  <th scope="col" class="px-6 py-3 sm:w-auto">Nome</th>
+                  <th scope="col" class="px-6 py-3">Nasc | Morte</th>
+                  <th scope="col" class="px-6 py-3 sm:w-10">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let author of formBook.value.authors; let i = index" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ author.id }}
+                  </th>
+                  <td class="px-6 py-4">{{ author.name }}</td>
+                  <td class="px-6 py-4">{{ (author.birth_date != null)?getFormattedDate(author.birth_date):'-' }} | {{ (author.death_date != null)?getFormattedDate(author.death_date):'-' }}</td>
+                  <td class="px-6 py-4">
+                    <div class="grid grid-cols-12 gap-1 text-center">
+                      <div class="col-span-12 sm:col-span-4">
+                        <app-icon-button title="Excluir cadastro do autor" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+                          (click)="removeAuthorFromList(author.id)" icon="delete"></app-icon-button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -136,7 +164,7 @@
         </div>
 
         <div class="col-span-12 sm:col-span-2">
-          
+
         </div>
       </div>
     </div>
