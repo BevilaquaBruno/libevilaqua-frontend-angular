@@ -150,16 +150,16 @@ export class FormBookComponent {
 
   goBack() { this.router.navigate(['/livros']); }
 
-  addAuthorToList(authorId: number){
-    let isAlreadyListed: boolean = ( this.formBook.value.authors.filter((author: AuthorInterface) => author.id == authorId)[0] == undefined)?false:true;
-    if(isAlreadyListed === false){
+  addAuthorToList(authorId: number) {
+    let isAlreadyListed: boolean = (this.formBook.value.authors.filter((author: AuthorInterface) => author.id == authorId)[0] == undefined) ? false : true;
+    if (isAlreadyListed === false) {
       let newAuthor: AuthorInterface = this.listAuthors.filter((author: AuthorInterface) => author.id == authorId)[0];
-      if(newAuthor != undefined){
+      if (newAuthor != undefined) {
         this.formBook.value.authors.push(newAuthor);
-      }else{
+      } else {
         console.log('Parabéns por chegar nesse erro.');
       }
-    }else{
+    } else {
       console.log('O autor já está na lista.')
     }
   }
