@@ -59,11 +59,6 @@ export interface BookUpdateInterface {
   authors: {id: number}[];
 }
 
-export interface BookUpdateResponseInterface {
-  raw: any[]
-  affected: number;
-}
-
 export interface BookFiltersRaw {
   tags?: number[];
   authors?: number[];

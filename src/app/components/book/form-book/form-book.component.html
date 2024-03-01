@@ -122,6 +122,22 @@
           <label class="text-lg">Autores: </label>
         </div>
 
+        <div class="col-span-12 sm:col-span-3">
+          <select
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            name="newAuthor" id="newAuthor" formControlName="tempAuthor">
+            <option value="0">Selecione...</option>
+            <option *ngFor="let author of listAuthors; let iAuthor = index" [value]="author.id">
+              {{ author.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-span-12 sm:col-span-1">
+          <app-default-button text="ADICIONAR" (action)="addAuthorToList()" classes="bg-violet-700 hover:bg-violet-600"
+            [disabled]="false"></app-default-button>
+        </div>
+
         <div class="col-span-12 sm:col-span-12">
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-md text-left text-gray-700 dark:text-gray-400">
@@ -134,17 +150,20 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let author of formBook.value.authors; let i = index" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <tr *ngFor="let author of formBook.value.authors; let i = index"
+                  class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ author.id }}
                   </th>
                   <td class="px-6 py-4">{{ author.name }}</td>
-                  <td class="px-6 py-4">{{ (author.birth_date != null)?getFormattedDate(author.birth_date):'-' }} | {{ (author.death_date != null)?getFormattedDate(author.death_date):'-' }}</td>
+                  <td class="px-6 py-4">{{ (author.birth_date != null)?getFormattedDate(author.birth_date):'-' }} | {{
+                    (author.death_date != null)?getFormattedDate(author.death_date):'-' }}</td>
                   <td class="px-6 py-4">
                     <div class="grid grid-cols-12 gap-1 text-center">
                       <div class="col-span-12 sm:col-span-4">
-                        <app-icon-button title="Excluir cadastro do autor" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
-                          (click)="removeAuthorFromList(author.id)" icon="delete"></app-icon-button>
+                        <app-icon-button title="Excluir cadastro do autor" data-modal-target="popup-modal-delete-type"
+                          data-modal-toggle="popup-modal-delete-type" (click)="removeAuthorFromList(author.id)"
+                          icon="delete"></app-icon-button>
                       </div>
                     </div>
                   </td>

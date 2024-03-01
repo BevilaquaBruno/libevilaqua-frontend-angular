@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { constants } from 'src/environments/environments';
-import { BookCreateInterface, BookDeleteInterface, BookFiltersToString, BookInterface, BookListInterface, BookUpdateInterface, BookUpdateResponseInterface } from './book.interface';
+import { BookCreateInterface, BookDeleteInterface, BookFiltersToString, BookInterface, BookListInterface, BookUpdateInterface } from './book.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class BookService {
     return this.http.get<BookInterface>(`${this.API}/${id}`, { headers: this.headers });
   }
 
-  update(id:number, type: BookUpdateInterface): Observable<BookUpdateResponseInterface> {
-    return this.http.patch<BookUpdateResponseInterface>(`${this.API}/${id}`,type, { headers: this.headers });
+  update(id:number, type: BookUpdateInterface): Observable<BookInterface> {
+    return this.http.patch<BookInterface>(`${this.API}/${id}`,type, { headers: this.headers });
   }
 }
