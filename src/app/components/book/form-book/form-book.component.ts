@@ -81,6 +81,7 @@ export class FormBookComponent {
           authors: book.authors,
           tags: book.tags,
           tempAuthor: 0,
+          tempTag: 0,
         });
       })
     }
@@ -106,6 +107,7 @@ export class FormBookComponent {
       authors: [[]],
       tags: [[]],
       tempAuthor: [0],
+      tempTag: [0]
     };
     this.formBook = this.formBuilder.group(formGroupData);
   }
@@ -132,10 +134,8 @@ export class FormBookComponent {
     sentForm.tags = tags;
 
     delete sentForm.tempAuthor;
+    delete sentForm.tempTag;
 
-    console.log(sentForm);
-    console.log(this.id);
- 
     if (this.new) {
       this.bookService.create(sentForm).subscribe((response) => {
         if (response.id != undefined) {
@@ -168,7 +168,7 @@ export class FormBookComponent {
     let authorId = this.formBook.value.tempAuthor;
     if (authorId == 0)
       return;
-    
+
     let isAlreadyListed: boolean = (this.formBook.value.authors.filter((author: AuthorInterface) => author.id == this.formBook.value.tempAuthor)[0] == undefined) ? false : true;
     if (isAlreadyListed === false) {
       let newAuthor: AuthorInterface = this.listAuthors.filter((author: AuthorInterface) => author.id == this.formBook.value.tempAuthor)[0];
@@ -185,6 +185,29 @@ export class FormBookComponent {
 
   removeAuthorFromList(authorId: number) {
     this.formBook.controls['authors'].setValue(this.formBook.value.authors.filter((author: AuthorInterface) => author.id != authorId));
+  }
+
+  addTagToList() {
+    let tagId = this.formBook.value.tempTag;
+    if (tagId == 0)
+      return;
+
+    let isAlreadyListed: boolean = (this.formBook.value.tags.filter((tag: TagInterface) => tag.id == this.formBook.value.tempTag)[0] == undefined) ? false : true;
+    if (isAlreadyListed === false) {
+      let newTag: TagInterface = this.listTags.filter((tag: TagInterface) => tag.id == this.formBook.value.tempTag)[0];
+      if (newTag != undefined) {
+        this.formBook.value.tags.push(newTag);
+      } else {
+        console.log('Parabéns por chegar nesse erro.');
+      }
+    } else {
+      console.log('A tag já está na lista.')
+    }
+    this.formBook.controls['tempTag'].setValue(0);
+  }
+
+  removeTagFromList(tagId: number) {
+    this.formBook.controls['tags'].setValue(this.formBook.value.tags.filter((tag: TagInterface) => tag.id != tagId));
   }
 
 }

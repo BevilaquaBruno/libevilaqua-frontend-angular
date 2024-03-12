@@ -133,7 +133,7 @@
           </select>
         </div>
 
-        <div class="col-span-12 sm:col-span-1">
+        <div class="col-span-12 sm:col-span-2">
           <app-default-button text="ADICIONAR" (action)="addAuthorToList()" classes="bg-violet-700 hover:bg-violet-600"
             [disabled]="false"></app-default-button>
         </div>
@@ -182,8 +182,52 @@
           <label class="text-lg">Tags: </label>
         </div>
 
-        <div class="col-span-12 sm:col-span-2">
+        <div class="col-span-12 sm:col-span-3">
+          <select
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            name="newTag" id="newTag" formControlName="tempTag">
+            <option value="0">Selecione...</option>
+            <option *ngFor="let tag of listTags; let iTag = index" [value]="tag.id">
+              {{ tag.description }}
+            </option>
+          </select>
+        </div>
 
+        <div class="col-span-12 sm:col-span-2">
+          <app-default-button text="ADICIONAR" (action)="addTagToList()" classes="bg-violet-700 hover:bg-violet-600"
+            [disabled]="false"></app-default-button>
+        </div>
+
+        <div class="col-span-12 sm:col-span-12">
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-md text-left text-gray-700 dark:text-gray-400">
+              <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th scope="col" class="px-6 py-3">#</th>
+                  <th scope="col" class="px-6 py-3 sm:w-auto">Descrição</th>
+                  <th scope="col" class="px-6 py-3 sm:w-10">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tag of formBook.value.tags; let i = index"
+                  class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ tag.id }}
+                  </th>
+                  <td class="px-6 py-4">{{ tag.description }}</td>
+                  <td class="px-6 py-4">
+                    <div class="grid grid-cols-12 gap-1 text-center">
+                      <div class="col-span-12 sm:col-span-4">
+                        <app-icon-button title="Excluir cadastro da tag" data-modal-target="popup-modal-delete-type"
+                          data-modal-toggle="popup-modal-delete-type" (click)="removeTagFromList(tag.id)"
+                          icon="delete"></app-icon-button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
