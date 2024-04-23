@@ -5,6 +5,7 @@ import { AuthorService } from '../author.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
 import { getFormattedDate } from 'src/assets/helpers';
+import { PopupComponent } from '../../general/popup/popup.component';
 
 @Component({
   selector: 'app-list-authors',
@@ -16,9 +17,10 @@ export class ListAuthorsComponent {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = { id: 0 };
+  deleteData = { id: 0, message: '' };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
   getFormattedDate = getFormattedDate;
 
@@ -65,8 +67,10 @@ export class ListAuthorsComponent {
           if (success.affected != 0) {
             this.finishDeleteAuthor();
           }
-        }, (error) => {
-          console.log('Erro ao deletar autor');
+        }, (e) => {
+          this.deleteData.message = e.error.message;
+          this.popup.initPopup();
+          this.popup.showPopup();
         });
     }
   }

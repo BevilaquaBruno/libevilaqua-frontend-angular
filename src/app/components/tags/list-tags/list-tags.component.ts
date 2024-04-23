@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dia
 import { TagsService } from '../tags.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
+import { PopupComponent } from '../../general/popup/popup.component';
 
 @Component({
   selector: 'app-list-tags',
@@ -15,9 +16,10 @@ export class ListTagsComponent {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = { id: 0 };
+  deleteData = { id: 0, message: '' };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
   constructor(
     private service: TagsService,
@@ -62,8 +64,10 @@ export class ListTagsComponent {
           if (success.affected != 0) {
             this.finishDeleteTag();
           }
-        }, (error) => {
-          console.log('Erro ao deletar tag');
+        }, (e) => {
+          this.deleteData.message = e.error.message;
+          this.popup.initPopup();
+          this.popup.showPopup();
         });
     }
   }

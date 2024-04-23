@@ -27,16 +27,18 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.formLogin = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      email: [(localStorage.getItem('email') != undefined)?localStorage.getItem('email'):'', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required])],
     });
   }
 
   signIn() {
+    localStorage.setItem('email', this.formLogin.value.email);
     this.loginError = 0;
     if (this.formLogin.valid) {
       this.service.signin(this.formLogin.value).subscribe(
         (successfullResponse) => {
+          console.log(successfullResponse);
           localStorage.setItem('token', successfullResponse.access_token);
           this.router.navigate(['/inicio']);
         },

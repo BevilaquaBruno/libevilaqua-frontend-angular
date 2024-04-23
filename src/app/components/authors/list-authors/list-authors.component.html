@@ -55,16 +55,16 @@
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
               <a href="/autores/{{ author.id }}/detalhes">
-                <app-icon-button icon="visibility"></app-icon-button>
+                <app-icon-button title="Ver cadastro do autor" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
               <a href="/autores/{{ author.id }}/editar">
-                <app-icon-button icon="edit"></app-icon-button>
+                <app-icon-button title="Editar cadastro do autor" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+              <app-icon-button title="Excluir cadastro do autor" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
                 (click)="openConfirmDeleteAuthor(author.id)" icon="delete"></app-icon-button>
             </div>
           </div>
@@ -75,3 +75,4 @@
 </div>
 <app-confirm-dialog modalId="delete-type" (noAction)="finishDeleteAuthor()" (yesAction)="confirmDeleteAuthor()"
   firstLineText="Tem certeza que deseja deletar este autor?" secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+<app-popup color="red" [message]="deleteData.message"></app-popup>

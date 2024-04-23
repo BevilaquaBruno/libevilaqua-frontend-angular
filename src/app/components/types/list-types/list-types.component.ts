@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from '../../general/confirm-dialog/confirm-dia
 import { TypeService } from '../type.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
+import { PopupComponent } from '../../general/popup/popup.component';
 
 @Component({
   selector: 'app-list-types',
@@ -15,9 +16,10 @@ export class ListTypesComponent {
   itensPerPage: number = 10;
   maxPages: number = 0;
   maxRegisters: number = 0;
-  deleteData = { id: 0 };
+  deleteData = { id: 0, message: '' };
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
   constructor(
     private service: TypeService,
@@ -58,8 +60,10 @@ export class ListTypesComponent {
           if (success.affected != 0) {
             this.finishDeleteType();
           }
-        }, (error) => {
-          console.log('Erro ao deletar tipo');
+        }, (e) => {
+          this.deleteData.message = e.error.message;
+          this.popup.initPopup();
+          this.popup.showPopup();
         });
     }
   }

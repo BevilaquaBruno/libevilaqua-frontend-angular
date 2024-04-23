@@ -6,7 +6,8 @@
     <span class="text-2xl">Lista de gêneros dos livros.</span>
   </div>
   <div class="sm:col-span-1 col-span-12">
-    <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center" (click)="openNewGenre()" text="Novo"></app-default-button>
+    <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center"
+      (click)="openNewGenre()" text="Novo"></app-default-button>
   </div>
   <div class="col-span-6 sm:col-span-2 text-right">
     <label for="per-page">Por página: </label>
@@ -44,7 +45,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let genre of listGenres; let i = index" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+      <tr *ngFor="let genre of listGenres; let i = index"
+        class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {{ genre.id }}
         </th>
@@ -53,16 +55,16 @@
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
               <a href="/generos/{{ genre.id }}/detalhes">
-                <app-icon-button icon="visibility"></app-icon-button>
+                <app-icon-button title="Ver cadastro do gênero" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
               <a href="/generos/{{ genre.id }}/editar">
-                <app-icon-button icon="edit"></app-icon-button>
+                <app-icon-button title="Editar cadastro do gênero" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+              <app-icon-button title="Excluir cadastro do gênero" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
                 (click)="openConfirmDeleteGenre(genre.id)" icon="delete"></app-icon-button>
             </div>
           </div>
@@ -72,4 +74,6 @@
   </table>
 </div>
 <app-confirm-dialog modalId="delete-type" (noAction)="finishDeleteGenre()" (yesAction)="confirmDeleteGenre()"
-  firstLineText="Tem certeza que deseja deletar este gênero?" secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+  firstLineText="Tem certeza que deseja deletar este gênero?"
+  secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+<app-popup color="red" [message]="deleteData.message"></app-popup>

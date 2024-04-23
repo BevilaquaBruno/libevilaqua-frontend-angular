@@ -6,7 +6,8 @@
     <span class="text-2xl">Lista de usuários que tem acesso ao sistema.</span>
   </div>
   <div class="sm:col-span-1 col-span-12">
-    <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center" (click)="openNewUser()" text="Novo"></app-default-button>
+    <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center"
+      (click)="openNewUser()" text="Novo"></app-default-button>
   </div>
   <div class="col-span-6 sm:col-span-2 text-right">
     <label for="per-page">Por página: </label>
@@ -55,16 +56,16 @@
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
               <a href="/usuarios/{{ user.id }}/detalhes">
-                <app-icon-button icon="visibility"></app-icon-button>
+                <app-icon-button title="Ver cadastro do usuário" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
               <a href="/usuarios/{{ user.id }}/editar">
-                <app-icon-button icon="edit"></app-icon-button>
+                <app-icon-button title="Editar cadastro do usuário" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button data-modal-target="popup-modal-delete-user" data-modal-toggle="popup-modal-delete-user"
+              <app-icon-button title="Excluir cadastro do usuário" data-modal-target="popup-modal-delete-user" data-modal-toggle="popup-modal-delete-user"
                 (click)="openConfirmDeleteUser(user.id)" icon="delete"></app-icon-button>
             </div>
           </div>
@@ -74,4 +75,6 @@
   </table>
 </div>
 <app-confirm-dialog modalId="delete-user" (noAction)="finishDeleteUser()" (yesAction)="confirmDeleteUser()"
-  firstLineText="Tem certeza que deseja deletar este usuário?" secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+  firstLineText="Tem certeza que deseja deletar este usuário?"
+  secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+<app-popup color="red" [message]="deleteData.message"></app-popup>

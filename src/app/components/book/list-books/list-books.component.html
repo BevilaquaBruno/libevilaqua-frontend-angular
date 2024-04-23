@@ -1,13 +1,13 @@
 <div class="grid grid-cols-12 gap4">
   <div class="col-span-12">
-    <span class="text-4xl">Editoras</span>
+    <span class="text-4xl">Livros</span>
   </div>
   <div class="sm:col-span-7 col-span-12">
-    <span class="text-2xl">Lista de editoras dos livros.</span>
+    <span class="text-2xl">Lista de livros cadastrados.</span>
   </div>
   <div class="sm:col-span-1 col-span-12">
     <app-default-button [disabled]="false" classes="bg-violet-700 hover:bg-violet-600 text-center"
-      (click)="openNewPublisher()" text="Novo"></app-default-button>
+      (click)="openNewBook()" text="Novo"></app-default-button>
   </div>
   <div class="col-span-6 sm:col-span-2 text-right">
     <label for="per-page">Por página: </label>
@@ -40,34 +40,43 @@
     <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
       <tr>
         <th scope="col" class="px-6 py-3">#</th>
-        <th scope="col" class="px-6 py-3">Nome</th>
-        <th scope="col" class="px-6 py-3">País</th>
+        <th scope="col" class="px-6 py-3">Título</th>
+        <th scope="col" class="px-6 py-3">Autores</th>
+        <th scope="col" class="px-6 py-3">Tipo</th>
+        <th scope="col" class="px-6 py-3">Páginas</th>
         <th scope="col" class="px-6 py-3 sm:w-56">Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let publisher of listPublishers; let i = index"
-        class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+      <tr *ngFor="let book of listBooks; let i = index" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          {{ publisher.id }}
+          {{ book.id }}
         </th>
-        <td class="px-6 py-4">{{ publisher.name }}</td>
-        <td class="px-6 py-4">{{ publisher.country }}</td>
+        <td class="px-6 py-4">{{ book.title }}</td>
+        <td class="px-6 py-4">
+          <span *ngFor="let author of book.authors; let authorIndex = index">
+            <span *ngIf="authorIndex==0">{{ author.name }},&nbsp;</span>
+            <span *ngIf="authorIndex==1">{{ author.name }}</span>
+            <span *ngIf="authorIndex==2" title="{{getAuthorListJoined(book.authors)}}">...</span>
+          </span>
+        </td>
+        <td class="px-6 py-4">{{ (book.type != null)?book.type.description:'-' }}</td>
+        <td class="px-6 py-4">{{ book.number_pages }}</td>
         <td class="px-6 py-4">
           <div class="grid grid-cols-12 gap-1 text-center">
             <div class="col-span-12 sm:col-span-4">
-              <a href="/editoras/{{ publisher.id }}/detalhes">
-                <app-icon-button title="Ver cadastro da editora" icon="visibility"></app-icon-button>
+              <a href="/livros/{{ book.id }}/detalhes">
+                <app-icon-button title="Ver cadastro do livro" icon="visibility"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <a href="/editoras/{{ publisher.id }}/editar">
-                <app-icon-button title="Editar cadastro da editora" icon="edit"></app-icon-button>
+              <a href="/livros/{{ book.id }}/editar">
+                <app-icon-button title="Editar cadastro do livro" icon="edit"></app-icon-button>
               </a>
             </div>
             <div class="col-span-12 sm:col-span-4">
-              <app-icon-button title="Excluir cadastro da editora" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
-                (click)="openConfirmDeletePublisher(publisher.id)" icon="delete"></app-icon-button>
+              <app-icon-button title="Excluir cadastro do livro" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+                (click)="openConfirmDeleteBook(book.id)" icon="delete"></app-icon-button>
             </div>
           </div>
         </td>
@@ -75,7 +84,7 @@
     </tbody>
   </table>
 </div>
-<app-confirm-dialog modalId="delete-type" (noAction)="finishDeletePublisher()" (yesAction)="confirmDeletePublisher()"
-  firstLineText="Tem certeza que deseja deletar esta editora?"
+<app-confirm-dialog modalId="delete-type" (noAction)="finishDeleteBook()" (yesAction)="confirmDeleteBook()"
+  firstLineText="Tem certeza que deseja deletar este gênero?"
   secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
 <app-popup color="red" [message]="deleteData.message"></app-popup>
