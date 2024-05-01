@@ -1,0 +1,50 @@
+<div *ngIf="personFound; else templatePersonNotFound">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 sm:col-span-11 text-2xl mb-3">
+      Detalhes da pessoa
+    </div>
+    <div class="col-span-12 sm:col-span-1">
+      <app-default-button text="EDITAR" (action)="goToPersonEdit()"
+        classes="bg-violet-700 hover:bg-violet-600"></app-default-button>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ person.id != 0 ? person.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Nome:</b> {{ person.name }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-2 text-xl">
+      <b>CEP:</b> {{ person.cep }}
+    </div>
+    <div class="col-span-12 sm:col-span-6 text-xl">
+      <b>Cidade / UF:</b> {{ person.city }} / {{ person.state }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b>Bairro:</b> {{ person.district }}
+    </div>
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b>Rua:</b> {{ person.street }}
+    </div>
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b>Nº:</b> {{ person.number }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-12 text-xl">
+      <b>Observação:</b> {{ person.obs }}
+    </div>
+  </div>
+</div>
+
+<ng-template #templatePersonNotFound>
+  <app-page-not-found></app-page-not-found>
+</ng-template>

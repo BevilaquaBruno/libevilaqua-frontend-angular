@@ -24,6 +24,8 @@ import { FormAuthorComponent } from './components/authors/form-author/form-autho
 import { ListBooksComponent } from './components/book/list-books/list-books.component';
 import { DetailBookComponent } from './components/book/detail-book/detail-book.component';
 import { FormBookComponent } from './components/book/form-book/form-book.component';
+import { ListPeopleComponent } from './components/person/list-people/list-people.component';
+import { DetailPersonComponent } from './components/person/detail-person/detail-person.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -185,29 +187,44 @@ const routes: Routes = [
     ]
   },
   /* End author */
-    /* Start book */
-    {
-      path: 'livros',
-      children: [
-        {
-          path: '',
-          component: ListBooksComponent,
-        },
-        {
-          path: 'cadastrar',
-          component: FormBookComponent
-        },
-        {
-          path: ':id/editar',
-          component: FormBookComponent
-        },
-        {
-          path: ':id/detalhes',
-          component: DetailBookComponent
-        }
-      ]
-    },
-    /* End book */
+  /* Start book */
+  {
+    path: 'livros',
+    children: [
+      {
+        path: '',
+        component: ListBooksComponent,
+      },
+      {
+        path: 'cadastrar',
+        component: FormBookComponent
+      },
+      {
+        path: ':id/editar',
+        component: FormBookComponent
+      },
+      {
+        path: ':id/detalhes',
+        component: DetailBookComponent
+      }
+    ]
+  },
+  /* End book */
+  /* Start person */
+  {
+    path: 'pessoas',
+    children: [
+      {
+        path: '',
+        component: ListPeopleComponent,
+      },
+      {
+        path: ':id/detalhes',
+        component: DetailPersonComponent
+      }
+    ]
+  },
+  /* End person */
   {
     path: '**',
     component: PageNotFoundComponent
