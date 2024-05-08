@@ -26,6 +26,7 @@ import { DetailBookComponent } from './components/book/detail-book/detail-book.c
 import { FormBookComponent } from './components/book/form-book/form-book.component';
 import { ListPeopleComponent } from './components/person/list-people/list-people.component';
 import { DetailPersonComponent } from './components/person/detail-person/detail-person.component';
+import { FormPersonComponent } from './components/person/form-person/form-person.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -221,6 +222,14 @@ const routes: Routes = [
       {
         path: ':id/detalhes',
         component: DetailPersonComponent
+      },
+      {
+        path: 'cadastrar',
+        component: FormPersonComponent
+      },
+      {
+        path: ':id/editar',
+        component: FormPersonComponent
       }
     ]
   },
