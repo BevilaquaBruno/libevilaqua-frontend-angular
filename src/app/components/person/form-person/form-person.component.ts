@@ -53,7 +53,15 @@ export class FormPersonComponent {
 
   ngOnInit(): void {
     let formGroupData = {
-      description: ['', Validators.compose([Validators.required])],
+      name: ['', Validators.compose([Validators.required])],
+      cpf: [''],
+      cep: [''],
+      city: [''],
+      district: [''],
+      number: [''],
+      state: [''],
+      street: [''],
+      obs: [''],
     };
     this.formPerson = this.formBuilder.group(formGroupData);
   }

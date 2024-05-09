@@ -54,7 +54,7 @@ export class DetailPersonComponent {
   }
 
   goToPersonEdit(){
-    this.router.navigate([`/persons/${this.person.id}/editar`]);
+    this.router.navigate([`/pessoas/${this.person.id}/editar`]);
   }
 
 }

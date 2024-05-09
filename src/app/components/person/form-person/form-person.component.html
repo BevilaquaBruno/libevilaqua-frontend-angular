@@ -53,7 +53,7 @@
       <div class="col-span-12 sm:col-span-3">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="city" type="date" id="city" />
+          placeholder="___" formControlName="city" type="text" id="city" />
       </div>
 
       <!-- state -->
@@ -63,7 +63,7 @@
       <div class="col-span-12 sm:col-span-1">
         <select
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            name="state" id="state" formControlName="state">
+            name="state" id="state" formControlName="state" [(ngModel)]="formPerson.value.state">
             <option value="0">Selecione...</option>
             <option *ngFor="let state of stateList | keyvalue" [value]="state.key">
               {{ state.value }}
