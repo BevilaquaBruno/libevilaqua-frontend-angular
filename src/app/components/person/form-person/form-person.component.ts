@@ -98,4 +98,9 @@ export class FormPersonComponent {
 
   goBack() { this.router.navigate(['/pessoas']); }
 
+  cpfFormatter() {
+    console.log('To aqui');
+
+  }
+
 }

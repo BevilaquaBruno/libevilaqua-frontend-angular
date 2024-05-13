@@ -37,6 +37,7 @@ import { FormBookComponent } from './components/book/form-book/form-book.compone
 import { ListPeopleComponent } from './components/person/list-people/list-people.component';
 import { DetailPersonComponent } from './components/person/detail-person/detail-person.component';
 import { FormPersonComponent } from './components/person/form-person/form-person.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 @NgModule({
@@ -80,9 +81,11 @@ import { FormPersonComponent } from './components/person/form-person/form-person
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
