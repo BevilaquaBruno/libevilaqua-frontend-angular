@@ -95,12 +95,12 @@ export class FormBookComponent {
     this.genreService.list(1, 1000).subscribe((genres) => this.listGenres = genres.data);
 
     let formGroupData = {
-      title: ['', Validators.compose([Validators.required])],
+      title: ['', Validators.compose([Validators.required, Validators.maxLength(250)])],
       edition: [null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.maxLength(10)])],
       isbn: ['', Validators.compose([Validators.maxLength(13)])],
       number_pages: [null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.maxLength(10)])],
       release_year: [null, Validators.compose([Validators.maxLength(4)])],
-      obs: ['', Validators.compose([])],
+      obs: ['', Validators.compose([Validators.maxLength(500)])],
       genreId: [null],
       publisherId: [null],
       typeId: [null],
