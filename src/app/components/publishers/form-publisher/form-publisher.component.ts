@@ -46,13 +46,16 @@ export class FormPublisherComponent {
 
   ngOnInit(): void {
     let formGroupData = {
-      name: ['', Validators.compose([Validators.required])],
-      country: [''],
+      name: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
+      country: ['', Validators.compose([Validators.maxLength(30)])],
     };
     this.formPublisher = this.formBuilder.group(formGroupData);
   }
 
   saveButtonClass() {
+    console.log(this.formPublisher.get('name')?.errors);
+    console.log(this.formPublisher.get('country')?.errors);
+    
     if (this.formPublisher.valid)
       return ' bg-violet-700 hover:bg-violet-600';
     return ' bg-gray-500';
