@@ -1,0 +1,146 @@
+<form [formGroup]="formPerson">
+  <span class="text-5xl">
+    {{ new == true ? 'Nova' : 'Alterar' }} pessoa
+  </span>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Nome -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="name">Nome: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-6">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="name" required type="text" id="name" />
+      </div>
+
+      <!-- CPF -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="cpf">CPF: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-3">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          mask="000.000.000-00" placeholder="___" formControlName="cpf" type="text" id="cpf" />
+      </div>
+
+      <!-- Erro do nome -->
+      <div class="col-span-12 sm:col-span-6">
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formPerson.get('name')?.errors && formPerson.get('name')?.touched">
+          O nome é obrigatório
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- CEP -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="cep">CEP: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-2">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          mask="00000-000" formControlName="cep" type="text" id="cep" />
+      </div>
+
+      <!-- city -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="city">Cidade: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-3">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="city" type="text" id="city" />
+      </div>
+
+      <!-- state -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="state">UF: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-1">
+        <select
+            class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+            name="state" id="state" formControlName="state" [(ngModel)]="formPerson.value.state">
+            <option value="0">Selecione...</option>
+            <option *ngFor="let state of stateList | keyvalue" [value]="state.key">
+              {{ state.value }}
+            </option>
+          </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- District -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="district">Bairro: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-2">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="district" type="text" id="district" />
+      </div>
+
+      <!-- Street -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="street">Rua: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-3">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="street" type="text" id="street" />
+      </div>
+
+      <!-- number -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="number">Número: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-1">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          mask="00000" placeholder="___" formControlName="number" type="text" id="number" />
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- obs -->
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="obs">Obs: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-10">
+        <textarea class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+        formControlName="obs" id="" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Erro geral -->
+      <div class="col-span-12 sm:col-span-12">
+        <div class="text-red-500 font-bold animate-pulse" *ngIf="personError.error == true">
+          {{ personError.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <div class="col-span-12 sm:col-span-8"></div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="SALVAR" (action)="save()"
+          [classes]="saveButtonClass()" [disabled]="!formPerson.valid"></app-default-button>
+      </div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="CANCELAR" (action)="goBack()" classes="bg-red-700 hover:bg-red-600"
+          [disabled]="false"></app-default-button>
+      </div>
+    </div>
+  </div>
+</form>

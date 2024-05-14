@@ -76,7 +76,7 @@
       <!-- BOOK -->
       <li>
         <a
-          id="menu-tipo"
+          id="menu-livros"
           [ngClass]="
             isSelected('livros') +
             ' flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
@@ -88,6 +88,21 @@
         </a>
       </li>
       <!-- END BOOK-->
+      <!-- PERSON -->
+      <li>
+        <a
+          id="menu-pessoas"
+          [ngClass]="
+            isSelected('pessoas') +
+            ' flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
+          "
+          href="/pessoas"
+        >
+          <span class="material-symbols-outlined"> group </span>
+          <span class="flex-1 ml-3 whitespace-nowrap">Pessoas</span>
+        </a>
+      </li>
+      <!-- END PERSON-->
       <!-- AUTHOR -->
       <li>
         <a
