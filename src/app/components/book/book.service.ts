@@ -17,7 +17,9 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  list(page: number, itensPerPage: number, filterParams: BookFiltersToString): Observable<BookListInterface> {
+  list(page: number, itensPerPage: number, filterParams: BookFiltersToString | null): Observable<BookListInterface> {
+    if (null == filterParams)
+      filterParams = { data: {} };
     let params = new HttpParams().set('page', page).set('limit', itensPerPage).appendAll(filterParams.data);
     console.log(params.toString());
 
@@ -40,7 +42,7 @@ export class BookService {
     return this.http.get<BookInterface>(`${this.API}/${id}`, { headers: this.headers });
   }
 
-  update(id:number, type: BookUpdateInterface): Observable<BookInterface> {
-    return this.http.patch<BookInterface>(`${this.API}/${id}`,type, { headers: this.headers });
+  update(id: number, type: BookUpdateInterface): Observable<BookInterface> {
+    return this.http.patch<BookInterface>(`${this.API}/${id}`, type, { headers: this.headers });
   }
 }

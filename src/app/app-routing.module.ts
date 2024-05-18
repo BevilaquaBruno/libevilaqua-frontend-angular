@@ -27,6 +27,7 @@ import { FormBookComponent } from './components/book/form-book/form-book.compone
 import { ListPeopleComponent } from './components/person/list-people/list-people.component';
 import { DetailPersonComponent } from './components/person/detail-person/detail-person.component';
 import { FormPersonComponent } from './components/person/form-person/form-person.component';
+import { ListLoansComponent } from './components/loans/list-loans/list-loans.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -230,6 +231,17 @@ const routes: Routes = [
       {
         path: ':id/editar',
         component: FormPersonComponent
+      }
+    ]
+  },
+  /* End person */
+  /* Start person */
+  {
+    path: 'emprestimos',
+    children: [
+      {
+        path: '',
+        component: ListLoansComponent,
       }
     ]
   },
