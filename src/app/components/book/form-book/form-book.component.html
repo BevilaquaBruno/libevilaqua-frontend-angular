@@ -11,14 +11,21 @@
       <div class="col-span-12 sm:col-span-8">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="title" required type="text" id="title" />
+          placeholder="___" formControlName="title" required type="text" id="title" maxlength="250"/>
       </div>
 
       <!-- Erros do título -->
       <div class="col-span-12 sm:col-span-3">
+        <!-- Required -->
         <div class="text-red-500 font-bold animate-pulse"
-          *ngIf="formBook.get('title')?.errors && formBook.get('title')?.touched">
+          *ngIf="formBook.get('title')?.errors && formBook.get('title')?.touched && formBook.get('title')?.errors?.['required']">
           O título é obrigatório
+        </div>
+
+        <!-- Tamanho -->
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formBook.get('title')?.errors && formBook.get('title')?.touched && formBook.get('title')?.errors?.['maxlength']">
+          O título deve ter no máximo 250 caracteres
         </div>
       </div>
     </div>
@@ -32,7 +39,7 @@
         <div class="col-span-12 sm:col-span-1">
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            placeholder="1" formControlName="edition" required type="number" id="edition" />
+            placeholder="1" mask="0000000000" formControlName="edition" required type="number" id="edition" maxlength="10" />
         </div>
 
         <!-- ISBN -->
@@ -42,7 +49,7 @@
         <div class="col-span-12 sm:col-span-2">
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            placeholder="1" formControlName="isbn" required type="text" maxlength="13" id="isbn" />
+            placeholder="1" mask="0000000000000" formControlName="isbn" required type="text" maxlength="13" id="isbn" />
         </div>
 
         <!-- número de pgs -->
@@ -52,7 +59,7 @@
         <div class="col-span-12 sm:col-span-1">
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            placeholder="1" formControlName="number_pages" required type="number" id="number_pages" />
+            placeholder="1" mask="0000000000" formControlName="number_pages" required type="number" id="number_pages" maxlength="10" />
         </div>
 
         <!-- Ano Lançamento -->
@@ -62,7 +69,7 @@
         <div class="col-span-12 sm:col-span-1">
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            placeholder="1" formControlName="release_year" required type="number" id="release_year" />
+            placeholder="1" formControlName="release_year" required type="number" id="release_year" maxlength="4" mask="0000"/>
         </div>
       </div>
     </div>
@@ -241,7 +248,7 @@
         <div class="col-span-12 sm:col-span-8">
           <textarea
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            formControlName="obs" id="obs" cols="30" rows="5"></textarea>
+            maxlength="500" formControlName="obs" id="obs" cols="30" rows="5"></textarea>
         </div>
       </div>
     </div>

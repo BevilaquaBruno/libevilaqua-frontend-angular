@@ -11,14 +11,20 @@
       <div class="col-span-12 sm:col-span-5">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="name" required type="text" id="name" />
+          placeholder="___" formControlName="name" required type="text" id="name" maxlength="60"/>
       </div>
 
-      <!-- Erro do nome -->
+      <!-- Erro do nome obrigatório -->
       <div class="col-span-12 sm:col-span-6">
         <div class="text-red-500 font-bold animate-pulse"
-          *ngIf="formAuthor.get('name')?.errors && formAuthor.get('name')?.touched">
+          *ngIf="formAuthor.get('name')?.errors && formAuthor.get('name')?.touched && formAuthor.get('name')?.errors?.['required']">
           O nome é obrigatório
+        </div>
+
+      <!-- Erro do tamanho do nome-->
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formAuthor.get('name')?.errors && formAuthor.get('name')?.touched && formAuthor.get('name')?.errors?.['maxlength']">
+          O nome deve ter no máximo 60 caracteres
         </div>
       </div>
     </div>
@@ -55,7 +61,7 @@
         <label class="text-lg" for="bio">Biografia: </label>
       </div>
       <div class="col-span-12 sm:col-span-10">
-        <textarea class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+        <textarea maxlength="500" class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
         formControlName="bio" id="" cols="30" rows="10"></textarea>
       </div>
     </div>

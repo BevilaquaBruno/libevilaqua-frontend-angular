@@ -47,10 +47,10 @@ export class FormAuthorComponent {
 
   ngOnInit(): void {
     let formGroupData = {
-      name: ['', Validators.compose([Validators.required])],
+      name: ['', Validators.compose([Validators.required, Validators.maxLength(60)])],
       birth_date: [null],
       death_date: [null],
-      bio: [null]
+      bio: [null, Validators.compose([Validators.maxLength(500)])]
     };
     this.formAuthor = this.formBuilder.group(formGroupData);
   }

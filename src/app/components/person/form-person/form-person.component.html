@@ -11,7 +11,7 @@
       <div class="col-span-12 sm:col-span-6">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="name" required type="text" id="name" />
+          placeholder="___" maxlength="250" formControlName="name" required type="text" id="name" />
       </div>
 
       <!-- CPF -->
@@ -27,8 +27,14 @@
       <!-- Erro do nome -->
       <div class="col-span-12 sm:col-span-6">
         <div class="text-red-500 font-bold animate-pulse"
-          *ngIf="formPerson.get('name')?.errors && formPerson.get('name')?.touched">
+          *ngIf="formPerson.get('name')?.errors && formPerson.get('name')?.touched && formPerson.get('name')?.errors?.['required']">
           O nome é obrigatório
+        </div>
+
+        <!-- Erro do tamanho do nome -->
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formPerson.get('name')?.errors && formPerson.get('name')?.touched && formPerson.get('name')?.errors?.['maxlength']">
+          O nome deve ter até 250 caracteres
         </div>
       </div>
     </div>
@@ -53,7 +59,7 @@
       <div class="col-span-12 sm:col-span-3">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="city" type="text" id="city" />
+          placeholder="___" maxlength="30" formControlName="city" type="text" id="city" />
       </div>
 
       <!-- state -->
@@ -82,7 +88,7 @@
       <div class="col-span-12 sm:col-span-2">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="district" type="text" id="district" />
+          placeholder="___" maxlength="100" formControlName="district" type="text" id="district" />
       </div>
 
       <!-- Street -->
@@ -92,7 +98,7 @@
       <div class="col-span-12 sm:col-span-3">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="street" type="text" id="street" />
+          placeholder="___" maxlength="100" formControlName="street" type="text" id="street" />
       </div>
 
       <!-- number -->
@@ -115,7 +121,7 @@
       </div>
       <div class="col-span-12 sm:col-span-10">
         <textarea class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-        formControlName="obs" id="" cols="30" rows="10"></textarea>
+        formControlName="obs" id="" cols="30" rows="10" maxlength="500"></textarea>
       </div>
     </div>
   </div>

@@ -46,7 +46,7 @@ export class FormGenreComponent {
 
   ngOnInit(): void {
     let formGroupData = {
-      description: ['', Validators.compose([Validators.required])],
+      description: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
     };
     this.formGenre = this.formBuilder.group(formGroupData);
   }

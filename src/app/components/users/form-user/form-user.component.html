@@ -11,7 +11,7 @@
       <div class="col-span-12 sm:col-span-5">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="name" required type="text" id="name" />
+          placeholder="___" maxlength="50" formControlName="name" required type="text" id="name" />
       </div>
 
       <!-- Email -->
@@ -21,7 +21,7 @@
       <div class="col-span-12 sm:col-span-5">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-          placeholder="___" formControlName="email" required type="text" id="email" />
+          placeholder="___" maxlength="50" formControlName="email" required type="text" id="email" />
       </div>
 
       <!-- Erros do nome e e-mail -->
@@ -48,7 +48,7 @@
         <div class="col-span-12 sm:col-span-5">
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            placeholder="•••" formControlName="password" required type="password" id="password" />
+            placeholder="•••" maxlength="100" formControlName="password" required type="password" id="password" />
         </div>
 
         <!-- Password verify -->
@@ -58,7 +58,7 @@
         <div class="col-span-12 sm:col-span-4">
           <input
             class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
-            placeholder="•••" formControlName="verify_password" required type="password" id="verify_password" />
+            placeholder="•••" maxlength="100" formControlName="verify_password" required type="password" id="verify_password" />
         </div>
 
         <!-- erros da senha e confirmar senha-->

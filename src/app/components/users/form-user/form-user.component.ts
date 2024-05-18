@@ -48,14 +48,14 @@ export class FormUserComponent {
 
   ngOnInit(): void {
     let formGroupData = {
-      name: ['', Validators.compose([Validators.required])],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      name: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
+      email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
     };
     if (this.new == true) {
       formGroupData = {
         ...formGroupData, ...{
-          password: ['', Validators.compose([Validators.required])],
-          verify_password: ['', Validators.compose([Validators.required])],
+          password: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
+          verify_password: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
         }
       }
     }
