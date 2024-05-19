@@ -1,0 +1,207 @@
+<div *ngIf="loanFound; else templateLoanNotFound">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 sm:col-span-11 text-2xl mb-3">
+      Detalhes do empréstimo
+    </div>
+    <div class="col-span-12 sm:col-span-1">
+      <app-default-button text="EDITAR" (action)="goToLoanEdit()"
+        classes="bg-violet-700 hover:bg-violet-600"></app-default-button>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ loan.id != 0 ? loan.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Descrição:</b> {{ loan.description }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b title="Data do empréstimo">Data emp.:</b> {{ (loan.loan_date != null)?getFormattedDate(loan.loan_date):'-' }}
+    </div>
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b title="Data prevista de devolução">Dt. prev. dev.:</b> {{ (loan.must_return_date !=
+      null)?getFormattedDate(loan.must_return_date):'-' }}
+    </div>
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b title="Data de devolução">Dt. dev.:</b> {{ (loan.return_date != null)?getFormattedDate(loan.return_date):'-' }}
+    </div>
+  </div>
+
+  <!-- PESSOA -->
+  <div class="relative flex py-5 items-center">
+    <div class="flex-grow border-t border-gray-400"></div>
+    <span class="flex-shrink mx-4 text-gray-400">PESSOA</span>
+    <div class="flex-grow border-t border-gray-400"></div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ loan.person.id != 0 ? loan.person.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-2 text-xl">
+      <b>CPF:</b> {{ loan.person.cpf }}
+    </div>
+    <div class="col-span-12 sm:col-span-9 text-xl">
+      <b>Nome:</b> {{ loan.person.name }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-2 text-xl">
+      <b>CEP:</b> {{ loan.person.cep }}
+    </div>
+    <div class="col-span-12 sm:col-span-6 text-xl">
+      <b>Cidade / UF:</b> {{ loan.person.city }} / {{ loan.person.state }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b>Bairro:</b> {{ loan.person.district }}
+    </div>
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b>Rua:</b> {{ loan.person.street }}
+    </div>
+    <div class="col-span-12 sm:col-span-4 text-xl">
+      <b>Nº:</b> {{ loan.person.number }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-12 text-xl">
+      <b>Observação:</b> {{ loan.person.obs }}
+    </div>
+  </div>
+  <!-- FIM PESSOA -->
+
+  <!-- LIVRO -->
+
+  <div class="relative flex py-5 items-center">
+    <div class="flex-grow border-t border-gray-400"></div>
+    <span class="flex-shrink mx-4 text-gray-400">LIVRO</span>
+    <div class="flex-grow border-t border-gray-400"></div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>#{{ loan.book.id != 0 ? loan.book.id : "" }}</b>
+    </div>
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Título:</b> {{ loan.book.title }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-1 text-xl">
+      <b>Edição:</b> {{ loan.book.edition }}
+    </div>
+    <div class="col-span-12 sm:col-span-2 text-xl">
+      <b>ISBN:</b> {{ loan.book.isbn }}
+    </div>
+    <div class="col-span-12 sm:col-span-2 text-xl">
+      <b>Páginas:</b> {{ loan.book.number_pages }}
+    </div>
+    <div class="col-span-12 sm:col-span-2 text-xl">
+      <b>Ano de lançamento:</b> {{ loan.book.release_year }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div *ngIf="loan.book.type != null" class="col-span-12 sm:col-span-2 text-xl">
+      <b>Tipo:</b> {{ loan.book.type.description }}
+    </div>
+    <div *ngIf="loan.book.genre != null" class="col-span-12 sm:col-span-2 text-xl">
+      <b>Gênero:</b> {{ loan.book.genre.description }}
+    </div>
+    <div *ngIf="loan.book.publisher != null" class="col-span-12 sm:col-span-2 text-xl">
+      <b>Editora:</b> {{ loan.book.publisher.name }}
+    </div>
+    <div *ngIf="loan.book.publisher != null" class="col-span-12 sm:col-span-2 text-xl">
+      <b>País:</b> {{ loan.book.publisher.country }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-1">
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      Autores:
+    </div>
+  </div>
+  <div *ngIf="loan.book.authors.length > 0; else withoutAuthorsTemplate" class="grid grid-cols-12 grid-rows-1">
+    <div class="col-span-12 sm:col-span-12 text-xl">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-md text-left text-gray-700 dark:text-gray-400">
+          <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
+            <tr>
+              <th scope="col" class="px-6 py-1">#</th>
+              <th scope="col" class="px-6 py-1">Nome</th>
+              <th scope="col" class="px-6 py-1">Nasc | Morte</th>
+              <th scope="col" class="px-6 py-1 sm:w-56">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let author of loan.book.authors; let i = index"
+              class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+              <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ author.id }}
+              </th>
+              <td class="px-6 py-1">{{ author.name }}</td>
+              <td class="px-6 py-1">{{ (author.birth_date != null)?getFormattedDate(author.birth_date):'-' }} | {{
+                (author.death_date != null)?getFormattedDate(author.death_date):'-' }}</td>
+              <td class="px-6 py-1">
+                <div class="grid grid-cols-12 gap-1 text-center">
+                  <div class="col-span-12 sm:col-span-4">
+                    <a href="/autores/{{ author.id }}/detalhes">
+                      <app-icon-button title="Ver cadastro do autor" icon="visibility"></app-icon-button>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-1">
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      Tags:
+    </div>
+  </div>
+  <div *ngIf="loan.book.tags.length > 0; else withoutTagsTemplate" class="grid grid-cols-12 grid-rows-1">
+    <div *ngFor="let tag of loan.book.tags; let i = index"
+      class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">
+      {{ tag.description }}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 grid-rows-2">
+    <div class="col-span-12 sm:col-span-12 text-xl">
+      <b>Observação:</b> {{ loan.book.obs }}
+    </div>
+  </div>
+</div>
+
+<!-- FIM LIVRO-->
+
+<ng-template #templateLoanNotFound>
+  <app-page-not-found></app-page-not-found>
+</ng-template>
+<ng-template #withoutAuthorsTemplate>
+  <div class="grid grid-cols-12 grid-rows-1">
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Sem autores vinculados</b>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #withoutTagsTemplate>
+  <div class="grid grid-cols-12 grid-rows-1">
+    <div class="col-span-12 sm:col-span-11 text-xl">
+      <b>Sem tags vinculadas</b>
+    </div>
+  </div>
+</ng-template>

@@ -15,6 +15,7 @@ import { TypeService } from '../../types/type.service';
 import { PublisherService } from '../../publishers/publisher.service';
 import { GenreService } from '../../genre/genre.service';
 import { PopupComponent } from '../../general/popup/popup.component';
+import { getAuthorListJoined } from 'src/assets/helpers';
 
 @Component({
   selector: 'app-list-books',
@@ -47,6 +48,8 @@ export class ListBooksComponent {
 
   @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
   @ViewChild(PopupComponent) popup!: PopupComponent;
+  
+  getAuthorListJoined = getAuthorListJoined;
 
   constructor(
     private bookService: BookService,
@@ -138,10 +141,6 @@ export class ListBooksComponent {
     localStorage.setItem('itensPerPage', this.itensPerPage.toString());
     this.currentPage = 1;
     this.updateBookList();
-  }
-
-  getAuthorListJoined(data: AuthorInterface[]) {
-    return (data != undefined) ? data.map(a => { return a.name }).join(', ') : '';
   }
 
   private convertSelectedFilters(data: BookFiltersRaw): BookFiltersToString {

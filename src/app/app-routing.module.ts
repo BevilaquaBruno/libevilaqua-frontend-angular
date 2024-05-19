@@ -28,6 +28,7 @@ import { ListPeopleComponent } from './components/person/list-people/list-people
 import { DetailPersonComponent } from './components/person/detail-person/detail-person.component';
 import { FormPersonComponent } from './components/person/form-person/form-person.component';
 import { ListLoansComponent } from './components/loans/list-loans/list-loans.component';
+import { DetailLoanComponent } from './components/loans/detail-loan/detail-loan.component';
 
 let currentToken = localStorage.getItem('token');
 
@@ -242,6 +243,10 @@ const routes: Routes = [
       {
         path: '',
         component: ListLoansComponent,
+      },
+      {
+        path: ':id/detalhes',
+        component: DetailLoanComponent
       }
     ]
   },

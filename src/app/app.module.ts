@@ -39,6 +39,7 @@ import { DetailPersonComponent } from './components/person/detail-person/detail-
 import { FormPersonComponent } from './components/person/form-person/form-person.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ListLoansComponent } from './components/loans/list-loans/list-loans.component';
+import { DetailLoanComponent } from './components/loans/detail-loan/detail-loan.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { ListLoansComponent } from './components/loans/list-loans/list-loans.com
     DetailPersonComponent,
     FormPersonComponent,
     ListLoansComponent,
+    DetailLoanComponent,
   ],
   imports: [
     BrowserModule,
