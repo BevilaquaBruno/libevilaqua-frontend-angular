@@ -1,0 +1,107 @@
+<form [formGroup]="formLoan">
+  <span class="text-5xl">
+    {{ new == true ? 'Novo' : 'Alterar' }} empréstimo
+  </span>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Descrição -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="description">Descrição: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-11">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="description" required type="text" id="description" maxlength="250" />
+      </div>
+
+      <!-- Erro do descrição obrigatório -->
+      <div class="col-span-12 sm:col-span-6">
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formLoan.get('description')?.errors && formLoan.get('description')?.touched && formLoan.get('description')?.errors?.['required']">
+          A descrição é obrigatória
+        </div>
+
+        <!-- Erro do tamanho do descrição-->
+        <div class="text-red-500 font-bold animate-pulse"
+          *ngIf="formLoan.get('description')?.errors && formLoan.get('description')?.touched && formLoan.get('description')?.errors?.['maxlength']">
+          A descrição deve ter no máximo 250 caracteres
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Data do empréstimo -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="loan_date" title="Data do empréstimo">Dt. emp.: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-3">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="loan_date" type="date" id="loan_date" />
+      </div>
+
+      <!-- Data previsão devolução -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="must_return_date" title="Data de previsão de devolução">Dt. prev. devol.: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-3">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="must_return_date" type="date" id="must_return_date" />
+      </div>
+
+      <!-- Data de devolução -->
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="return_date" title="Data de devolução">Dt. devol.: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-3">
+        <input
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          placeholder="___" formControlName="return_date" type="date" id="return_date" />
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="personId">Pessoa: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-5">
+        <select
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          formControlName="personId" id="person">
+          <option *ngFor="let person of listPeople; let iPerson = index" [value]="person.id">
+            {{ person.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <!-- Erro geral -->
+      <div class="col-span-12 sm:col-span-12">
+        <div class="text-red-500 font-bold animate-pulse" *ngIf="formError.error == true">
+          {{ formError.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <div class="col-span-12 sm:col-span-8"></div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="SALVAR" (action)="save()" [classes]="saveButtonClass()"
+          [disabled]="!formLoan.valid"></app-default-button>
+      </div>
+      <div class="col-span-12 sm:col-span-2">
+        <app-default-button text="CANCELAR" (action)="goBack()" classes="bg-red-700 hover:bg-red-600"
+          [disabled]="false"></app-default-button>
+      </div>
+    </div>
+  </div>
+</form>
