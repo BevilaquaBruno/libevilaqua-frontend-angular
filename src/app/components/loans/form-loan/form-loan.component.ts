@@ -81,6 +81,14 @@ export class FormLoanComponent {
   }
 
   save() {
+    let sentForm = structuredClone(this.formLoan.value);
+
+    if(sentForm.return_date == '') sentForm.return_date = null;
+    if(sentForm.must_return_date == '') sentForm.must_return_date = null;
+    if(sentForm.loan_date == '') sentForm.loan_date = null;
+    
+    console.log(sentForm);
+    
     if (this.new) {
       this.loanService.create(this.formLoan.value).subscribe((response) => {
         if (response.id != undefined) {

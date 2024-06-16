@@ -83,6 +83,23 @@
 
   <div class="my-4">
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
+      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+        <label class="text-lg" for="bookId">Livro: </label>
+      </div>
+      <div class="col-span-12 sm:col-span-5">
+        <select
+          class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
+          formControlName="bookId" id="person">
+          <option *ngFor="let book of listBooks; let iBook = index" [value]="book.id">
+            {{ book.title }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
       <!-- Erro geral -->
       <div class="col-span-12 sm:col-span-12">
         <div class="text-red-500 font-bold animate-pulse" *ngIf="formError.error == true">
