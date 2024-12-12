@@ -51,7 +51,7 @@ export class FormLoanComponent {
       this.new = false;
       this.id = this.route.snapshot.params['id'];
       this.loanService.get(this.id).subscribe((loan) => {
-        this.formLoan.setValue({ description: loan.description, loan_date: loan.loan_date, must_return_date: loan.must_return_date, return_date: loan.return_date, book: loan.book, person: loan.person });
+        this.formLoan.setValue({ description: loan.description, loan_date: loan.loan_date, must_return_date: loan.must_return_date, return_date: loan.return_date, bookId: loan.book.id, personId: loan.person.id });
       });
     }
   }
@@ -65,13 +65,14 @@ export class FormLoanComponent {
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
 
-    let formattedDate = dd + '/' + mm + '/' + yyyy;
+    let formattedDate = yyyy + '-' + mm + '-' + dd;
+    
     let formGroupData = {
       description: ['', Validators.compose([Validators.required, Validators.maxLength(250)])],
       return_date: [null],
-      must_return_date: [null],
-      loan_date: [formattedDate],
-      bookId: [null],
+      must_return_date: [null, Validators.compose([Validators.required])],
+      loan_date: [formattedDate, Validators.compose([Validators.required])],
+      bookId: [null, Validators.compose([Validators.required])],
       personId: [null]
     };
     this.formLoan = this.formBuilder.group(formGroupData);
@@ -86,14 +87,18 @@ export class FormLoanComponent {
   save() {
     let sentForm = structuredClone(this.formLoan.value);
 
-    if(sentForm.return_date == '') sentForm.return_date = null;
-    if(sentForm.must_return_date == '') sentForm.must_return_date = null;
-    if(sentForm.loan_date == '') sentForm.loan_date = null;
-    
-    console.log(sentForm);
-    
+    if (sentForm.return_date == '') sentForm.return_date = null;
+    if (sentForm.must_return_date == '') sentForm.must_return_date = null;
+    if (sentForm.loan_date == '') sentForm.loan_date = null;
+
+    sentForm.book = { id: sentForm.bookId };
+    sentForm.person = { id: sentForm.personId };
+
+    delete sentForm.bookId;
+    delete sentForm.personId;
+
     if (this.new) {
-      this.loanService.create(this.formLoan.value).subscribe((response) => {
+      this.loanService.create(sentForm).subscribe((response) => {
         if (response.id != undefined) {
           this.router.navigate(['/emprestimos']);
         }
@@ -104,7 +109,7 @@ export class FormLoanComponent {
         }
       });
     } else {
-      this.loanService.update(this.id, this.formLoan.value).subscribe((response) => {
+      this.loanService.update(this.id, sentForm).subscribe((response) => {
         if (response.id != undefined) {
           this.router.navigate(['/emprestimos']);
         }
