@@ -7,6 +7,7 @@ import { BookService } from '../../book/book.service';
 import { PersonService } from '../../person/person.service';
 import { BookInterface } from '../../book/book.interface';
 import { PersonInterface } from '../../person/person.interface';
+import { getAuthorListJoined } from 'src/assets/helpers';
 
 @Component({
   selector: 'app-form-loan',
@@ -24,6 +25,8 @@ export class FormLoanComponent {
     error: false,
     message: ''
   };
+
+  getAuthorListJoined = getAuthorListJoined;
 
   constructor(
     private loanService: LoanService,

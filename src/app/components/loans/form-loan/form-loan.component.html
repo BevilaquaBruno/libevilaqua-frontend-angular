@@ -33,30 +33,30 @@
   <div class="my-4">
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
       <!-- Data do empréstimo -->
-      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
-        <label class="text-lg" for="loan_date" title="Data do empréstimo">Dt. emp.: </label>
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="loan_date" title="Data do empréstimo">Data do empréstimo: </label>
       </div>
-      <div class="col-span-12 sm:col-span-3">
+      <div class="col-span-12 sm:col-span-2">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           placeholder="___" formControlName="loan_date" type="date" id="loan_date" />
       </div>
 
       <!-- Data previsão devolução -->
-      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
-        <label class="text-lg" for="must_return_date" title="Data de previsão de devolução">Dt. prev. devol.: </label>
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="must_return_date" title="Data de previsão de devolução">Data de previsão: </label>
       </div>
-      <div class="col-span-12 sm:col-span-3">
+      <div class="col-span-12 sm:col-span-2">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           placeholder="___" formControlName="must_return_date" type="date" id="must_return_date" />
       </div>
 
       <!-- Data de devolução -->
-      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
-        <label class="text-lg" for="return_date" title="Data de devolução">Dt. devol.: </label>
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="return_date" title="Data de devolução">Data de devolução: </label>
       </div>
-      <div class="col-span-12 sm:col-span-3">
+      <div class="col-span-12 sm:col-span-2">
         <input
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           placeholder="___" formControlName="return_date" type="date" id="return_date" />
@@ -66,15 +66,15 @@
 
   <div class="my-4">
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
-      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
-        <label class="text-lg" for="personId">Pessoa: </label>
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
+        <label class="text-lg" for="personId">Pessoa que receberá o livro: </label>
       </div>
-      <div class="col-span-12 sm:col-span-5">
+      <div class="col-span-12 sm:col-span-6">
         <select
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           formControlName="personId" id="person">
           <option *ngFor="let person of listPeople; let iPerson = index" [value]="person.id">
-            {{ person.name }}
+            {{ person.name }} | CPF: {{ person.cpf }} | Obs: {{ person.obs }}
           </option>
         </select>
       </div>
@@ -83,15 +83,20 @@
 
   <div class="my-4">
     <div class="grid grid-flow-dense grid-cols-12 gap-3 mt-4">
-      <div class="col-span-12 sm:col-span-1 text-left sm:text-right">
+      <div class="col-span-12 sm:col-span-2 text-left sm:text-right">
         <label class="text-lg" for="bookId">Livro: </label>
       </div>
-      <div class="col-span-12 sm:col-span-5">
+      <div class="col-span-12 sm:col-span-6">
         <select
           class="form-input w-full dark:bg-slate-800 bg-white focus:ring-0 border-0 border-b-2 focus:border-gray-500"
           formControlName="bookId" id="person">
           <option *ngFor="let book of listBooks; let iBook = index" [value]="book.id">
-            {{ book.title }}
+            {{ book.title }} | Autor(es): 
+            <span *ngFor="let author of book.authors; let authorIndex = index">
+              <span *ngIf="authorIndex==0">{{ author.name }},&nbsp;</span>
+              <span *ngIf="authorIndex==1">{{ author.name }}</span>
+              <span *ngIf="authorIndex==2" title="{{getAuthorListJoined(book.authors)}}">...</span>
+            </span>
           </option>
         </select>
       </div>
