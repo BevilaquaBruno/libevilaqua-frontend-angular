@@ -21,8 +21,6 @@ export class BookService {
     if (null == filterParams)
       filterParams = { data: {} };
     let params = new HttpParams().set('page', page).set('limit', itensPerPage).appendAll(filterParams.data);
-    console.log(params.toString());
-
 
     return this.http.get<BookListInterface>(this.API, {
       params,

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BookInterface } from '../../book/book.interface';
 import { PersonInterface } from '../../person/person.interface';
 import { LoanFiltersRaw, LoanFiltersToString, LoanInterface } from '../loan.interface';
@@ -24,6 +24,7 @@ export class ListLoansComponent {
   maxPages: number = 0;
   maxRegisters: number = 0;
   deleteData = { id: 0, message: '' };
+  returnBookData = { id: 0, message: '' };
   selectedFilters: LoanFiltersRaw = {
     description: null,
     start_date: null,
@@ -35,8 +36,8 @@ export class ListLoansComponent {
   
   getFormattedDate = getFormattedDate;
 
-  @ViewChild(ConfirmDialogComponent) confirmationDialog!: ConfirmDialogComponent;
-  @ViewChild(PopupComponent) popup!: PopupComponent;
+  @ViewChildren(ConfirmDialogComponent) confirmationDialog!: QueryList<ConfirmDialogComponent>;
+  @ViewChildren(PopupComponent) popup!: QueryList<PopupComponent>;
 
   constructor(
     private loanService: LoanService,
@@ -69,12 +70,23 @@ export class ListLoansComponent {
 
   openConfirmDeleteLoan(id: number) {
     this.deleteData.id = id;
-    this.confirmationDialog.openModal();
+    this.confirmationDialog.first.openModal();
+  }
+
+  openConfirmReturnLoan(id: number) {
+    this.returnBookData.id = id;
+    this.confirmationDialog.last.openModal();
   }
 
   finishDeleteLoan() {
     this.deleteData.id = 0;
-    this.confirmationDialog.closeModal();
+    this.confirmationDialog.first.closeModal();
+    this.updateLoanList();
+  }
+
+  finishReturnLoan() {
+    this.returnBookData.id = 0;
+    this.confirmationDialog.last.closeModal();
     this.updateLoanList();
   }
 
@@ -87,8 +99,23 @@ export class ListLoansComponent {
           }
         }, (e) => {
           this.deleteData.message = e.error.message;
-          this.popup.initPopup();
-          this.popup.showPopup();
+          this.popup.first.initPopup();
+          this.popup.first.showPopup();
+        });
+    }
+  }
+
+  confirmReturnLoan() {
+    if (this.returnBookData.id != 0) {
+      this.loanService.return(this.returnBookData.id).subscribe(
+        (success) => {
+          if (success.id != 0) {
+            this.finishReturnLoan();
+          }
+        }, (e) => {
+          this.returnBookData.message = e.error.message;
+          this.popup.last.initPopup();
+          this.popup.last.showPopup();
         });
     }
   }

@@ -63,7 +63,7 @@ export class FormBookComponent {
     if ('cadastrar' == this.route.snapshot.routeConfig?.path) {
       this.new = true;
       this.id = 0;
-    } else if (':id/editar') {
+    } else {
       this.new = false;
       this.id = this.route.snapshot.params['id'];
       this.bookService.get(this.id).subscribe((book) => {

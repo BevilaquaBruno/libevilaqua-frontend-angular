@@ -44,10 +44,12 @@ export class FormLoanComponent {
       }
     );
 
-    if ('cadastrar' == this.route.snapshot.routeConfig?.path) {
+    var currentPath = this.route.snapshot.routeConfig?.path;
+
+    if ('cadastrar' == currentPath) {
       this.new = true;
       this.id = 0;
-    } else if (':id/editar') {
+    } else {
       this.new = false;
       this.id = this.route.snapshot.params['id'];
       this.loanService.get(this.id).subscribe((loan) => {
@@ -91,11 +93,8 @@ export class FormLoanComponent {
     if (sentForm.must_return_date == '') sentForm.must_return_date = null;
     if (sentForm.loan_date == '') sentForm.loan_date = null;
 
-    sentForm.book = { id: sentForm.bookId };
-    sentForm.person = { id: sentForm.personId };
-
-    delete sentForm.bookId;
-    delete sentForm.personId;
+    sentForm.bookId = +sentForm.bookId;
+    sentForm.personId = +sentForm.personId;
 
     if (this.new) {
       this.loanService.create(sentForm).subscribe((response) => {

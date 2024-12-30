@@ -18,8 +18,6 @@ export class LoanService {
 
   list(page: number, itensPerPage: number, filterParams: LoanFiltersToString): Observable<LoanListInterface> {
     let params = new HttpParams().set('page', page).set('limit', itensPerPage).appendAll(filterParams.data);
-    console.log(params.toString());
-
 
     return this.http.get<LoanListInterface>(this.API, {
       params,
@@ -39,7 +37,18 @@ export class LoanService {
     return this.http.get<LoanInterface>(`${this.API}/${id}`, { headers: this.headers });
   }
 
-  update(id: number, type: LoanUpdateInterface): Observable<LoanInterface> {
-    return this.http.patch<LoanInterface>(`${this.API}/${id}`, type, { headers: this.headers });
+  update(id: number, loan: LoanUpdateInterface): Observable<LoanInterface> {
+    return this.http.patch<LoanInterface>(`${this.API}/${id}`, loan, { headers: this.headers });
+  }
+
+  return(id: number): Observable<LoanInterface> {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    let formattedDate = yyyy + '-' + mm + '-' + dd;
+
+    return this.http.patch<LoanInterface>(`${this.API}/return/${id}`, { return_date: formattedDate}, { headers: this.headers });
   }
 }

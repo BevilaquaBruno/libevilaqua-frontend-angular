@@ -64,17 +64,21 @@
         </td>
         <td class="px-6 py-4">
           <div class="grid grid-cols-12 gap-1 text-center">
-            <div class="col-span-12 sm:col-span-4">
+            <div class="col-span-12 sm:col-span-3">
+              <app-icon-button title="Retornar livro à biblioteca" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
+                (click)="openConfirmReturnLoan(loan.id)" icon="book_4"></app-icon-button>
+            </div>
+            <div class="col-span-12 sm:col-span-3">
               <a href="/emprestimos/{{ loan.id }}/detalhes">
                 <app-icon-button title="Ver cadastro do empréstimo" icon="visibility"></app-icon-button>
               </a>
             </div>
-            <div class="col-span-12 sm:col-span-4">
+            <div class="col-span-12 sm:col-span-3">
               <a href="/emprestimos/{{ loan.id }}/editar">
                 <app-icon-button title="Editar cadastro do empréstimo" icon="edit"></app-icon-button>
               </a>
             </div>
-            <div class="col-span-12 sm:col-span-4">
+            <div class="col-span-12 sm:col-span-3">
               <app-icon-button title="Excluir cadastro do empréstimo" data-modal-target="popup-modal-delete-type" data-modal-toggle="popup-modal-delete-type"
                 (click)="openConfirmDeleteLoan(loan.id)" icon="delete"></app-icon-button>
             </div>
@@ -87,7 +91,14 @@
 <app-confirm-dialog modalId="delete-type" (noAction)="finishDeleteLoan()" (yesAction)="confirmDeleteLoan()"
   firstLineText="Tem certeza que deseja deletar este empréstimo?"
   secondLineText="Esta ação não poderá ser desfeita."></app-confirm-dialog>
+
+<app-confirm-dialog modalId="return-book" (noAction)="finishReturnLoan()" (yesAction)="confirmReturnLoan()"
+  firstLineText="Tem certeza que deseja retornar este livro?"
+  secondLineText="Esta ação poderá ser desfeita pelo cadastro do empréstimo."></app-confirm-dialog>
+
 <app-popup color="red" [message]="deleteData.message"></app-popup>
+<app-popup color="green" [message]="returnBookData.message"></app-popup>
+
 
 <ng-template #checkIcon>
   <span class="material-symbols-outlined"> check </span>
