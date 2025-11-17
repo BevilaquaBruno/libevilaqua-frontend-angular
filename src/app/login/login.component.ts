@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,7 +27,7 @@ import { Router, RouterModule } from '@angular/router';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   public APP_NAME = env.APP_NAME;
-  public generalError = '';
+  public generalError = signal('');
 
   form = this.fb.group({
     email: this.fb.control<string>('', [Validators.required, Validators.email]),
@@ -40,17 +40,20 @@ export class LoginComponent {
   ) { }
 
   onSubmit(): void {
-    alert('Thanks!');
     if (this.form.invalid) return;
 
     const email = this.form.controls.email.value!;
     const password = this.form.controls.password.value!;
     this.authService.signIn(email, password).subscribe({
-      next: (data) => {console.log("success", data)},
+      next: (data) => { console.log("success", data) },
       error: (error) => {
-        if (401 === error.status) {
-          this.generalError = 'E-mail ou senha incorretos.';
-        }
+        let errorMessage = '';
+        if(error.error.message && 401 != error.status)
+          errorMessage = error.error.message
+        else
+          errorMessage = 'Usuário ou senha incorretos.';
+
+        this.generalError.set(errorMessage);
       }
     });
   }
