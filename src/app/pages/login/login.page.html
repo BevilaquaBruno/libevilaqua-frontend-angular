@@ -90,9 +90,9 @@
             </mat-card-subtitle>
           </mat-card-header>
           <mat-card-content style="margin-top: 30px;">
+            @if (filteredLibraries().length > 0) {
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Selecione a biblioteca</mat-label>
-
               <input type="text" matInput [formControl]="libraryCtrl" [matAutocomplete]="auto"
                 (input)="searchText.set($event.target.value)">
 
@@ -105,6 +105,12 @@
                 }
               </mat-autocomplete>
             </mat-form-field>
+            } @else {
+            <span class="red-text-button">Você possui uma conta, porém não existem bibliotecas vinculadas.</span>
+            <br />
+            <span class="green-text-button clickable" (click)="newLibrary()">Clique aqui</span>
+            <span class="red-text-button">&nbsp;para cadastrar uma nova biblioteca</span>
+            }
           </mat-card-content>
           <mat-card-actions>
             <app-loading [loading]="isSelectLibraryLoading"></app-loading>
