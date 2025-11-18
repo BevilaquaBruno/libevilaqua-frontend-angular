@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { SignInResponse } from './interfaces/sign-in-response.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { LoadingComponent } from "../loading/loading";
+import { LoadingComponent } from "../loading/loading.component";
 
 @Component({
   selector: 'app-login',

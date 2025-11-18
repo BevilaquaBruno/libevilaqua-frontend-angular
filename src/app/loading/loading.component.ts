@@ -3,8 +3,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-loading',
-  templateUrl: './loading.html',
-  styleUrls: ['./loading.scss'],
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.scss'],
   standalone: true,
   imports: [
     MatProgressSpinnerModule,
