@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import env from '../env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { SignInResponse } from './login/interfaces/sign-in-response.interface';
+import { SelectLibraryResponse } from './login/interfaces/select-library-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +20,18 @@ export class AuthService {
     return this.http.get(`${this.API}/isValid`, { headers: this.headers });
   }
 
-  signIn(email: string, password: string) {
-    return this.http.post(`${this.API}/signin`,{
+  signIn(email: string, password: string): Observable<SignInResponse> {
+    return this.http.post<SignInResponse>(`${this.API}/signin`, {
       email: email,
       password: password
+    });
+  }
+
+  selectLibrary(email: string, password: string, libraryId: number): Observable<SelectLibraryResponse> {
+    return this.http.post<SelectLibraryResponse>(`${this.API}/select-library`, {
+      email: email,
+      password: password,
+      libraryId: libraryId
     });
   }
 }
