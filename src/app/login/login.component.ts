@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { SignInResponse } from './interfaces/sign-in-response.interface';
+import { LibraryList } from './interfaces/library-list.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LoadingComponent } from "../loading/loading.component";
 

@@ -1,4 +1,4 @@
-interface LibraryList {
+export interface LibraryList {
   id: number
   description: string;
 }
