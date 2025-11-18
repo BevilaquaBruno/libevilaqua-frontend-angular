@@ -12,7 +12,7 @@ import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { SignInResponse } from './interfaces/sign-in-response.interface';
 import { LibraryList } from './interfaces/library-list.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { LoadingComponent } from "../loading/loading.component";
+import { LoadingComponent } from "../components/loading/loading.component";
 
 @Component({
   selector: 'app-login',
