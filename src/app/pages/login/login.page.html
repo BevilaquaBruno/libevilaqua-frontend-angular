@@ -8,7 +8,7 @@
           <mat-card class="login-card">
             <mat-card-header>
               <mat-card-title>
-                <b style="font-size: xx-large;">{{APP_NAME}}</b>
+                <b style="font-size: xx-large;">{{APP_NAME}} - Login</b>
               </mat-card-title>
               <mat-card-subtitle>
                 informe seu e-mail e senha para acessar sua biblioteca.
@@ -54,7 +54,7 @@
             <mat-card-actions>
               <button class="rect-button" matButton="filled" type="submit">Entrar</button>
               <button class="rect-button red-text-button" matButton="text" type="button" (click)="resetPassword()">
-                Recuperar senha
+                Esqueci a senha
               </button>
               <app-loading [loading]="isLoginLoading"></app-loading>
             </mat-card-actions>
@@ -75,6 +75,9 @@
         <mat-card class="login-card">
           <mat-card-header style="max-width: 500px;">
             <mat-card-title>
+              <button matIconButton aria-label="Voltar para o login" (click)="goBackToLogin()">
+                <mat-icon>arrow_back</mat-icon>
+              </button>
               <b style="font-size: xx-large;">{{APP_NAME}}</b>
             </mat-card-title>
             <mat-card-subtitle>
@@ -90,9 +93,11 @@
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Selecione a biblioteca</mat-label>
 
-              <input type="text" matInput [formControl]="libraryCtrl" [matAutocomplete]="auto" (input)="searchText.set($event.target.value)">
+              <input type="text" matInput [formControl]="libraryCtrl" [matAutocomplete]="auto"
+                (input)="searchText.set($event.target.value)">
 
-              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLibrary" (optionSelected)="selectLibrary($event)">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLibrary"
+                (optionSelected)="selectLibrary($event)">
                 @for (lib of filteredLibraries(); track lib.id) {
                 <mat-option [value]="lib">
                   {{ lib.description }}
@@ -102,9 +107,6 @@
             </mat-form-field>
           </mat-card-content>
           <mat-card-actions>
-            <button class="rect-button " matButton="outlined" type="button" (click)="goBackToLogin()">
-              Voltar
-            </button>
             <app-loading [loading]="isSelectLibraryLoading"></app-loading>
           </mat-card-actions>
         </mat-card>

@@ -13,6 +13,7 @@ import { SignInResponse } from './interfaces/sign-in-response.interface';
 import { LibraryList } from './interfaces/library-list.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LoadingComponent } from "../../components/loading/loading.component";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-login',
@@ -30,8 +31,9 @@ import { LoadingComponent } from "../../components/loading/loading.component";
     MatAutocomplete,
     MatOption,
     MatAutocompleteTrigger,
-    LoadingComponent
-  ]
+    LoadingComponent,
+    MatIcon
+]
 })
 export class LoginPage {
   /**
@@ -114,7 +116,7 @@ export class LoginPage {
   }
 
   resetPassword() {
-    alert('Reset password.')
+    this.router.navigate(['esqueci-a-senha']);
   }
 
   newLibrary() {

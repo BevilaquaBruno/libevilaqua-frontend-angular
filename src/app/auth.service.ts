@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SignInResponse } from './pages/login/interfaces/sign-in-response.interface';
 import { SelectLibraryResponse } from './pages/login/interfaces/select-library-response.interface';
+import { BaseResponse } from './interfaces/base-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,12 @@ export class AuthService {
       email: email,
       password: password,
       libraryId: libraryId
+    });
+  }
+
+  sendResetPassword(email: string): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(`${this.API}/send-reset-password`, {
+      email: email
     });
   }
 }
