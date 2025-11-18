@@ -41,4 +41,16 @@ export class AuthService {
       email: email
     });
   }
+
+  resetPassword(password: string, password_confirmation: string, token: string): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(`${this.API}/reset-password`,
+      {
+        newPassword: password,
+        confirmNewPassword: password_confirmation
+      },
+      {
+        headers: new HttpHeaders(`Authorization: Bearer ${token}`)
+      }
+    );
+  }
 }

@@ -44,8 +44,6 @@ export class SendResetPasswordPage {
     const email = this.form.controls.email.value!;
     this.authService.sendResetPassword(email).subscribe({
       next: (data) => {
-        console.log(data);
-
         this.displayError.set('');
         if (200 === data.statusCode) {
           this.displaySuccessMessage.set(data.message);

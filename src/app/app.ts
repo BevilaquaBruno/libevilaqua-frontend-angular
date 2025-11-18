@@ -37,6 +37,7 @@ export class App implements OnInit {
   isLoginPage = computed(() => (
     this.currentUrl().includes('/login')
     || this.currentUrl().includes('/esqueci-a-senha')
+    || this.currentUrl().includes('/resetar-senha')
   ));
 
   constructor(
