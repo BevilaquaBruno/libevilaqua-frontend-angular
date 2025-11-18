@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { SignInResponse } from './interfaces/sign-in-response.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
+import { LoadingComponent } from "../loading/loading";
 
 @Component({
   selector: 'app-login',
@@ -28,10 +28,15 @@ import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSele
     MatTabsModule,
     MatAutocomplete,
     MatOption,
-    MatAutocompleteTrigger
+    MatAutocompleteTrigger,
+    LoadingComponent
   ]
 })
 export class LoginComponent {
+  /**
+   * VARIÁVEIS FORM LOGIN
+   * START
+   */
   private fb = inject(FormBuilder);
   public APP_NAME = env.APP_NAME;
   public generalLoginError = signal('');
@@ -53,28 +58,38 @@ export class LoginComponent {
     password: this.fb.control<string>('', [Validators.required, Validators.minLength(6)]),
   });
 
-  libraryCtrl = new FormControl({ id: 0, description: '' });
+  isLoginLoading = signal(false);
+  isSelectLibraryLoading = signal(false);
+
+  /**
+ * VARIÁVEIS FORM LOGIN
+ * END
+ *
+ * VARIÁVEIS FORM SELECT LIBRARY
+ * START
+ */
+  libraryCtrl = new FormControl<string | LibraryList>('');
+  searchText = signal('');
 
   filteredLibraries = computed(() => {
-    const value = this.libraryCtrl.value?.description?.toLowerCase() ?? '';
+    const search = this.searchText().toLowerCase();
 
-    return this.loginResponse().libraries.filter(lib =>
-      lib.description.toLowerCase().includes(value)
+    return this.loginResponse().libraries.filter(
+      lib => lib.description.toLowerCase().includes(search)
     );
   });
-
-
-  displayLibrary = (lib: LibraryList) => {
-    return lib?.description ?? '';
-  };
 
   constructor(
     private authService: AuthService,
     private router: Router,
   ) { }
-
+  /**
+  * MÉTODOS FORM LOGIN
+  * END
+  */
   onSubmit(): void {
     if (this.form.invalid) return;
+    this.isLoginLoading.set(true);
 
     const email = this.form.controls.email.value!;
     const password = this.form.controls.password.value!;
@@ -82,6 +97,7 @@ export class LoginComponent {
       next: (data) => {
         this.loginResponse.set(data)
         this.navigateTab(1);
+        this.isLoginLoading.set(false);
       },
       error: (error) => {
         let errorMessage = '';
@@ -91,21 +107,46 @@ export class LoginComponent {
           errorMessage = 'Usuário ou senha incorretos.';
 
         this.generalLoginError.set(errorMessage);
+        this.isLoginLoading.set(false);
       }
     });
   }
 
+  resetPassword() {
+    alert('Reset password.')
+  }
+
+  newLibrary() {
+    alert('new library.')
+  }
+  /**
+ * MÉTODOS FORM LOGIN
+ * END
+ *
+ * MÉTODOS FORM SELECT LIBRARY
+ * START
+ */
+  displayLibrary = (value: string | LibraryList) => {
+    if (!value) return '';
+
+    return typeof value === 'string'
+      ? value
+      : value.description;
+  };
+
   selectLibrary(event: MatAutocompleteSelectedEvent) {
+    this.isSelectLibraryLoading.set(true);
     const lib = event.option.value;
-    console.log(lib);
+    this.libraryCtrl.setValue(lib);
 
     this.authService.selectLibrary(this.loginResponse().email, this.loginResponse().password, lib.id).subscribe({
-      next: (data) => {
+      next: async (data) => {
         if (!data.access_token) {
           this.generalLibraryError.set('Erro grave ao logar');
         }
 
         localStorage.setItem('token', data.access_token);
+        this.isSelectLibraryLoading.set(false);
         this.router.navigate(['inicio']);
       },
       error: (error) => {
@@ -116,6 +157,7 @@ export class LoginComponent {
           errorMessage = 'Usuário ou senha incorretos.';
 
         this.generalLibraryError.set(errorMessage);
+        this.isSelectLibraryLoading.set(false);
       }
     });
   }
@@ -128,6 +170,7 @@ export class LoginComponent {
       libraries: [],
       password: '',
     });
+    this.generalLibraryError.set('');
     this.navigateTab(0);
   }
 
@@ -135,11 +178,8 @@ export class LoginComponent {
     this.selectedIndex.set(tab);
   }
 
-  resetPassword() {
-    alert('Reset password.')
-  }
-
-  newLibrary() {
-    alert('new library.')
-  }
+  /**
+* MÉTODOS FORM SELECT LIBRARY
+* END
+*/
 }

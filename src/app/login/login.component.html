@@ -56,9 +56,10 @@
               <button class="rect-button red-text-button" matButton="text" type="button" (click)="resetPassword()">
                 Recuperar senha
               </button>
+              <app-loading [loading]="isLoginLoading"></app-loading>
             </mat-card-actions>
           </mat-card>
-          <button class="rect-button full-width" matButton="text" type="button" (click)="newLibrary()">
+          <button class="rect-button full-width" matButton="tonal" type="button" (click)="newLibrary()">
             Cadastrar nova biblioteca
           </button>
         </form>
@@ -72,7 +73,7 @@
       <mat-grid-tile colspan="1"></mat-grid-tile>
       <mat-grid-tile colspan="1">
         <mat-card class="login-card">
-          <mat-card-header>
+          <mat-card-header style="max-width: 500px;">
             <mat-card-title>
               <b style="font-size: xx-large;">{{APP_NAME}}</b>
             </mat-card-title>
@@ -89,7 +90,7 @@
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Selecione a biblioteca</mat-label>
 
-              <input type="text" matInput [formControl]="libraryCtrl" [matAutocomplete]="auto">
+              <input type="text" matInput [formControl]="libraryCtrl" [matAutocomplete]="auto" (input)="searchText.set($event.target.value)">
 
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLibrary" (optionSelected)="selectLibrary($event)">
                 @for (lib of filteredLibraries(); track lib.id) {
@@ -104,6 +105,7 @@
             <button class="rect-button " matButton="outlined" type="button" (click)="goBackToLogin()">
               Voltar
             </button>
+            <app-loading [loading]="isSelectLibraryLoading"></app-loading>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
