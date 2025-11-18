@@ -34,7 +34,10 @@ export class App implements OnInit {
   isMobile = false;
   private router = inject(Router);
   currentUrl = signal<string>('');
-  isLoginPage = computed(() => this.currentUrl().includes('/login'));
+  isLoginPage = computed(() => (
+    this.currentUrl().includes('/login')
+    || this.currentUrl().includes('/esqueci-a-senha')
+  ));
 
   constructor(
     private breakpointObserver: BreakpointObserver,

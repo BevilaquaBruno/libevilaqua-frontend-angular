@@ -4,20 +4,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from "@angular/material/grid-list";
-import env from '../../env';
+import env from '../../../env';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { SignInResponse } from './interfaces/sign-in-response.interface';
 import { LibraryList } from './interfaces/library-list.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { LoadingComponent } from "../components/loading/loading.component";
+import { LoadingComponent } from "../../components/loading/loading.component";
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './login.page.html',
+  styleUrl: './login.page.scss',
   imports: [
     CommonModule,
     MatInputModule,
@@ -33,7 +33,7 @@ import { LoadingComponent } from "../components/loading/loading.component";
     LoadingComponent
   ]
 })
-export class LoginComponent {
+export class LoginPage {
   /**
    * VARIÁVEIS FORM LOGIN
    * START

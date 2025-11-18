@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomePage } from './pages/home/home.page';
+import { LoginPage } from './pages/login/login.page';
+import { SendResetPasswordPage } from './pages/send-reset-password/send-reset-password.page';
 
 const currentToken =  localStorage.getItem('token');
 
@@ -12,10 +13,14 @@ export const routes: Routes = [
   },
   {
     path: 'inicio',
-    component: HomeComponent
+    component: HomePage
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginPage
+  },
+  {
+    path: 'esqueci-a-senha',
+    component: SendResetPasswordPage
   }
 ];

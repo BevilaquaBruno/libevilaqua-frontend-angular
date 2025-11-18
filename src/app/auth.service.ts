@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import env from '../env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SignInResponse } from './login/interfaces/sign-in-response.interface';
-import { SelectLibraryResponse } from './login/interfaces/select-library-response.interface';
+import { SignInResponse } from './pages/login/interfaces/sign-in-response.interface';
+import { SelectLibraryResponse } from './pages/login/interfaces/select-library-response.interface';
 
 @Injectable({
   providedIn: 'root',

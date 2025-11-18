@@ -8,12 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './home.page.html',
+  styleUrl: './home.page.scss',
   imports: [
     AsyncPipe,
     MatGridListModule,
@@ -24,7 +24,7 @@ import { AuthService } from '../auth.service';
     RouterModule,
   ]
 })
-export class HomeComponent implements OnInit {
+export class HomePage implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
 
   /** Based on the screen size, switch from standard to one column per row */
