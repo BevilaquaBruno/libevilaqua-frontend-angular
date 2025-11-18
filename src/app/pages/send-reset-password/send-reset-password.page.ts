@@ -39,6 +39,8 @@ export class SendResetPasswordPage {
   ) { }
 
   onSubmit() {
+    if (this.form.invalid) return;
+
     const email = this.form.controls.email.value!;
     this.authService.sendResetPassword(email).subscribe({
       next: (data) => {
