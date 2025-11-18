@@ -147,8 +147,9 @@ export class LoginPage {
         }
 
         localStorage.setItem('token', data.access_token);
-        this.isSelectLibraryLoading.set(false);
-        this.router.navigate(['inicio']);
+        setTimeout(() => {
+          this.router.navigate(['inicio']);
+        }, 1000);
       },
       error: (error) => {
         let errorMessage = '';
