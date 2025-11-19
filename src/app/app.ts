@@ -38,6 +38,7 @@ export class App implements OnInit {
     this.currentUrl().includes('/login')
     || this.currentUrl().includes('/esqueci-a-senha')
     || this.currentUrl().includes('/resetar-senha')
+    || this.currentUrl().includes('/nova-biblioteca')
   ));
 
   constructor(

@@ -3,6 +3,7 @@ import { HomePage } from './pages/home/home.page';
 import { LoginPage } from './pages/login/login.page';
 import { SendResetPasswordPage } from './pages/send-reset-password/send-reset-password.page';
 import { ResetPasswordPage } from './pages/reset-password/reset-password.page';
+import { NewLibraryPage } from './pages/new-library/new-library.page';
 
 const currentToken =  localStorage.getItem('token');
 
@@ -27,5 +28,9 @@ export const routes: Routes = [
   {
     path: 'resetar-senha',
     component: ResetPasswordPage
+  },
+  {
+    path: 'nova-biblioteca',
+    component: NewLibraryPage,
   }
 ];

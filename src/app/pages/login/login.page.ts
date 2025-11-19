@@ -120,7 +120,7 @@ export class LoginPage {
   }
 
   newLibrary() {
-    alert('new library.')
+    this.router.navigate(['nova-biblioteca']);
   }
   /**
  * MÉTODOS FORM LOGIN

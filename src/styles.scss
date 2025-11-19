@@ -6,12 +6,12 @@
 @use '@angular/material' as mat;
 
 html {
-  @include mat.theme((color: (
-        primary: mat.$cyan-palette,
+  @include mat.theme((color: (primary: mat.$cyan-palette,
         tertiary: mat.$orange-palette,
       ),
       typography: Roboto,
       density: 0,
+
     ));
 }
 
@@ -30,20 +30,12 @@ body {
 
   // Reset the user agent margin.
   margin: 0;
-}
-
-/* You can add global styles to this file, and also import other style files */
-
-html,
-body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 100%;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
+/* You can add global styles to this file, and also import other style files */
 .mat-expansion-panel-body {
   padding: 0 !important;
   border-radius: 0 !important;
@@ -75,13 +67,21 @@ mat-nav-list {
   margin-right: 0;
 }
 
+.red-text {
+  color: var(--mat-sys-error) !important;
+}
+
 .red-text-button {
-  color: var(--mat-sys-error)!important;
+  color: var(--mat-sys-error) !important;
   font-weight: 500;
 }
 
+.green-text {
+  color: var(--mat-sys-primary) !important;
+}
+
 .green-text-button {
-  color: var(--mat-sys-primary)!important;
+  color: var(--mat-sys-primary) !important;
   font-weight: 500;
 }
 
