@@ -34,13 +34,18 @@ export class App implements OnInit {
   isMobile = false;
   private router = inject(Router);
   currentUrl = signal<string>('');
-  isLoginPage = computed(() => (
-    this.currentUrl().includes('/login')
-    || this.currentUrl().includes('/esqueci-a-senha')
-    || this.currentUrl().includes('/resetar-senha')
-    || this.currentUrl().includes('/nova-biblioteca')
-    || this.currentUrl().includes('/confirmar-acesso')
-  ));
+  noMenuRoutes = [
+    '/login',
+    '/esqueci-a-senha',
+    '/resetar-senha',
+    '/nova-biblioteca',
+    '/confirmar-acesso',
+    '/404'
+  ];
+
+  shouldntShowMenu = computed(() =>
+    this.noMenuRoutes.some(path => this.currentUrl().includes(path))
+  );
 
   constructor(
     private breakpointObserver: BreakpointObserver,

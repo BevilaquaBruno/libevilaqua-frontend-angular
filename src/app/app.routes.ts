@@ -5,8 +5,9 @@ import { SendResetPasswordPage } from './pages/send-reset-password/send-reset-pa
 import { ResetPasswordPage } from './pages/reset-password/reset-password.page';
 import { NewLibraryPage } from './pages/new-library/new-library.page';
 import { ConfirmAccessPage } from './pages/confirm-access/confirm-access.page';
+import { NotFoundPage } from './pages/not-found/not-found.page';
 
-const currentToken =  localStorage.getItem('token');
+const currentToken = localStorage.getItem('token');
 
 export const routes: Routes = [
   {
@@ -37,5 +38,13 @@ export const routes: Routes = [
   {
     path: 'confirmar-acesso',
     component: ConfirmAccessPage,
+  },
+  {
+    path: '404',
+    component: NotFoundPage
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   }
 ];
