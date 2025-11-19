@@ -47,6 +47,8 @@ export class App implements OnInit {
     this.noMenuRoutes.some(path => this.currentUrl().includes(path))
   );
 
+  isDark = signal(false);
+
   constructor(
     private breakpointObserver: BreakpointObserver,
   ) { }
@@ -74,6 +76,16 @@ export class App implements OnInit {
   closeIfMobile() {
     if (this.isMobile) {
       this.drawer.close();
+    }
+  }
+
+  toggleTheme() {
+    this.isDark.update(v => !v);
+
+    if (this.isDark()) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
   }
 }

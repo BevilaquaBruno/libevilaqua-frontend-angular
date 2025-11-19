@@ -60,3 +60,12 @@
   <router-outlet />
 </div>
 }
+
+<button
+  class="theme-toggle-btn"
+  mat-fab
+  (click)="toggleTheme()"
+  aria-label="Alternar tema"
+>
+  <mat-icon>{{ isDark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+</button>

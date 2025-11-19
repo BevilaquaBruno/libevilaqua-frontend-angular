@@ -49,11 +49,24 @@
   }
 }
 
-
 .menu-button {
   margin-right: 16px;
 }
 
 .content {
   padding: 16px;
+}
+
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+
+  &:hover {
+    filter: brightness(1.1);
+  }
 }
