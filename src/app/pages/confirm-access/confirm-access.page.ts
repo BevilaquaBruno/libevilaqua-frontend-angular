@@ -20,7 +20,7 @@ export class ConfirmAccessPage implements OnInit {
   public APP_NAME = env.APP_NAME;
   public displayError = signal('');
   public displaySuccessMessage = signal('');
-  public isTokenConfirmed = signal(false);
+  public enableButton = signal(false);
 
   constructor(
     private authService: AuthService,
@@ -36,8 +36,8 @@ export class ConfirmAccessPage implements OnInit {
         next: (data) => {
           if (200 == data.statusCode) {
             this.displaySuccessMessage.set('E-mail verificado com sucesso! Clique no botão abaixo para entrar no sistema.');
-            this.isTokenConfirmed.set(true);
           }
+          this.enableButton.set(true);
         },
         error: (error) => {
           let errorMessage = '';
@@ -47,6 +47,7 @@ export class ConfirmAccessPage implements OnInit {
             errorMessage = 'Ocorreu algum problema com a verificação do e-mail.';
 
           this.displayError.set(errorMessage);
+          this.enableButton.set(true);
         }
       });
     }
