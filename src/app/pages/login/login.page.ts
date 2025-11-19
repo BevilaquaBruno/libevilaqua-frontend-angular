@@ -33,7 +33,7 @@ import { MatIcon } from "@angular/material/icon";
     MatAutocompleteTrigger,
     LoadingComponent,
     MatIcon
-]
+  ]
 })
 export class LoginPage {
   /**
@@ -99,8 +99,15 @@ export class LoginPage {
     this.authService.signIn(email, password).subscribe({
       next: (data) => {
         this.loginResponse.set(data)
-        this.navigateTab(1);
-        this.isLoginLoading.set(false);
+        if (1 == this.loginResponse().libraries.length) {
+          const libraryid = this.loginResponse().libraries[0].id;
+          this.requestAuthSelectLibrary(libraryid);
+        }
+
+        if (1 < this.loginResponse().libraries.length) {
+          this.navigateTab(1);
+          this.isLoginLoading.set(false);
+        }
       },
       error: (error) => {
         let errorMessage = '';
@@ -142,7 +149,11 @@ export class LoginPage {
     const lib = event.option.value;
     this.libraryCtrl.setValue(lib);
 
-    this.authService.selectLibrary(this.loginResponse().email, this.loginResponse().password, lib.id).subscribe({
+    this.requestAuthSelectLibrary(lib.id);
+  }
+
+  requestAuthSelectLibrary(libraryId: number) {
+    this.authService.selectLibrary(this.loginResponse().email, this.loginResponse().password, libraryId).subscribe({
       next: async (data) => {
         if (!data.access_token) {
           this.generalLibraryError.set('Erro grave ao logar');
