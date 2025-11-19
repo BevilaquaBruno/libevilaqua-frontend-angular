@@ -14,6 +14,7 @@ import { LibraryList } from './interfaces/library-list.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MatIcon } from "@angular/material/icon";
+import { Languages } from '../../enums/languages.enum';
 
 @Component({
   selector: 'app-login',
@@ -52,6 +53,7 @@ export class LoginPage {
     id: 0,
     name: '',
     email: '',
+    language: '',
     libraries: [],
     password: '',
   });
@@ -160,6 +162,7 @@ export class LoginPage {
         }
 
         localStorage.setItem('token', data.access_token);
+        localStorage.setItem('language', this.loginResponse().language);
         setTimeout(() => {
           this.router.navigate(['inicio']);
         }, 1000);
@@ -182,6 +185,7 @@ export class LoginPage {
       id: 0,
       name: '',
       email: '',
+      language: '',
       libraries: [],
       password: '',
     });

@@ -9,6 +9,7 @@ import { MatNavList, MatDivider, MatListItem } from "@angular/material/list";
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { filter } from 'rxjs';
+import { Languages } from './enums/languages.enum';
 @Component({
   selector: 'app-root',
   imports: [
@@ -70,6 +71,17 @@ export class App implements OnInit {
       .subscribe((event: NavigationEnd) => {
         this.currentUrl.set(event.urlAfterRedirects);
       });
+
+    /**
+     * Define o idioma do usuário com base no navegador
+     */
+    if (!localStorage.getItem('language')) {
+      const lang = (navigator.language || (navigator.languages ? navigator.languages[0] : 'en')).toLowerCase();
+      const supportedLanguages = Object.values(Languages);
+      const userLanguage = ((supportedLanguages as string[]).includes(lang)) ? lang : 'en';
+
+      localStorage.setItem('language', userLanguage);
+    }
   }
 
   /** Só fecha o menu se estiver no modo mobile */
