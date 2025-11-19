@@ -4,6 +4,7 @@ import { LoginPage } from './pages/login/login.page';
 import { SendResetPasswordPage } from './pages/send-reset-password/send-reset-password.page';
 import { ResetPasswordPage } from './pages/reset-password/reset-password.page';
 import { NewLibraryPage } from './pages/new-library/new-library.page';
+import { ConfirmAccessPage } from './pages/confirm-access/confirm-access.page';
 
 const currentToken =  localStorage.getItem('token');
 
@@ -15,22 +16,26 @@ export const routes: Routes = [
   },
   {
     path: 'inicio',
-    component: HomePage
+    component: HomePage,
   },
   {
     path: 'login',
-    component: LoginPage
+    component: LoginPage,
   },
   {
     path: 'esqueci-a-senha',
-    component: SendResetPasswordPage
+    component: SendResetPasswordPage,
   },
   {
     path: 'resetar-senha',
-    component: ResetPasswordPage
+    component: ResetPasswordPage,
   },
   {
     path: 'nova-biblioteca',
     component: NewLibraryPage,
+  },
+  {
+    path: 'confirmar-acesso',
+    component: ConfirmAccessPage,
   }
 ];

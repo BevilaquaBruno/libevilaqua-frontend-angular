@@ -53,4 +53,15 @@ export class AuthService {
       }
     );
   }
+
+  confirmEmail(email: string, token: string): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(`${this.API}/confirm-email`,
+      {
+        email: email
+      },
+      {
+        headers: new HttpHeaders(`Authorization: Bearer ${token}`)
+      }
+    );
+  }
 }

@@ -1,0 +1,36 @@
+<mat-grid-list cols="3">
+  <mat-grid-tile colspan="1"></mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <mat-card class="reset-password-card">
+      <mat-card-header>
+        <mat-card-title>
+          <b style="font-size: xx-large;">
+            Confirmar acesso à biblioteca
+          </b>
+        </mat-card-title>
+        <mat-card-subtitle>
+          Estamos validando o seu acesso à biblioteca no app {{APP_NAME}}.
+          @if ('' != displayError()) {
+          <div class="text-center">
+            <span class="red-text-button">{{displayError()}}</span>
+          </div>
+          }
+          @if ('' != displaySuccessMessage()) {
+          <div class="text-center">
+            <span class="green-text-button">{{displaySuccessMessage()}}</span>
+          </div>
+          }
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content style="margin-top: 30px;">
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="rect-button full-width" [disabled]="!isTokenConfirmed()" matButton="filled" type="submit" (click)="goToLogin()">Ir para
+          o login</button>
+        <!-- <app-loading [loading]="isLoginLoading"></app-loading> -->
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"></mat-grid-tile>
+</mat-grid-list>
