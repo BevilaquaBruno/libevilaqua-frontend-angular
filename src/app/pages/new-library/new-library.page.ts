@@ -91,7 +91,7 @@ export class NewLibraryPage {
         if (error.error.message && 401 != error.status)
           errorMessage = error.error.message
         else
-          errorMessage = 'Ocorreu algum problema ao registrar a biblioteca.';
+          errorMessage = 'Usuário ou senha incorretos.';
 
         this.displayError.set(errorMessage);
       }
