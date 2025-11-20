@@ -82,6 +82,16 @@ export class App implements OnInit {
 
       localStorage.setItem('language', userLanguage);
     }
+
+    /**
+     * Define o tema escuro ou claro
+     * True = Dark
+     * False = Light
+     */
+    const theme = (localStorage.getItem('theme') == 'true') ? true : false;
+    if (theme != this.isDark()) {
+      this.toggleTheme();
+    }
   }
 
   /** Só fecha o menu se estiver no modo mobile */
@@ -96,8 +106,10 @@ export class App implements OnInit {
 
     if (this.isDark()) {
       document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'true')
     } else {
       document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'false')
     }
   }
 }
