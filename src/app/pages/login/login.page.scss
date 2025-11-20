@@ -1,0 +1,13 @@
+.login-card {
+  min-width: 500px;
+  margin: 20px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+:host ::ng-deep .mat-mdc-tab-header {
+  display: none !important;
+}

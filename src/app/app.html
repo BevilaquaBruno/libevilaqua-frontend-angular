@@ -1,0 +1,71 @@
+@if (!shouldntShowMenu()) {
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" [mode]="isMobile ? 'over': 'side'" [opened]="(isMobile) ? false : true">
+    <mat-toolbar>Menu</mat-toolbar>
+
+    <mat-nav-list>
+      <!-- Links diretos -->
+      <a mat-list-item routerLink="/" (click)="closeIfMobile()">
+        <mat-icon>home</mat-icon>
+        <span>Início</span>
+      </a>
+
+      <mat-divider />
+
+      <a mat-list-item routerLink="/login" (click)="closeIfMobile()">
+        <mat-icon>info</mat-icon>
+        <span>Sobre</span>
+      </a>
+
+      <mat-divider />
+
+      <!-- Grupo expansível -->
+      <mat-expansion-panel class="flat-panel" container-shape="none">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>settings</mat-icon>
+            Configurações
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list>
+          <a mat-list-item routerLink="/settings/profile" (click)="closeIfMobile()">
+            <mat-icon>person</mat-icon>
+            <span>Perfil</span>
+          </a>
+          <mat-divider />
+          <a mat-list-item routerLink="/settings/security" (click)="closeIfMobile()">
+            <mat-icon>lock</mat-icon>
+            <span>Segurança</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isMobile) {
+      <button matIconButton aria-label="Abrir/Fechar menu" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      }
+      <span>libevilaqua-frontend-angular-20</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+} @else {
+<div class="sidenav-container">
+  <router-outlet />
+</div>
+}
+
+<button
+  class="theme-toggle-btn"
+  mat-fab
+  (click)="toggleTheme()"
+  aria-label="Alternar tema"
+>
+  <mat-icon>{{ isDark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+</button>
