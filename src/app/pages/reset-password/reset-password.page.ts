@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from "@angular/material/input";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-reset-password',
   imports: [
-    MatGridListModule,
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,

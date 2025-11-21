@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
 import env from '../../../env';
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +12,6 @@ import { MatIcon } from "@angular/material/icon";
   selector: 'app-send-reset-password.page',
   imports: [
     ReactiveFormsModule,
-    MatGridListModule,
     MatCardModule,
     MatFormField,
     MatInputModule,
