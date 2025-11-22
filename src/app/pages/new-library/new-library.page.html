@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col"></div>
-  <div class="col">
+  <div class="col-1-sm col-4"></div>
+  <div class="col-10-sm col-5">
     <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
       <mat-card class="new-library-card">
         <mat-card-header>
@@ -30,67 +30,79 @@
           <h2 class="green-text-button">Biblioteca:</h2>
           <mat-divider></mat-divider>
           <br />
-          <mat-form-field floatLabel="auto" class="full-width">
-            <mat-label>Nome da biblioteca</mat-label>
-            <input matInput placeholder="Biblioteca do John Doe" type="text" formControlName="libraryDescription"
-              maxlength="50" />
-            @if (form.get('libraryDescription')?.hasError('required') && form.get('libraryDescription')?.touched) {
-            <mat-error>
-              O nome da biblioteca é obrigatório.
-            </mat-error>
-            }
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field floatLabel="auto" class="full-width">
+                <mat-label>Nome da biblioteca</mat-label>
+                <input matInput placeholder="Biblioteca do John Doe" type="text" formControlName="libraryDescription"
+                  maxlength="50" />
+                @if (form.get('libraryDescription')?.hasError('required') && form.get('libraryDescription')?.touched) {
+                <mat-error>
+                  O nome da biblioteca é obrigatório.
+                </mat-error>
+                }
 
-            @if (form.get('libraryDescription')?.hasError('maxLength') && form.get('libraryDescription')?.dirty) {
-            <mat-error>
-              O nome da biblioteca deve ter até 50 caracteres.
-            </mat-error>
-            }
-          </mat-form-field>
+                @if (form.get('libraryDescription')?.hasError('maxLength') && form.get('libraryDescription')?.dirty) {
+                <mat-error>
+                  O nome da biblioteca deve ter até 50 caracteres.
+                </mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
 
           <h2 class="green-text-button">Usuário:</h2>
           <mat-divider></mat-divider>
           <br />
 
-          <mat-form-field floatLabel="auto" class="full-width">
-            <mat-label>Nome</mat-label>
-            <input matInput placeholder="John Doe" type="text" formControlName="name" maxlength="50" />
-            @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
-            <mat-error>
-              O nome é obrigatório.
-            </mat-error>
-            }
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field floatLabel="auto" class="full-width">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="John Doe" type="text" formControlName="name" maxlength="50" />
+                @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
+                <mat-error>
+                  O nome é obrigatório.
+                </mat-error>
+                }
 
-            @if (form.get('name')?.hasError('maxLength') && form.get('name')?.dirty) {
-            <mat-error>
-              O nome deve ter até 50 caracteres.
-            </mat-error>
-            }
-          </mat-form-field>
-
-          <mat-form-field floatLabel="auto" class="full-width">
-            <mat-label>E-mail</mat-label>
-            <input matInput placeholder="john@doe.com" type="email" formControlName="email" />
-            @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
-            <mat-error>
-              O e-mail é obrigatório.
-            </mat-error>
-            }
-
-            @if (form.get('email')?.hasError('email') && form.get('email')?.dirty) {
-            <mat-error>
-              Informe um e-mail válido.
-            </mat-error>
-            }
-
-            @if (form.get('email')?.hasError('maxLength') && form.get('email')?.touched) {
-            <mat-error>
-              O e-mail deve ter até 50 caracteres.
-            </mat-error>
-            }
-          </mat-form-field>
+                @if (form.get('name')?.hasError('maxLength') && form.get('name')?.dirty) {
+                <mat-error>
+                  O nome deve ter até 50 caracteres.
+                </mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
 
           <div class="row">
-            <div class="col">
+            <div class="col-12">
+              <mat-form-field floatLabel="auto" class="full-width">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="john@doe.com" type="email" formControlName="email" />
+                @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+                <mat-error>
+                  O e-mail é obrigatório.
+                </mat-error>
+                }
+
+                @if (form.get('email')?.hasError('email') && form.get('email')?.dirty) {
+                <mat-error>
+                  Informe um e-mail válido.
+                </mat-error>
+                }
+
+                @if (form.get('email')?.hasError('maxLength') && form.get('email')?.touched) {
+                <mat-error>
+                  O e-mail deve ter até 50 caracteres.
+                </mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-6">
               <mat-form-field floatLabel="auto" class="full-width">
                 <mat-label>Senha</mat-label>
                 <input matInput placeholder="********" type="password" formControlName="password" />
@@ -107,7 +119,7 @@
                 }
               </mat-form-field>
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-6">
               <mat-form-field floatLabel="auto" class="full-width">
                 <mat-label>Repita a Senha</mat-label>
                 <input matInput placeholder="********" type="password" type="password_confirmation"
@@ -129,30 +141,38 @@
             </div>
           </div>
 
-          <mat-form-field floatLabel="auto" class="full-width">
-            <mat-label>Idioma</mat-label>
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field floatLabel="auto" class="full-width">
+                <mat-label>Idioma</mat-label>
 
-            <mat-select formControlName="language">
-              @for (lang of languages; track lang) {
-              <mat-option [value]="lang">
-                {{ lang }}
-              </mat-option>
-              }
-            </mat-select>
+                <mat-select formControlName="language">
+                  @for (lang of languages; track lang) {
+                  <mat-option [value]="lang">
+                    {{ lang }}
+                  </mat-option>
+                  }
+                </mat-select>
 
-            @if(form.get('language')?.hasError('required') && form.get('language')?.touched){
-            <mat-error>
-              O idioma é obrigatório.
-            </mat-error>
-            }
-          </mat-form-field>
+                @if(form.get('language')?.hasError('required') && form.get('language')?.touched){
+                <mat-error>
+                  O idioma é obrigatório.
+                </mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
         </mat-card-content>
         <mat-card-actions>
-          <button class="rect-button full-width" matButton="filled" type="submit">Criar biblioteca</button>
+          <div class="row">
+            <div class="col-12">
+              <button class="rect-button full-width" matButton="filled" type="submit">Criar biblioteca</button>
+            </div>
+          </div>
           <!-- <app-loading [loading]="isLoginLoading"></app-loading> -->
         </mat-card-actions>
       </mat-card>
     </form>
   </div>
-  <div class="col"></div>
+  <div class="col-1-sm col-4"></div>
 </div>
