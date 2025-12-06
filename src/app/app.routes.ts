@@ -6,17 +6,19 @@ import { ResetPasswordPage } from './pages/reset-password/reset-password.page';
 import { NewLibraryPage } from './pages/new-library/new-library.page';
 import { ConfirmAccessPage } from './pages/confirm-access/confirm-access.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
+import { authGuard } from './guard/auth.guard';
 
 const currentToken = localStorage.getItem('token');
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: (null == currentToken || '' == currentToken.trim()) ? 'login' : 'inicio',
-    pathMatch: 'full',
+    redirectTo: 'inicio',
+    pathMatch: 'full'
   },
   {
     path: 'inicio',
+    canActivate: [authGuard],
     component: HomePage,
   },
   {
