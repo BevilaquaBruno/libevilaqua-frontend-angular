@@ -166,7 +166,9 @@
         <mat-card-actions>
           <div class="row">
             <div class="col-12">
-              <button class="rect-button full-width" matButton="filled" type="submit">Criar biblioteca</button>
+              <button [disabled]="isLoading()" class="rect-button full-width" matButton="filled" type="submit">
+                {{isLoading() ? 'Carregando...' : 'Criar biblioteca'}}
+              </button>
             </div>
           </div>
           <!-- <app-loading [loading]="isLoginLoading"></app-loading> -->

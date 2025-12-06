@@ -35,6 +35,7 @@ export class NewLibraryPage {
   public displayError = signal('');
   public displaySuccessMessage = signal('');
   public languages = Object.values(Languages);
+  public isLoading = signal(false);
 
   form = this.fb.group({
     name: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
@@ -68,6 +69,7 @@ export class NewLibraryPage {
 
   onSubmit() {
     if (this.form.invalid) return;
+    this.isLoading.set(true);
 
     this.displayError.set('');
     const name = this.form.controls['name'].value!;
@@ -94,6 +96,7 @@ export class NewLibraryPage {
           errorMessage = 'Usuário ou senha incorretos.';
 
         this.displayError.set(errorMessage);
+        this.isLoading.set(false);
       }
     });
 

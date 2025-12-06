@@ -26,6 +26,7 @@ export class SendResetPasswordPage {
   public APP_NAME = env.APP_NAME;
   public displayError = signal('');
   public displaySuccessMessage = signal('');
+  public isLoading = signal(false);
 
   form = this.fb.group({
     email: this.fb.control<string>('', [Validators.required, Validators.email]),
@@ -38,6 +39,7 @@ export class SendResetPasswordPage {
 
   onSubmit() {
     if (this.form.invalid) return;
+    this.isLoading.set(true);
 
     const email = this.form.controls.email.value!;
     this.authService.sendResetPassword(email).subscribe({
@@ -56,6 +58,7 @@ export class SendResetPasswordPage {
           errorMessage = 'Erro ao enviar e-mail.';
 
         this.displayError.set(errorMessage);
+        this.isLoading.set(false);
       }
     });
 
