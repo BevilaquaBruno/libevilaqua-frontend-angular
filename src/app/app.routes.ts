@@ -7,6 +7,7 @@ import { NewLibraryPage } from './pages/new-library/new-library.page';
 import { ConfirmAccessPage } from './pages/confirm-access/confirm-access.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { authGuard } from './guard/auth.guard';
+import { TypeComponent } from './pages/type/type.component';
 
 const currentToken = localStorage.getItem('token');
 
@@ -44,6 +45,10 @@ export const routes: Routes = [
   {
     path: '404',
     component: NotFoundPage
+  },
+  {
+    path: 'tipos',
+    component: TypeComponent
   },
   {
     path: '**',
