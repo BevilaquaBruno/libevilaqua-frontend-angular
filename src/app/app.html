@@ -31,6 +31,13 @@
 
         <mat-divider />
 
+        <a mat-list-item routerLink="/tags" (click)="closeIfMobile()">
+          <mat-icon>local_offer</mat-icon>
+          <span>Tags</span>
+        </a>
+
+        <mat-divider />
+
         <!-- Grupo expansível -->
         <!--
         <mat-expansion-panel class="flat-panel" container-shape="none">
