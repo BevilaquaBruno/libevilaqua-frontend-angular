@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
@@ -24,7 +24,7 @@ import { AuthService } from '../../auth.service';
     RouterModule,
   ]
 })
-export class HomePage implements OnInit {
+export class HomePage {
   private breakpointObserver = inject(BreakpointObserver);
 
   /** Based on the screen size, switch from standard to one column per row */
@@ -53,9 +53,4 @@ export class HomePage implements OnInit {
     private router: Router,
   ){}
 
-  ngOnInit(): void {
-    this.authService.isTokenValid().subscribe({
-      error: (error) => { if(401 == error.status) this.router.navigate(['login']) }
-    });
-  }
 }

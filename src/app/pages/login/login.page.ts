@@ -3,7 +3,6 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angu
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from "@angular/material/grid-list";
 import env from '../../../env';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth.service';
@@ -14,7 +13,6 @@ import { LibraryList } from './interfaces/library-list.interface';
 import { MatAutocomplete, MatOption, MatAutocompleteTrigger, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MatIcon } from "@angular/material/icon";
-import { Languages } from '../../enums/languages.enum';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +24,6 @@ import { Languages } from '../../enums/languages.enum';
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatGridListModule,
     RouterModule,
     MatTabsModule,
     MatAutocomplete,

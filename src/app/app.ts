@@ -112,4 +112,9 @@ export class App implements OnInit {
       localStorage.setItem('theme', 'false')
     }
   }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

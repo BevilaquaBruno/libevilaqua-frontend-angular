@@ -4,14 +4,12 @@ import env from '../../../env';
 import { AuthService } from '../../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from "@angular/material/grid-list";
 
 @Component({
   selector: 'app-confirm-access.page',
   imports: [
     MatCardModule,
     MatButtonModule,
-    MatGridListModule,
   ],
   templateUrl: './confirm-access.page.html',
   styleUrl: './confirm-access.page.scss',

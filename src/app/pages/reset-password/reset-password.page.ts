@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from "@angular/material/input";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-reset-password',
   imports: [
-    MatGridListModule,
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,
@@ -27,6 +25,7 @@ export class ResetPasswordPage {
   public displayError = signal('');
   public displaySuccessMessage = signal('');
   private token = signal('');
+  public isLoading = signal(false);
 
   form = this.fb.group({
     password: this.fb.control<string>('', [Validators.required, Validators.minLength(6)]),
@@ -63,6 +62,7 @@ export class ResetPasswordPage {
 
   onSubmit() {
     if (this.form.invalid) return;
+    this.isLoading.set(true);
 
     const password = this.form.get('password')?.value;
     const password_confirmation = this.form.get('password_confirmation')?.value;
@@ -75,8 +75,6 @@ export class ResetPasswordPage {
         }
       },
       error: (error) => {
-        console.log(error);
-
         this.displaySuccessMessage.set('');
         let errorMessage = '';
         if (error.error.message && 401 != error.status)
@@ -85,6 +83,7 @@ export class ResetPasswordPage {
           errorMessage = 'Erro ao resetar senha.';
 
         this.displayError.set(errorMessage);
+        this.isLoading.set(false);
       }
     });
   }

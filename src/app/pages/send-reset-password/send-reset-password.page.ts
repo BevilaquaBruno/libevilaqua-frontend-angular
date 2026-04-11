@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
 import env from '../../../env';
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +12,6 @@ import { MatIcon } from "@angular/material/icon";
   selector: 'app-send-reset-password.page',
   imports: [
     ReactiveFormsModule,
-    MatGridListModule,
     MatCardModule,
     MatFormField,
     MatInputModule,
@@ -28,6 +26,7 @@ export class SendResetPasswordPage {
   public APP_NAME = env.APP_NAME;
   public displayError = signal('');
   public displaySuccessMessage = signal('');
+  public isLoading = signal(false);
 
   form = this.fb.group({
     email: this.fb.control<string>('', [Validators.required, Validators.email]),
@@ -40,6 +39,7 @@ export class SendResetPasswordPage {
 
   onSubmit() {
     if (this.form.invalid) return;
+    this.isLoading.set(true);
 
     const email = this.form.controls.email.value!;
     this.authService.sendResetPassword(email).subscribe({
@@ -58,6 +58,7 @@ export class SendResetPasswordPage {
           errorMessage = 'Erro ao enviar e-mail.';
 
         this.displayError.set(errorMessage);
+        this.isLoading.set(false);
       }
     });
 

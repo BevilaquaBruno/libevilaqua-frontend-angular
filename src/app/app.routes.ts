@@ -6,17 +6,25 @@ import { ResetPasswordPage } from './pages/reset-password/reset-password.page';
 import { NewLibraryPage } from './pages/new-library/new-library.page';
 import { ConfirmAccessPage } from './pages/confirm-access/confirm-access.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
+import { authGuard } from './guard/auth.guard';
+import { TypeListComponent } from './pages/types/list/type-list.component';
+import { TypeFormPage } from './pages/types/form/type-form.page';
+import { GenreListComponent } from './pages/genres/list/genre-list.component';
+import { GenreFormPage } from './pages/genres/form/genre-form.page';
+import { TagListComponent } from './pages/tags/list/tag-list.component';
+import { TagFormPage } from './pages/tags/form/tag-form.page';
 
 const currentToken = localStorage.getItem('token');
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: (null == currentToken || '' == currentToken.trim()) ? 'login' : 'inicio',
-    pathMatch: 'full',
+    redirectTo: 'inicio',
+    pathMatch: 'full'
   },
   {
     path: 'inicio',
+    canActivate: [authGuard],
     component: HomePage,
   },
   {
@@ -42,6 +50,51 @@ export const routes: Routes = [
   {
     path: '404',
     component: NotFoundPage
+  },
+  {
+    path: 'tipos',
+    canActivate: [authGuard],
+    component: TypeListComponent
+  },
+  {
+    path: 'tipos/novo',
+    canActivate: [authGuard],
+    component: TypeFormPage
+  },
+  {
+    path: 'tipos/editar/:id',
+    canActivate: [authGuard],
+    component: TypeFormPage
+  },
+  {
+    path: 'generos',
+    canActivate: [authGuard],
+    component: GenreListComponent
+  },
+  {
+    path: 'generos/novo',
+    canActivate: [authGuard],
+    component: GenreFormPage
+  },
+  {
+    path: 'generos/editar/:id',
+    canActivate: [authGuard],
+    component: GenreFormPage
+  },
+  {
+    path: 'tags',
+    canActivate: [authGuard],
+    component: TagListComponent
+  },
+  {
+    path: 'tags/novo',
+    canActivate: [authGuard],
+    component: TagFormPage
+  },
+  {
+    path: 'tags/editar/:id',
+    canActivate: [authGuard],
+    component: TagFormPage
   },
   {
     path: '**',
