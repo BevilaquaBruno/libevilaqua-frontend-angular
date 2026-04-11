@@ -17,6 +17,13 @@
 
         <mat-divider />
 
+        <a mat-list-item routerLink="/generos" (click)="closeIfMobile()">
+          <mat-icon>book_ribbon</mat-icon>
+          <span>Gêneros</span>
+        </a>
+
+        <mat-divider />
+
         <a mat-list-item routerLink="/tipos" (click)="closeIfMobile()">
           <mat-icon>auto_stories</mat-icon>
           <span>Tipos</span>
