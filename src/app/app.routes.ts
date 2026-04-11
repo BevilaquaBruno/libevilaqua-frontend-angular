@@ -7,7 +7,8 @@ import { NewLibraryPage } from './pages/new-library/new-library.page';
 import { ConfirmAccessPage } from './pages/confirm-access/confirm-access.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { authGuard } from './guard/auth.guard';
-import { TypeComponent } from './pages/type/type.component';
+import { TypeListComponent } from './pages/types/list/type-list.component';
+import { TypeFormPage } from './pages/types/form/type-form.page';
 
 const currentToken = localStorage.getItem('token');
 
@@ -48,7 +49,18 @@ export const routes: Routes = [
   },
   {
     path: 'tipos',
-    component: TypeComponent
+    canActivate: [authGuard],
+    component: TypeListComponent
+  },
+  {
+    path: 'tipos/novo',
+    canActivate: [authGuard],
+    component: TypeFormPage
+  },
+  {
+    path: 'tipos/editar/:id',
+    canActivate: [authGuard],
+    component: TypeFormPage
   },
   {
     path: '**',
