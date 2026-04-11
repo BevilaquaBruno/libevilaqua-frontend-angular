@@ -1,4 +1,4 @@
-.genre-form-container {
+.form-container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
@@ -59,4 +59,8 @@ button {
   button {
     width: 100%;
   }
+}
+
+mat-card-subtitle {
+  color: rgba(0, 0, 0, 0.6);
 }

@@ -1,48 +1,66 @@
 .form-container {
-  padding: 20px 0;
-}
-
-.container {
-  width: 100%;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-.form-card {
-  padding: 24px;
-  margin-bottom: 20px;
+mat-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
 mat-card-title {
   font-size: 24px;
-  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+button {
+  min-width: 120px;
+}
+
+@media (max-width: 600px) {
+  .genre-form-container {
+    margin: 20px auto;
+    padding: 16px;
+  }
+
+  mat-card-title {
+    font-size: 20px;
+  }
+
+  .button-group {
+    flex-direction: column-reverse;
+  }
+
+  button {
+    width: 100%;
+  }
 }
 
 mat-card-subtitle {
   color: rgba(0, 0, 0, 0.6);
-}
-
-mat-card-content {
-  padding: 0 0 20px 0;
-}
-
-.full-width {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
-mat-card-actions {
-  padding: 16px 0 0 0;
-}
-
-mat-card-actions button {
-  margin-left: 8px;
-}
-
-mat-card-actions button:first-child {
-  margin-left: 0;
 }

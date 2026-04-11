@@ -1,16 +1,11 @@
-.tag-form-container {
+.form-container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-  display: flex;
-  justify-content: center;
 }
 
 mat-card {
-  width: 100%;
-  max-width: 600px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
 }
 
 mat-card-header {
@@ -18,19 +13,12 @@ mat-card-header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 mat-card-title {
   font-size: 24px;
   font-weight: 500;
   color: #333;
-  margin: 0;
-}
-
-mat-card-content {
-  padding: 24px 24px 0 24px;
 }
 
 form {
@@ -48,8 +36,6 @@ form {
   gap: 12px;
   justify-content: flex-end;
   margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 button {
@@ -57,12 +43,24 @@ button {
 }
 
 @media (max-width: 600px) {
-  .tag-form-container {
+  .genre-form-container {
     margin: 20px auto;
     padding: 16px;
   }
 
-  mat-card-content {
-    padding: 16px 16px 0 16px;
+  mat-card-title {
+    font-size: 20px;
   }
+
+  .button-group {
+    flex-direction: column-reverse;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+mat-card-subtitle {
+  color: rgba(0, 0, 0, 0.6);
 }
