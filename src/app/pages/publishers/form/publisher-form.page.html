@@ -1,0 +1,72 @@
+<div class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-subtitle>
+        {{
+          isEdit
+            ? 'Edite as informações da editora'
+            : 'Preencha as informações para criar uma nova editora'
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            #nameInput
+            formControlName="name"
+            placeholder="Digite o nome da editora"
+            [disabled]="loading"
+          />
+          <mat-error *ngIf="publisherForm.get('name')?.hasError('required')">
+            Nome é obrigatório
+          </mat-error>
+          <mat-error *ngIf="publisherForm.get('name')?.hasError('minlength')">
+            Nome deve ter pelo menos 1 caractere
+          </mat-error>
+          <mat-error *ngIf="publisherForm.get('name')?.hasError('maxlength')">
+            Nome deve ter no máximo 50 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>País</mat-label>
+          <input
+            matInput
+            formControlName="country"
+            placeholder="Digite o país da editora"
+            [disabled]="loading"
+          />
+          <mat-error *ngIf="publisherForm.get('country')?.hasError('required')">
+            País é obrigatório
+          </mat-error>
+          <mat-error *ngIf="publisherForm.get('country')?.hasError('minlength')">
+            País deve ter pelo menos 1 caractere
+          </mat-error>
+          <mat-error *ngIf="publisherForm.get('country')?.hasError('maxlength')">
+            País deve ter no máximo 30 caracteres
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button class="rect-button" type="button" (click)="onCancel()">Cancelar</button>
+      <button
+        matButton="filled"
+        class="rect-button"
+        color="primary"
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="publisherForm.invalid || loading"
+      >
+        <mat-icon *ngIf="loading">hourglass_empty</mat-icon>
+        {{ submitButtonText }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
