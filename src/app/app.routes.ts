@@ -15,6 +15,8 @@ import { TagListComponent } from './pages/tags/list/tag-list.component';
 import { TagFormPage } from './pages/tags/form/tag-form.page';
 import { PublisherListComponent } from './pages/publishers/list/publisher-list.component';
 import { PublisherFormPage } from './pages/publishers/form/publisher-form.page';
+import { PersonListComponent } from './pages/people/list/person-list.component';
+import { PersonFormPage } from './pages/people/form/person-form.page';
 
 const currentToken = localStorage.getItem('token');
 
@@ -112,6 +114,21 @@ export const routes: Routes = [
     path: 'editoras/editar/:id',
     canActivate: [authGuard],
     component: PublisherFormPage
+  },
+  {
+    path: 'pessoas',
+    canActivate: [authGuard],
+    component: PersonListComponent
+  },
+  {
+    path: 'pessoas/novo',
+    canActivate: [authGuard],
+    component: PersonFormPage
+  },
+  {
+    path: 'pessoas/editar/:id',
+    canActivate: [authGuard],
+    component: PersonFormPage
   },
   {
     path: '**',

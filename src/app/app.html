@@ -24,6 +24,13 @@
 
         <mat-divider />
 
+        <a mat-list-item routerLink="/pessoas" (click)="closeIfMobile()">
+          <mat-icon>person</mat-icon>
+          <span>Pessoas</span>
+        </a>
+
+        <mat-divider />
+
         <a mat-list-item routerLink="/generos" (click)="closeIfMobile()">
           <mat-icon>book_ribbon</mat-icon>
           <span>Gêneros</span>

@@ -1,0 +1,108 @@
+<div class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-subtitle>
+        {{ isEdit ? 'Edite as informações da pessoa' : 'Preencha as informações para criar uma nova pessoa' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+        <div class="section-title">Dados gerais</div>
+
+        <div class="form-row name-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Nome</mat-label>
+            <input matInput #nameInput formControlName="name" placeholder="Nome completo" [disabled]="loading" />
+            <mat-error *ngIf="personForm.get('name')?.hasError('required')">Nome é obrigatório</mat-error>
+            <mat-error *ngIf="personForm.get('name')?.hasError('maxlength')">Nome não pode ter mais de 250 caracteres</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Documento</mat-label>
+            <input matInput formControlName="document" placeholder="CPF ou outro documento" [disabled]="loading" />
+            <mat-error *ngIf="personForm.get('document')?.hasError('maxlength')">Documento não pode ter mais de 50 caracteres</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row contact-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" formControlName="email" [disabled]="loading" />
+            <mat-error *ngIf="personForm.get('email')?.hasError('email')">Informe um e-mail válido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phone" placeholder="Somente números" [disabled]="loading" />
+            <mat-error *ngIf="personForm.get('phone')?.hasError('pattern')">Telefone deve conter somente números</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="section-title">Endereço</div>
+
+        <div class="form-row street-row">
+          <mat-form-field appearance="outline" class="form-field zip-field">
+            <mat-label>CEP</mat-label>
+            <input
+              matInput
+              formControlName="zip_code"
+              [disabled]="loading || addressLoading"
+              (keydown.tab)="lookupAddress()"
+            />
+            <mat-hint *ngIf="addressLoading">Consultando CEP...</mat-hint>
+            <mat-hint *ngIf="addressError" class="error-hint">{{ addressError }}</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Rua</mat-label>
+            <input matInput formControlName="street" [disabled]="loading" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-row district-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Bairro</mat-label>
+            <input matInput formControlName="district" [disabled]="loading" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Número</mat-label>
+            <input matInput formControlName="number" placeholder="Número, SN ou S/N" [disabled]="loading" />
+            <mat-error *ngIf="personForm.get('number')?.hasError('pattern')">Informe um número, SN ou S/N</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row location-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="city" [disabled]="loading" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="state" [disabled]="loading" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>País</mat-label>
+            <input matInput formControlName="country" [disabled]="loading" />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Observação</mat-label>
+          <textarea matInput formControlName="obs" rows="3" [disabled]="loading"></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button class="rect-button" type="button" (click)="onCancel()">Cancelar</button>
+      <button matButton="filled" class="rect-button" color="primary" type="submit"
+        (click)="onSubmit()" [disabled]="personForm.invalid || loading">
+        <mat-icon *ngIf="loading">hourglass_empty</mat-icon>
+        {{ submitButtonText }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
