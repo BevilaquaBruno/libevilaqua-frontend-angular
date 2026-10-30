@@ -1,0 +1,59 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Pessoas</h1>
+  <p class="page-description">
+    Gerencie as pessoas cadastradas na biblioteca.
+  </p>
+  <div class="content-wrapper">
+    <div class="actions">
+      <button matButton="outlined" class="rect-button" color="primary" (click)="openCreateForm()">
+        <mat-icon>add</mat-icon>
+        Nova Pessoa
+      </button>
+    </div>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="(people$ | async) ?? []" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let person">{{ person.id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let person">{{ person.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="document">
+          <th mat-header-cell *matHeaderCellDef>Documento</th>
+          <td mat-cell *matCellDef="let person">{{ person.document || '-' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let person">{{ person.email || '-' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Telefone</th>
+          <td mat-cell *matCellDef="let person">{{ person.phone || '-' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let person">
+            <button mat-icon-button (click)="openEditForm(person)" title="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deletePerson(person)" title="Excluir">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator
+      [length]="totalCount"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 20]"
+      (page)="onPageChange($event)"
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>
