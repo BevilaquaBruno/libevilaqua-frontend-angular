@@ -1,5 +1,5 @@
 .actions { margin-bottom: 16px; }
-.page-description { color: rgba(0, 0, 0, 0.7); font-size: 16px; line-height: 1.5; margin: 8px 0 24px; }
+.page-description { font-size: 16px; line-height: 1.5; margin: 8px 0 24px; }
 table { width: 100%; min-width: 700px; }
 mat-paginator { margin-top: 16px; }
 .grid-container { padding: 20px; box-sizing: border-box; }
