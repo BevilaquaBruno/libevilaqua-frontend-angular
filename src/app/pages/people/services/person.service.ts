@@ -9,6 +9,14 @@ import {
   PersonListResponse
 } from '../interfaces';
 
+export interface ViaCepResponse {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  erro?: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -37,6 +45,11 @@ export class PersonService {
 
   findOne(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.API}/${id}`, { headers: this.headers });
+  }
+
+  findAddressByZipCode(zipCode: string): Observable<ViaCepResponse> {
+    const normalizedZipCode = zipCode.replace(/\D/g, '');
+    return this.http.get<ViaCepResponse>(`https://viacep.com.br/ws/${normalizedZipCode}/json/`);
   }
 
   update(id: number, person: UpdatePersonRequest): Observable<Person> {

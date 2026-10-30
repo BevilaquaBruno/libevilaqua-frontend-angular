@@ -35,6 +35,8 @@ export class PersonFormPage implements OnInit, AfterViewInit {
   isEdit = false;
   personId: number | null = null;
   loading = false;
+  addressLoading = false;
+  addressError = '';
 
   constructor() {
     this.personForm = this.fb.group({
@@ -64,6 +66,40 @@ export class PersonFormPage implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => this.nameInput?.nativeElement?.focus());
+  }
+
+  lookupAddress() {
+    const zipCode = this.personForm.get('zip_code')?.value ?? '';
+    const normalizedZipCode = zipCode.replace(/\D/g, '');
+
+    this.addressError = '';
+    if (normalizedZipCode.length !== 8) {
+      return;
+    }
+
+    this.addressLoading = true;
+    this.personService.findAddressByZipCode(normalizedZipCode).subscribe({
+      next: (address) => {
+        this.addressLoading = false;
+        if (address.erro) {
+          this.addressError = 'CEP não encontrado, digite o endereço manualmente.';
+          return;
+        }
+
+        this.personForm.patchValue({
+          street: address.logradouro,
+          district: address.bairro,
+          city: address.localidade,
+          state: address.uf,
+          country: 'Brasil'
+        });
+      },
+      error: (error) => {
+        console.error('Error loading address by zip code:', error);
+        this.addressLoading = false;
+        this.addressError = 'Não foi possível consultar o CEP, digite o endereço manualmente.';
+      }
+    });
   }
 
   loadPerson(id: number) {
