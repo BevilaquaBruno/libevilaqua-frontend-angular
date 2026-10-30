@@ -6,7 +6,7 @@
 
 mat-card { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
 mat-card-header { margin-bottom: 20px; }
-mat-card-title { font-size: 24px; font-weight: 500; color: #333; }
+mat-card-title { font-size: 24px; font-weight: 500; }
 form { display: flex; flex-direction: column; gap: 20px; }
 .form-row {
   display: grid;
@@ -17,13 +17,6 @@ form { display: flex; flex-direction: column; gap: 20px; }
 .street-row { grid-template-columns: 180px minmax(0, 1fr); }
 .district-row { grid-template-columns: minmax(0, 1fr) 180px; }
 .location-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.section-title {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
-  color: rgba(0, 0, 0, 0.72);
-  font-size: 18px;
-  font-weight: 500;
-  padding-bottom: 8px;
-}
 .form-field { width: 100%; }
 .zip-field { width: 180px; }
 .error-hint { color: #b3261e; }
@@ -33,4 +26,3 @@ button { min-width: 120px; }
   .form-row { grid-template-columns: 1fr; }
   .zip-field { width: 100%; }
 }
-mat-card-subtitle { color: rgba(0, 0, 0, 0.6); }

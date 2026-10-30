@@ -227,3 +227,10 @@ mat-card-content {
 .grid-container {
   margin: 20px;
 }
+
+.section-title {
+  border-bottom: 1px solid var(--mat-sys-primary);
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 8px;
+}

@@ -8,7 +8,6 @@
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
-        <div class="section-title">Dados gerais</div>
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Nome</mat-label>
           <input matInput #nameInput formControlName="name" placeholder="Nome completo" [disabled]="loading" />
