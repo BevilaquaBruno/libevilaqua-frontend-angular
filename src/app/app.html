@@ -31,6 +31,13 @@
 
         <mat-divider />
 
+        <a mat-list-item routerLink="/autores" (click)="closeIfMobile()">
+          <mat-icon>edit_note</mat-icon>
+          <span>Autores</span>
+        </a>
+
+        <mat-divider />
+
         <a mat-list-item routerLink="/generos" (click)="closeIfMobile()">
           <mat-icon>book_ribbon</mat-icon>
           <span>Gêneros</span>

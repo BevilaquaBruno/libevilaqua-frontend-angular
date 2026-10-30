@@ -17,6 +17,8 @@ import { PublisherListComponent } from './pages/publishers/list/publisher-list.c
 import { PublisherFormPage } from './pages/publishers/form/publisher-form.page';
 import { PersonListComponent } from './pages/people/list/person-list.component';
 import { PersonFormPage } from './pages/people/form/person-form.page';
+import { AuthorListComponent } from './pages/authors/list/author-list.component';
+import { AuthorFormPage } from './pages/authors/form/author-form.page';
 
 const currentToken = localStorage.getItem('token');
 
@@ -129,6 +131,21 @@ export const routes: Routes = [
     path: 'pessoas/editar/:id',
     canActivate: [authGuard],
     component: PersonFormPage
+  },
+  {
+    path: 'autores',
+    canActivate: [authGuard],
+    component: AuthorListComponent
+  },
+  {
+    path: 'autores/novo',
+    canActivate: [authGuard],
+    component: AuthorFormPage
+  },
+  {
+    path: 'autores/editar/:id',
+    canActivate: [authGuard],
+    component: AuthorFormPage
   },
   {
     path: '**',
